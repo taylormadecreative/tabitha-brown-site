@@ -54,4 +54,46 @@
       padding: var(--s-2) var(--s-3);
     }
   }
+
+  .nav__panel {
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--cream);
+    box-shadow: 0 24px 60px rgba(43, 42, 38, 0.15);
+    padding-block: var(--s-5);
+    transition: background var(--dur-fast);
+  }
+  .nav[data-tinted="true"] { background: color-mix(in oklab, var(--cream), var(--nav-tint) 8%); }
+
+  .nav__brand-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+  }
+  .nav__brand-card {
+    background: color-mix(in oklab, var(--cream), var(--tint) 10%);
+    border-radius: 8px;
+    padding: var(--s-4);
+    transition: transform var(--dur-fast) var(--ease-exhale),
+                background var(--dur-fast);
+  }
+  .nav__brand-card:hover {
+    transform: translateY(-3px);
+    background: color-mix(in oklab, var(--cream), var(--tint) 22%);
+  }
+  .nav__brand-card a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    min-height: 120px;
+  }
+  .nav__brand-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 500;
+    font-variation-settings: "opsz" 36;
+    line-height: 1.05;
+  }
+  .nav__brand-cat { font-family: var(--font-mono); font-size: 11px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.14em; }
 }

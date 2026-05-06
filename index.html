@@ -45,7 +45,13 @@
                   aria-controls="mobile-menu" aria-label="Open menu">Menu</button>
         </div>
       </div>
-      <div id="brands-panel" class="nav__panel" hidden><!-- Task 7 --></div>
+      <div id="brands-panel" class="nav__panel" hidden>
+        <div class="nav__panel-inner container">
+          <ul class="nav__brand-grid" data-brand-grid>
+            <!-- Populated by nav.js from brands.json -->
+          </ul>
+        </div>
+      </div>
       <div id="mobile-menu" class="nav__mobile" hidden><!-- Task 8 --></div>
     </header>
     <main id="main">
