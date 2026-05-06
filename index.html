@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/src/css/components/nav.css" />
     <link rel="stylesheet" href="/src/css/components/hero.css" />
     <link rel="stylesheet" href="/src/css/components/intent.css" />
+    <link rel="stylesheet" href="/src/css/components/pullquote.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -100,7 +101,17 @@
           <li><a class="intent__btn" href="https://tv.apple.com/show/tab-time" target="_blank" rel="noopener noreferrer">Watch Tab Time <span aria-hidden="true">↗</span></a></li>
         </ul>
       </section>
-      <section id="in-her-words" data-pullquote><!-- Task 12 --></section>
+      <section id="in-her-words" data-pullquote class="pullquote">
+        <div class="pullquote__inner container">
+          <blockquote class="pullquote__text pull-quote">
+            "I'm not selling anything except the idea that you deserve good things, friend."
+          </blockquote>
+          <picture class="pullquote__photo">
+            <source type="image/avif" srcset="/src/assets/img/img-0698-640.avif" />
+            <img src="/src/assets/img/img-0698-640.jpg" alt="Tabitha Brown smiling" width="180" height="240" loading="lazy" />
+          </picture>
+        </div>
+      </section>
       <section id="about" data-about><!-- Task 13 --></section>
       <section id="empire" data-brand-hub><!-- Tasks 15-17 --></section>
       <section id="tour" data-tour><!-- Task 18 --></section>
