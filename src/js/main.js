@@ -4,3 +4,4 @@ import './about.js';
 import './empire.js';
 import './tour.js';
 import './newsletter.js';
+import './footer.js';

@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/src/css/components/universe.css" />
     <link rel="stylesheet" href="/src/css/components/press.css" />
     <link rel="stylesheet" href="/src/css/components/newsletter.css" />
+    <link rel="stylesheet" href="/src/css/components/footer.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -273,7 +274,69 @@
         </div>
       </section>
     </main>
-    <footer id="site-footer" data-footer><!-- Task 23 --></footer>
+    <footer id="site-footer" data-footer class="footer">
+      <div class="footer__top container">
+        <form class="footer__search" role="search" action="#" onsubmit="event.preventDefault();">
+          <label class="sr-only" for="footer-search">Search the site</label>
+          <input id="footer-search" type="search" placeholder="🔍 Find anything" />
+        </form>
+      </div>
+
+      <div class="footer__cols container">
+        <details class="footer__col">
+          <summary class="footer__col-hed mono-detail">The Brands</summary>
+          <ul class="footer__links">
+            <li><a href="https://donnasrecipe.com" target="_blank" rel="noopener noreferrer">Donna's Recipe ↗</a></li>
+            <li><a href="https://www.target.com/c/tabitha-brown" target="_blank" rel="noopener noreferrer">Tabitha for Target ↗</a></li>
+            <li><a href="https://www.mclovinspetfood.com" target="_blank" rel="noopener noreferrer">McLovin's ↗</a></li>
+            <li><a href="https://www.tabithabrown.com/books" target="_blank" rel="noopener noreferrer">Cookbooks ↗</a></li>
+            <li><a href="https://tv.apple.com/show/tab-time" target="_blank" rel="noopener noreferrer">Tab Time ↗</a></li>
+            <li><a href="https://www.tabithabrown.com/lil-tab-time" target="_blank" rel="noopener noreferrer">Lil Tab Time ↗</a></li>
+            <li><a href="https://open.spotify.com/show/tab-time-podcast" target="_blank" rel="noopener noreferrer">Tab Time Podcast ↗</a></li>
+            <li><a href="https://www.imdb.com/name/nm5103398/" target="_blank" rel="noopener noreferrer">Acting & Film ↗</a></li>
+            <li><a href="mailto:booking@tabithabrown.com">Speaking</a></li>
+          </ul>
+        </details>
+        <details class="footer__col">
+          <summary class="footer__col-hed mono-detail">Connect</summary>
+          <ul class="footer__links">
+            <li><a href="https://instagram.com/iamtabithabrown" target="_blank" rel="noopener noreferrer">@iamtabithabrown ↗</a></li>
+            <li><a href="https://tiktok.com/@iamtabithabrown" target="_blank" rel="noopener noreferrer">TikTok ↗</a></li>
+            <li><a href="https://open.spotify.com/show/tab-time-podcast" target="_blank" rel="noopener noreferrer">Podcast ↗</a></li>
+            <li><a href="https://youtube.com/@iamtabithabrown" target="_blank" rel="noopener noreferrer">YouTube ↗</a></li>
+            <li><a href="mailto:booking@tabithabrown.com">Booking</a></li>
+          </ul>
+        </details>
+        <details class="footer__col">
+          <summary class="footer__col-hed mono-detail">Press & Biz</summary>
+          <ul class="footer__links">
+            <li><a href="mailto:press@tabithabrown.com">press@tabithabrown.com</a></li>
+            <li><a href="mailto:booking@tabithabrown.com">booking@tabithabrown.com</a></li>
+            <li><a href="#tour">Tour Calendar</a></li>
+          </ul>
+        </details>
+        <details class="footer__col">
+          <summary class="footer__col-hed mono-detail">Legal</summary>
+          <ul class="footer__links">
+            <li><a href="/privacy">Privacy</a></li>
+            <li><a href="/terms">Terms</a></li>
+            <li><a href="/press-kit">Press Kit</a></li>
+            <li><a href="mailto:hello@tabithabrown.com">Contact</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="footer__wordmark" aria-hidden="true">TABITHA BROWN</div>
+
+      <div class="footer__bottom container">
+        <p class="footer__copy mono-detail">© 2026 Tabitha Brown. Made with love. And a little hot sauce.</p>
+        <p class="footer__credit mono-detail">
+          <a href="https://taylormadecreative.net" target="_blank" rel="noopener noreferrer">
+            Site by Taylormade Creative <span aria-hidden="true">↗</span>
+          </a>
+        </p>
+      </div>
+    </footer>
     <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>
