@@ -74,3 +74,26 @@
   }
   @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 }
+
+@layer motion {
+  .hero__eyebrow,
+  .hero__title,
+  .hero__scroll-cue {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fade-up var(--dur-mid) var(--ease-exhale) forwards;
+  }
+  .hero__eyebrow { animation-delay: 0.1s; }
+  .hero__title { animation-delay: 0.25s; }
+  .hero__scroll-cue { animation-delay: 0.6s; }
+
+  @keyframes fade-up {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__eyebrow, .hero__title, .hero__scroll-cue {
+      animation: none; opacity: 1; transform: none;
+    }
+  }
+}
