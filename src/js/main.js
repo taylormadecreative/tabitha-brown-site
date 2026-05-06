@@ -3,3 +3,4 @@ import './hero.js';
 import './about.js';
 import './empire.js';
 import './tour.js';
+import './newsletter.js';

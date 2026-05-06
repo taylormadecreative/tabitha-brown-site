@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/src/css/components/tour.css" />
     <link rel="stylesheet" href="/src/css/components/universe.css" />
     <link rel="stylesheet" href="/src/css/components/press.css" />
+    <link rel="stylesheet" href="/src/css/components/newsletter.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -213,7 +214,64 @@
           </ul>
         </div>
       </section>
-      <section id="newsletter" data-newsletter><!-- Tasks 21-22 --></section>
+      <section id="newsletter" data-newsletter class="newsletter">
+        <picture class="newsletter__bg" aria-hidden="true">
+          <img src="/src/assets/img/dsc02078-1280.jpg" alt="" loading="lazy" />
+        </picture>
+        <div class="newsletter__inner container">
+          <p class="eyebrow">Stay Close</p>
+          <h2 class="display-md newsletter__hed">Let's stay in touch, friend.</h2>
+          <p class="lede newsletter__sub">Sundays. From me to you. A recipe, a reminder, sometimes a song.</p>
+
+          <form class="newsletter__form" data-newsletter-form novalidate>
+            <div class="newsletter__toggle" role="tablist" aria-label="Subscribe via">
+              <button type="button" role="tab" class="newsletter__tab" data-tab="email" aria-selected="true">Email</button>
+              <button type="button" role="tab" class="newsletter__tab" data-tab="sms" aria-selected="false">Text</button>
+            </div>
+
+            <label class="newsletter__field" data-field="email">
+              <span class="sr-only">Email address</span>
+              <input type="email" name="email" placeholder="your email"
+                     required autocomplete="email" />
+            </label>
+
+            <label class="newsletter__field" data-field="sms" hidden>
+              <span class="sr-only">Phone number</span>
+              <input type="tel" name="phone" placeholder="+1 your phone number"
+                     autocomplete="tel" />
+              <span class="newsletter__hint mono-detail">We'll text recipes & tour drops. Reply STOP anytime.</span>
+            </label>
+
+            <fieldset class="newsletter__segments">
+              <legend class="sr-only">What brings you here?</legend>
+              <p class="mono-detail newsletter__seg-label">What brings you here? (optional)</p>
+              <div class="newsletter__seg-row">
+                <label><input type="radio" name="segment" value="recipes" /> Recipes</label>
+                <label><input type="radio" name="segment" value="style" /> Style</label>
+                <label><input type="radio" name="segment" value="tour" /> Tour</label>
+                <label><input type="radio" name="segment" value="vibing" /> Just vibing</label>
+              </div>
+            </fieldset>
+
+            <label class="newsletter__hp" aria-hidden="true">
+              <input type="text" name="website" tabindex="-1" autocomplete="off" />
+            </label>
+
+            <button type="submit" class="newsletter__submit">
+              <span class="newsletter__submit-label">Send <span aria-hidden="true">→</span></span>
+              <span class="newsletter__submit-loading" hidden>Sending...</span>
+              <span class="newsletter__submit-success" hidden aria-hidden="true">✓</span>
+            </button>
+
+            <p class="mono-detail newsletter__legal">
+              By subscribing, you agree to receive emails. We don't share your info.
+              Unsubscribe anytime. <a href="/privacy" class="link-underline">Read the privacy note ↗</a>
+            </p>
+
+            <output class="newsletter__output" data-newsletter-output role="status" aria-live="polite"></output>
+          </form>
+        </div>
+      </section>
     </main>
     <footer id="site-footer" data-footer><!-- Task 23 --></footer>
     <script type="module" src="/src/js/main.js"></script>
