@@ -18,6 +18,12 @@ await portrait
       </svg>`),
     top: 0, left: 0,
   }])
-  .png()
+  .jpeg({ quality: 82, mozjpeg: true })
+  .toFile('public/og-image.jpg');
+
+// Also write a smaller PNG for fallback
+await sharp('public/og-image.jpg')
+  .png({ compressionLevel: 9, palette: true })
   .toFile('public/og-image.png');
-console.log('OG image built.');
+
+console.log('OG image built (JPG + PNG fallback).');
