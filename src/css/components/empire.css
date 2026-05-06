@@ -1,0 +1,76 @@
+@layer components {
+  .empire {
+    background: var(--cream);
+    transition: background 1s var(--ease-exhale);
+  }
+  .empire__intro { padding-block: var(--s-9) var(--s-6); text-align: center; }
+  .empire__hed { line-height: 0.95; }
+  .empire__sub { margin-top: var(--s-3); margin-inline: auto; opacity: 0.85; }
+
+  .empire__chapters { display: flex; flex-direction: column; }
+
+  .chapter {
+    min-height: 80vh;
+    padding-block: var(--s-7);
+    display: grid;
+    place-items: center;
+  }
+  .chapter__card { display: flex; flex-direction: column; gap: var(--s-3); max-width: 720px; }
+  .chapter__counter { color: var(--soft-black); opacity: 0.6; }
+  .chapter__name { color: var(--soft-black); }
+  .chapter__quote { color: var(--soft-black); opacity: 0.85; max-width: 22ch; }
+  .chapter__desc { max-width: 56ch; }
+  .chapter__cta { font-family: var(--font-mono); font-size: 14px; text-transform: uppercase; letter-spacing: 0.14em; align-self: start; padding-block: var(--s-2); }
+  .chapter__row { color: var(--soft-black); opacity: 0.55; }
+
+  .chapter__photo-mobile {
+    margin-top: var(--s-5);
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .chapter__photo-mobile img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Pinned stage hidden on mobile, visible on desktop */
+  .empire__stage { display: none; }
+
+  @media (min-width: 1024px) {
+    .empire__chapters {
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
+    .chapter {
+      grid-column: 2;
+      min-height: 100vh;
+    }
+    .chapter__photo-mobile { display: none; }
+    .empire__stage {
+      display: block;
+      grid-column: 1;
+      grid-row: 1 / span 9;
+      position: relative;
+    }
+    .empire__stage-inner {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+    }
+    .stage-frame {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 1s var(--ease-exhale);
+    }
+    .stage-frame[data-active="true"] { opacity: 1; }
+    .stage-frame img { width: 100%; height: 100%; object-fit: cover; }
+  }
+
+  .empire__closer {
+    padding-block: var(--s-9);
+    text-align: center;
+  }
+  .empire__closer-text {
+    font-size: clamp(48px, 8vw, 120px);
+    color: var(--honey-gold);
+  }
+}

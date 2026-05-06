@@ -1,0 +1,65 @@
+import { brands } from './nav.js';
+
+// Object photo slug overrides — these images exist in /src/assets/img/
+// (brands.json's `object` values are placeholders for hand-shot signature objects)
+// `w` is the largest available width on disk for each substitute slug.
+const OBJECT_OVERRIDE = {
+  'donnas-recipe':       { slug: 'chance-and-tabitha-applying-oil-to-wife',          w: 1280 },
+  'tabitha-for-target':  { slug: 'tab-today7400283-12',                                w: 1280 },
+  'mclovins':            { slug: 'dsc03543',                                           w: 1280 },
+  'cookbooks':           { slug: 'tabitha-with-sweet-potato-pie-collection-with-pie-in-hand', w: 1280 },
+  'tab-time':            { slug: 'dsc02078',                                           w: 1280 },
+  'lil-tab-time':        { slug: 'c9803-00-20-01-08-still008',                         w: 640  },
+  'tab-time-podcast':    { slug: 'c9803-00-20-06-14-still005',                         w: 640  },
+  'acting':              { slug: 'c9803-00-21-44-08-still006',                         w: 640  },
+  'speaking':            { slug: 'dsc02789',                                           w: 1280 },
+};
+
+function imgSrc(b) {
+  const o = OBJECT_OVERRIDE[b.id];
+  if (o) return `/src/assets/img/${o.slug}-${o.w}.jpg`;
+  return `/src/assets/img/${b.object}-1280.jpg`;
+}
+
+async function renderChapters() {
+  // brands.json may not be loaded yet — wait briefly
+  await new Promise(r => setTimeout(r, 50));
+  if (!brands.length) {
+    const res = await fetch('/src/data/brands.json');
+    const loaded = await res.json();
+    brands.push(...loaded);
+  }
+
+  const chaptersEl = document.querySelector('[data-empire-chapters]');
+  const stageEl = document.querySelector('[data-empire-stage]');
+
+  if (!chaptersEl || !stageEl) return;
+
+  chaptersEl.innerHTML = brands.map((b, i) => `
+    <li class="chapter" data-chapter="${i}" style="--tint:${b.tint}">
+      <article class="chapter__card container">
+        <p class="mono-detail chapter__counter">${b.chapter} — ${b.name}</p>
+        <h3 class="display-lg chapter__name">${b.name}</h3>
+        <blockquote class="pull-quote chapter__quote">"${b.tabQuote}"</blockquote>
+        <p class="body chapter__desc">${b.description}</p>
+        <a class="link-underline chapter__cta" href="${b.url}" target="_blank" rel="noopener noreferrer">
+          Visit ${b.name} <span aria-hidden="true">→</span>
+        </a>
+        <p class="mono-detail chapter__row">
+          Founded ${b.founded} · ${b.category}
+        </p>
+      </article>
+      <picture class="chapter__photo-mobile">
+        <img src="${imgSrc(b)}" alt="${b.name}" loading="lazy" width="1280" height="1280" />
+      </picture>
+    </li>
+  `).join('');
+
+  stageEl.innerHTML = brands.map((b, i) => `
+    <picture class="stage-frame" data-frame="${i}" ${i===0 ? 'data-active="true"' : ''}>
+      <img src="${imgSrc(b)}" alt="" loading="${i<2?'eager':'lazy'}" width="1280" height="1707" />
+    </picture>
+  `).join('');
+}
+
+renderChapters();

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/src/css/components/intent.css" />
     <link rel="stylesheet" href="/src/css/components/pullquote.css" />
     <link rel="stylesheet" href="/src/css/components/about.css" />
+    <link rel="stylesheet" href="/src/css/components/empire.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -143,7 +144,27 @@
           </div>
         </div>
       </section>
-      <section id="empire" data-brand-hub><!-- Tasks 15-17 --></section>
+      <section id="empire" data-brand-hub class="empire">
+        <header class="empire__intro container">
+          <p class="eyebrow">The Empire</p>
+          <h2 class="display-lg empire__hed">Everything she's<br />building.</h2>
+          <p class="lede empire__sub">Step inside, friend.</p>
+        </header>
+
+        <div class="empire__stage" aria-hidden="true">
+          <div class="empire__stage-inner" data-empire-stage>
+            <!-- Pinned image cross-fades populated by empire.js -->
+          </div>
+        </div>
+
+        <ol class="empire__chapters" data-empire-chapters>
+          <!-- 9 brand chapters populated by empire.js -->
+        </ol>
+
+        <div class="empire__closer container">
+          <p class="script empire__closer-text">we're just getting started, friend.</p>
+        </div>
+      </section>
       <section id="tour" data-tour><!-- Task 18 --></section>
       <section id="universe" data-universe><!-- Task 19 --></section>
       <section id="press" data-press><!-- Task 20 --></section>
