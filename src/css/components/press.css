@@ -1,0 +1,35 @@
+@layer components {
+  .press {
+    padding-block: var(--s-7);
+    border-block: 1px solid color-mix(in oklab, var(--soft-black), transparent 90%);
+    overflow: hidden;
+  }
+  .press__eyebrow { text-align: center; margin-bottom: var(--s-4); }
+  .press__track {
+    display: flex;
+    gap: var(--s-7);
+    width: max-content;
+    animation: marquee 60s linear infinite;
+  }
+  .press__row {
+    display: flex;
+    gap: var(--s-7);
+    align-items: center;
+  }
+  .press__row li img {
+    height: 36px;
+    width: auto;
+    color: var(--soft-black);
+    opacity: 0.3;
+    transition: opacity var(--dur-fast);
+  }
+  .press__row li img:hover { opacity: 0.6; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .press:hover .press__track { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) {
+    .press__track { animation: none; flex-wrap: wrap; justify-content: center; }
+  }
+}
