@@ -27,6 +27,8 @@
     --soft-black: #2B2A26;
     --sage: #7B8E5C;
     --honey-gold: #C89B3C;
+    /* Accessible variant for small text on cream — meets WCAG AA (~4.5:1) */
+    --honey-gold-accessible: #7A5C1F;
     --terracotta: #D67658;
     --aubergine: #3D2B3D;
 

@@ -42,7 +42,7 @@
     transition: transform 12s var(--ease-exhale) infinite alternate;
   }
   .about__signature {
-    color: var(--honey-gold);
+    color: var(--honey-gold-accessible);
     font-size: 32px;
   }
   .about__row { color: var(--soft-black); opacity: 0.7; }

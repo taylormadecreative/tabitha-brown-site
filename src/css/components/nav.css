@@ -39,7 +39,7 @@
     font-family: var(--font-mono);
     font-size: 12px;
   }
-  .nav__ticker strong { color: var(--honey-gold); font-weight: 500; }
+  .nav__ticker strong { color: var(--honey-gold-accessible); font-weight: 600; }
 
   .nav__mobile-trigger { display: none; }
 
