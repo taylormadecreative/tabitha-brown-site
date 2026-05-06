@@ -9,11 +9,11 @@ button { background: none; border: 0; cursor: pointer; padding: 0; }
 p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; padding: 0; }
-:focus-visible { outline: 2px solid var(--honey-gold); outline-offset: 4px; }
-::selection { background: var(--sage); color: var(--cream); }
+:focus-visible { outline: 2px solid var(--honey-gold, #C89B3C); outline-offset: 4px; }
+::selection { background: var(--sage, #7B8E5C); color: var(--cream, #F5EFE4); }
 .skip-link {
   position: absolute; top: -100px; left: 1rem;
-  background: var(--soft-black); color: var(--cream);
+  background: var(--soft-black, #2B2A26); color: var(--cream, #F5EFE4);
   padding: .75rem 1rem; z-index: 1000; border-radius: 4px;
 }
 .skip-link:focus { top: 1rem; }
