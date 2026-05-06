@@ -1,4 +1,8 @@
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { brands } from './nav.js';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Object photo slug overrides — these images exist in /src/assets/img/
 // (brands.json's `object` values are placeholders for hand-shot signature objects)
@@ -63,3 +67,32 @@ async function renderChapters() {
 }
 
 renderChapters();
+
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+
+if (!reduced && isDesktop) {
+  // Wait for chapters to be rendered
+  setTimeout(() => {
+    const chapters = document.querySelectorAll('.chapter');
+    const frames = document.querySelectorAll('.stage-frame');
+    const empire = document.querySelector('.empire');
+
+    chapters.forEach((chapter, i) => {
+      ScrollTrigger.create({
+        trigger: chapter,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: () => activate(i),
+        onEnterBack: () => activate(i),
+      });
+    });
+
+    function activate(i) {
+      frames.forEach(f => delete f.dataset.active);
+      if (frames[i]) frames[i].dataset.active = 'true';
+      const tint = chapters[i].style.getPropertyValue('--tint');
+      empire.style.background = `color-mix(in oklab, var(--cream), ${tint} 8%)`;
+    }
+  }, 200);
+}
