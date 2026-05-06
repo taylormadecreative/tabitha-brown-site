@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/src/css/motion.css" />
     <link rel="stylesheet" href="/src/css/style.css" />
     <link rel="stylesheet" href="/src/css/components/nav.css" />
+    <link rel="stylesheet" href="/src/css/components/hero.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -72,7 +73,22 @@
       </div>
     </header>
     <main id="main">
-      <section id="hero" data-hero><!-- Task 9 --></section>
+      <section id="hero" data-hero class="hero">
+        <picture class="hero__image">
+          <source type="image/avif" srcset="/src/assets/img/dsc02789-640.avif 640w, /src/assets/img/dsc02789-1280.avif 1280w" sizes="100vw" />
+          <source type="image/webp" srcset="/src/assets/img/dsc02789-640.webp 640w, /src/assets/img/dsc02789-1280.webp 1280w" sizes="100vw" />
+          <img src="/src/assets/img/dsc02789-1280.jpg" alt="Tabitha Brown portrait" width="1280" height="1707" fetchpriority="high" />
+        </picture>
+        <div class="hero__grain" aria-hidden="true"></div>
+        <div class="hero__content container">
+          <p class="eyebrow hero__eyebrow">Vegan · Southern · Soft</p>
+          <h1 class="hero__title">
+            <span class="hero__line-1 display-xl">Hey there,</span>
+            <span class="hero__line-2 script">friend.</span>
+          </h1>
+          <a href="#intent" class="hero__scroll-cue">explore the empire <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
       <section id="intent" data-intent><!-- Task 11 --></section>
       <section id="in-her-words" data-pullquote><!-- Task 12 --></section>
       <section id="about" data-about><!-- Task 13 --></section>
