@@ -1,0 +1,21 @@
+@layer motion {
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .hero__line-1, .hero__line-2, .hero__eyebrow, .hero__scroll-cue {
+      opacity: 1 !important; transform: none !important;
+    }
+    .hero__image img { transform: none !important; }
+    .about__portrait img { filter: none !important; }
+    .about__polaroid img { transition: none !important; }
+    .footer__wordmark { opacity: 0.35 !important; transition: none !important; }
+    .press__track { animation: none !important; flex-wrap: wrap !important; justify-content: center !important; }
+    .empire__chapters .chapter { opacity: 1 !important; transform: none !important; }
+    .stage-frame { opacity: 1 !important; }
+    .stage-frame[data-active="true"] { opacity: 1 !important; }
+  }
+}
