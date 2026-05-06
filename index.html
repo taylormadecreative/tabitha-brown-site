@@ -52,7 +52,24 @@
           </ul>
         </div>
       </div>
-      <div id="mobile-menu" class="nav__mobile" hidden><!-- Task 8 --></div>
+      <div id="mobile-menu" class="nav__mobile" hidden>
+        <button type="button" class="nav__mobile-close" aria-label="Close menu">×</button>
+        <ul class="nav__mobile-links">
+          <li><a href="#about" class="nav__mobile-link">About</a></li>
+          <li>
+            <button type="button" class="nav__mobile-link nav__mobile-brands-toggle"
+                    aria-expanded="false">Brands <span aria-hidden="true">▾</span></button>
+            <ul class="nav__mobile-brand-list" hidden data-mobile-brands></ul>
+          </li>
+          <li><a href="#tour" class="nav__mobile-link">Tour</a></li>
+          <li><a href="#newsletter" class="nav__mobile-link">Newsletter</a></li>
+        </ul>
+        <div class="nav__mobile-social">
+          <a href="https://instagram.com/iamtabithabrown" target="_blank" rel="noopener noreferrer">
+            Follow @iamtabithabrown ↗
+          </a>
+        </div>
+      </div>
     </header>
     <main id="main">
       <section id="hero" data-hero><!-- Task 9 --></section>

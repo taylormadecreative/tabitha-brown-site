@@ -71,4 +71,44 @@ if (heroSentinel) {
 
 loadBrands();
 
+const mobileBrandsToggle = mobileMenu.querySelector('.nav__mobile-brands-toggle');
+const mobileBrandList = mobileMenu.querySelector('[data-mobile-brands]');
+const mobileClose = mobileMenu.querySelector('.nav__mobile-close');
+
+function renderMobileBrands() {
+  mobileBrandList.innerHTML = brands.map(b => `
+    <li><a href="${b.url}" target="_blank" rel="noopener noreferrer">${b.name} <span aria-hidden="true">↗</span></a></li>
+  `).join('');
+}
+
+function openMobile() {
+  mobileMenu.hidden = false;
+  mobileTrigger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+  mobileMenu.querySelector('a, button').focus();
+  document.addEventListener('keydown', mobileKey);
+}
+function closeMobile() {
+  mobileMenu.hidden = true;
+  mobileTrigger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  mobileTrigger.focus();
+  document.removeEventListener('keydown', mobileKey);
+}
+function mobileKey(e) { if (e.key === 'Escape') closeMobile(); }
+
+mobileTrigger.addEventListener('click', openMobile);
+mobileClose.addEventListener('click', closeMobile);
+
+mobileBrandsToggle.addEventListener('click', () => {
+  const open = mobileBrandList.hidden;
+  mobileBrandList.hidden = !open;
+  mobileBrandsToggle.setAttribute('aria-expanded', String(open));
+  if (open) renderMobileBrands();
+});
+
+mobileMenu.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A') closeMobile();
+});
+
 export { brands };
