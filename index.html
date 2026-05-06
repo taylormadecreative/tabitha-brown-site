@@ -13,10 +13,41 @@
     <link rel="stylesheet" href="/src/css/layout.css" />
     <link rel="stylesheet" href="/src/css/motion.css" />
     <link rel="stylesheet" href="/src/css/style.css" />
+    <link rel="stylesheet" href="/src/css/components/nav.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header id="site-nav" data-nav><!-- Task 6 --></header>
+    <header id="site-nav" data-nav class="nav">
+      <div class="nav__inner container">
+        <a class="nav__logo" href="#hero" aria-label="Tabitha Brown — home">
+          <img src="/src/assets/svg/tb-monogram.svg" alt="" width="60" height="36" />
+        </a>
+        <nav aria-label="Primary" class="nav__center">
+          <ul class="nav__links">
+            <li><a href="#about" class="nav__link">About</a></li>
+            <li>
+              <button type="button" class="nav__link nav__brands-toggle"
+                      aria-expanded="false" aria-controls="brands-panel">
+                Brands <span aria-hidden="true">▾</span>
+              </button>
+            </li>
+            <li><a href="#tour" class="nav__link">Tour</a></li>
+            <li><a href="#newsletter" class="nav__link">Newsletter</a></li>
+          </ul>
+        </nav>
+        <div class="nav__right">
+          <span class="nav__ticker" data-ticker>Currently: <strong></strong></span>
+          <a class="nav__follow" href="https://instagram.com/iamtabithabrown"
+             target="_blank" rel="noopener noreferrer">
+            Follow @iamtabithabrown <span aria-hidden="true">↗</span>
+          </a>
+          <button type="button" class="nav__mobile-trigger" aria-expanded="false"
+                  aria-controls="mobile-menu" aria-label="Open menu">Menu</button>
+        </div>
+      </div>
+      <div id="brands-panel" class="nav__panel" hidden><!-- Task 7 --></div>
+      <div id="mobile-menu" class="nav__mobile" hidden><!-- Task 8 --></div>
+    </header>
     <main id="main">
       <section id="hero" data-hero><!-- Task 9 --></section>
       <section id="intent" data-intent><!-- Task 11 --></section>
