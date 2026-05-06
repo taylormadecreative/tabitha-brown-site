@@ -1,0 +1,54 @@
+@layer base {
+  .display-xl, .display-lg, .display-md {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--soft-black);
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+  .display-xl { font-size: var(--t-display-xl); }
+  .display-lg { font-size: var(--t-display-lg); }
+  .display-md { font-size: var(--t-display-md); }
+
+  .pull-quote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--t-pull);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--t-eyebrow);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--soft-black);
+    opacity: 0.7;
+  }
+
+  .body { font-size: var(--t-body); line-height: 1.55; max-width: 64ch; }
+  .lede { font-family: var(--font-display); font-style: italic; font-size: 22px; line-height: 1.45; max-width: 36ch; }
+
+  .mono-detail {
+    font-family: var(--font-mono);
+    font-size: var(--t-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .script { font-family: var(--font-script); font-weight: 400; }
+
+  .link-underline {
+    color: var(--soft-black);
+    background-image: linear-gradient(var(--honey-gold), var(--honey-gold));
+    background-size: 100% 2px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size var(--dur-fast) var(--ease-exhale);
+  }
+  .link-underline:hover { background-size: 100% 100%; padding-inline: 2px; }
+}
