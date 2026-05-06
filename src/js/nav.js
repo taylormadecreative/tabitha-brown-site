@@ -1,3 +1,5 @@
+import brandsData from '../data/brands.json';
+
 const nav = document.querySelector('[data-nav]');
 const togglePanel = nav.querySelector('.nav__brands-toggle');
 const panel = nav.querySelector('#brands-panel');
@@ -8,8 +10,7 @@ const mobileMenu = nav.querySelector('#mobile-menu');
 let brands = [];
 
 async function loadBrands() {
-  const res = await fetch('/src/data/brands.json');
-  brands = await res.json();
+  brands.push(...brandsData);
   renderBrandGrid();
 }
 

@@ -1,7 +1,8 @@
+import tourDates from '../data/tour.json';
+
 const tourList = document.querySelector('[data-tour-list]');
 if (tourList) {
-  fetch('/src/data/tour.json')
-    .then(r => r.json())
+  Promise.resolve(tourDates)
     .then(dates => {
       const today = new Date();
       const upcoming = dates.filter(d => new Date(d.iso) >= today).slice(0, 4);

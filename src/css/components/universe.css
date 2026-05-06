@@ -10,5 +10,5 @@
     overflow: hidden;
     box-shadow: 0 24px 60px rgba(43,42,38,0.08);
   }
-  .universe__map object { width: 100%; height: 100%; }
+  .universe__map img { width: 100%; height: 100%; object-fit: contain; display: block; }
 }

@@ -1,8 +1,21 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { brands } from './nav.js';
+import brandsData from '../data/brands.json';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Eagerly bundle every empire-photo variant. Vite resolves the static glob at
+// build time and emits hashed asset URLs; runtime concatenation does not.
+const empireImgs = import.meta.glob('../assets/img/*.jpg', {
+  eager: true,
+  import: 'default',
+  query: '?url',
+});
+
+function resolveImg(slug, w) {
+  return empireImgs[`../assets/img/${slug}-${w}.jpg`];
+}
 
 // Object photo slug overrides — these images exist in /src/assets/img/
 // (brands.json's `object` values are placeholders for hand-shot signature objects)
@@ -21,17 +34,15 @@ const OBJECT_OVERRIDE = {
 
 function imgSrc(b) {
   const o = OBJECT_OVERRIDE[b.id];
-  if (o) return `/src/assets/img/${o.slug}-${o.w}.jpg`;
-  return `/src/assets/img/${b.object}-1280.jpg`;
+  if (o) return resolveImg(o.slug, o.w);
+  return resolveImg(b.object, 1280);
 }
 
 async function renderChapters() {
-  // brands.json may not be loaded yet — wait briefly
+  // brands.json may not be loaded yet — wait briefly for nav.js to populate
   await new Promise(r => setTimeout(r, 50));
   if (!brands.length) {
-    const res = await fetch('/src/data/brands.json');
-    const loaded = await res.json();
-    brands.push(...loaded);
+    brands.push(...brandsData);
   }
 
   const chaptersEl = document.querySelector('[data-empire-chapters]');
