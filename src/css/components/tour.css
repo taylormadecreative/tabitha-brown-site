@@ -1,0 +1,25 @@
+@layer components {
+  .tour { padding-block: var(--s-9); }
+  .tour__intro { text-align: center; margin-bottom: var(--s-6); }
+  .tour__list { display: flex; flex-direction: column; gap: 0; }
+  .tour__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-2);
+    padding-block: var(--s-4);
+    border-bottom: 1px solid color-mix(in oklab, var(--soft-black), transparent 85%);
+    align-items: baseline;
+  }
+  .tour__date { color: var(--honey-gold); font-weight: 600; }
+  .tour__city { font-family: var(--font-display); font-size: clamp(28px, 4vw, 48px); }
+  .tour__event { font-family: var(--font-display); font-style: italic; font-size: 22px; opacity: 0.8; }
+  .tour__cta { font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.14em; }
+  .tour__all { display: inline-block; margin-top: var(--s-5); font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.14em; }
+
+  @media (min-width: 768px) {
+    .tour__row {
+      grid-template-columns: 100px 1.2fr 2fr auto;
+      gap: var(--s-4);
+    }
+  }
+}

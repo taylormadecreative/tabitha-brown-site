@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/src/css/components/pullquote.css" />
     <link rel="stylesheet" href="/src/css/components/about.css" />
     <link rel="stylesheet" href="/src/css/components/empire.css" />
+    <link rel="stylesheet" href="/src/css/components/tour.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -165,7 +166,14 @@
           <p class="script empire__closer-text">we're just getting started, friend.</p>
         </div>
       </section>
-      <section id="tour" data-tour><!-- Task 18 --></section>
+      <section id="tour" data-tour class="tour container">
+        <header class="tour__intro">
+          <p class="eyebrow">On the Road</p>
+          <h2 class="display-md tour__hed">Where she's headed next.</h2>
+        </header>
+        <ul class="tour__list" data-tour-list></ul>
+        <a class="link-underline tour__all" href="#">See all appearances <span aria-hidden="true">↗</span></a>
+      </section>
       <section id="universe" data-universe><!-- Task 19 --></section>
       <section id="press" data-press><!-- Task 20 --></section>
       <section id="newsletter" data-newsletter><!-- Tasks 21-22 --></section>
