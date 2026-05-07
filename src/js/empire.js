@@ -77,7 +77,6 @@ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
 
 if (!reduced && isDesktop) {
-  // Wait for chapters to be rendered
   setTimeout(() => {
     const chapters = document.querySelectorAll('.chapter');
     const frames = document.querySelectorAll('.stage-frame');
@@ -86,8 +85,8 @@ if (!reduced && isDesktop) {
     chapters.forEach((chapter, i) => {
       ScrollTrigger.create({
         trigger: chapter,
-        start: 'top 50%',
-        end: 'bottom 50%',
+        start: 'top 70%',
+        end: 'top 30%',
         onEnter: () => activate(i),
         onEnterBack: () => activate(i),
       });
@@ -97,7 +96,7 @@ if (!reduced && isDesktop) {
       frames.forEach(f => delete f.dataset.active);
       if (frames[i]) frames[i].dataset.active = 'true';
       const tint = chapters[i].style.getPropertyValue('--tint');
-      empire.style.background = `color-mix(in oklab, var(--cream), ${tint} 8%)`;
+      empire.style.background = `color-mix(in oklab, var(--cream), ${tint} 28%)`;
     }
   }, 200);
 }

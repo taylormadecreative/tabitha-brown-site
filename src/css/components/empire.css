@@ -10,8 +10,8 @@
   .empire__chapters { display: flex; flex-direction: column; }
 
   .chapter {
-    min-height: 80vh;
-    padding-block: var(--s-7);
+    min-height: 110vh;
+    padding-block: var(--s-9) var(--s-9);
     display: grid;
     place-items: center;
   }
@@ -62,7 +62,7 @@
     }
     .chapter {
       grid-column: 2;
-      min-height: 100vh;
+      min-height: 130vh;
     }
     .chapter__photo-mobile { display: none; }
     .empire__stage {
@@ -91,7 +91,7 @@
     text-align: center;
   }
   .empire__closer-text {
-    font-size: clamp(48px, 8vw, 120px);
+    font-size: var(--t-display-xl);
     color: var(--honey-gold);
   }
 }
