@@ -128,11 +128,6 @@
         <a class="topnav__cat" href="#podcast" data-panel="podcast">Podcast</a>
         <a class="topnav__cat" href="#tour" data-panel="tour">Tour</a>
         <a class="topnav__cat topnav__cat--accent" href="mailto:booking@tabithabrown.com">Booking</a>
-        <button type="button" class="topnav__cat topnav__cat--sparkle" data-newsletter-open>
-          <span class="spark" aria-hidden="true">✦</span>
-          Newsletter
-          <span class="spark" aria-hidden="true">✦</span>
-        </button>
       </nav>
       <div class="topnav__overlay" id="mobile-menu" data-mobile-menu hidden>
         <button type="button" class="topnav__overlay-close" aria-label="Close menu">×</button>
@@ -144,7 +139,6 @@
           <li><a href="#podcast">Podcast</a></li>
           <li><a href="#tour">Tour</a></li>
           <li><a href="mailto:booking@tabithabrown.com">Booking</a></li>
-          <li><button type="button" data-newsletter-open>Newsletter</button></li>
         </ul>
       </div>
     </header>
@@ -191,12 +185,12 @@
         <a class="panel__label" href="https://www.target.com/c/tabitha-brown-for-target/-/N-3k8lx" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">Tabitha for Target ↗</a>
       </section>
 
-      <section class="panel" id="podcast" aria-label="Fridays with Tab and Chance">
+      <section class="panel" id="podcast" aria-label="Tab and Chance">
         <picture class="panel__media">
           <source type="image/avif" srcset="/src/assets/img/web-tc-1280.avif" />
-          <img src="/src/assets/img/web-tc-1280.jpg" alt="Fridays with Tab and Chance" width="1280" height="1707" loading="lazy" />
+          <img src="/src/assets/img/web-tc-1280.jpg" alt="Tab and Chance" width="1280" height="1707" loading="lazy" />
         </picture>
-        <a class="panel__label" href="https://open.spotify.com/show/6LVC37jahfXKp5SjwMoNDY" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">Fridays with Tab + Chance ↗</a>
+        <a class="panel__label" href="https://tabandchance.com" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">Tab + Chance ↗</a>
       </section>
 
       <section class="panel" id="cookbooks" aria-label="Cookbooks">
@@ -204,7 +198,7 @@
           <source type="image/avif" srcset="/src/assets/img/tab-today7400288-13-1280.avif" />
           <img src="/src/assets/img/tab-today7400288-13-1280.jpg" alt="Cookbooks" width="1280" height="1707" loading="lazy" />
         </picture>
-        <a class="panel__label" href="https://www.iamtabithabrown.com/" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">Cookbooks ↗</a>
+        <a class="panel__label" href="https://www.barnesandnoble.com/w/feeding-the-soul-tabitha-brown/1139029762" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">Cookbooks ↗</a>
       </section>
 
       <section class="panel" id="tabtime" aria-label="Tab Time">
@@ -212,29 +206,28 @@
           <source type="image/avif" srcset="/src/assets/img/tab-today7400250-5-1280.avif" />
           <img src="/src/assets/img/tab-today7400250-5-1280.jpg" alt="Tab Time" width="1280" height="1707" loading="lazy" />
         </picture>
-        <a class="panel__label panel__label--dark" href="https://www.iamtabithabrown.com/tabtime" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">Tab Time ↗</a>
+        <a class="panel__label panel__label--dark" href="https://www.barnesandnoble.com/w/feeding-the-soul-tabitha-brown/1139029762tabtime" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">Tab Time ↗</a>
       </section>
 
     </main>
 
-    <dialog class="newsletter-modal" data-newsletter-modal aria-labelledby="newsletter-title">
-      <button type="button" class="newsletter-modal__close" data-newsletter-close aria-label="Close">×</button>
-      <div class="newsletter-modal__inner">
-        <h2 id="newsletter-title" class="newsletter-modal__hed">Sundays.</h2>
-        <p class="newsletter-modal__sub">A Sunday note from me to you.</p>
-        <form data-newsletter-form novalidate class="newsletter-modal__form">
-          <label for="nl-email" class="sr-only">Email address</label>
-          <input id="nl-email" type="email" name="email" placeholder="your email" required autocomplete="email" />
-          <label class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
-          <button type="submit" aria-label="Subscribe">Subscribe</button>
-          <output role="status" aria-live="polite"></output>
-        </form>
-      </div>
-    </dialog>
-
     <div class="bottommeta">
       <span>© 2026 Tabitha Brown</span>
       <a href="/privacy">Privacy</a>
+      <nav class="bottommeta__social" aria-label="Social">
+        <a href="https://www.instagram.com/iamtabithabrown/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@iamtabithabrown" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M16.5 3v3.2c1.2.9 2.6 1.5 4 1.6v3.1c-1.5 0-2.9-.4-4.1-1.1v6.7a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v3.2a2.5 2.5 0 1 0 1.7 2.4V3h3.1z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@iamtabithabrown" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21.6 7.2c-.2-.9-.9-1.5-1.7-1.7C18.2 5 12 5 12 5s-6.2 0-7.9.5c-.8.2-1.5.8-1.7 1.7C2 8.9 2 12 2 12s0 3.1.4 4.8c.2.9.9 1.5 1.7 1.7C5.8 19 12 19 12 19s6.2 0 7.9-.5c.8-.2 1.5-.8 1.7-1.7.4-1.7.4-4.8.4-4.8s0-3.1-.4-4.8zM10 15V9l5 3-5 3z"/></svg>
+        </a>
+        <a href="https://open.spotify.com/show/6LVC37jahfXKp5SjwMoNDY" target="_blank" rel="noopener noreferrer" aria-label="Fridays with Tab and Chance on Spotify">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M7 10c3.5-1 7-1 10 .5M7.5 13c2.5-.7 5-.7 7.5.5M8.5 16c1.7-.5 3.5-.5 5.2.4" stroke="#0E0D0B" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>
+        </a>
+      </nav>
     </div>
 
     <script type="module" src="/src/js/main.js"></script>

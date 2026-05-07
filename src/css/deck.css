@@ -222,6 +222,25 @@
   }
   .bottommeta a { color: inherit; }
   .bottommeta a:hover { opacity: 1; color: var(--honey-gold); }
+  .bottommeta__social {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .bottommeta__social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--soft-black);
+    opacity: 0.85;
+    transition: color var(--dur-fast), opacity var(--dur-fast), transform var(--dur-fast);
+  }
+  .bottommeta__social a:hover {
+    color: var(--honey-gold);
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+  .bottommeta__social svg { display: block; }
 
   /* Newsletter modal — opens on Newsletter nav click */
   .newsletter-modal {
