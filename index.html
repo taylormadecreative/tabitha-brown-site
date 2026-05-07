@@ -66,23 +66,42 @@
   <body>
     <a class="skip-link" href="#start">Skip to content</a>
 
-    <header class="topnav">
-      <nav class="topnav__inner" aria-label="Primary">
-        <div class="topnav__group">
-          <a class="topnav__link" href="#tour" data-panel="tour">Tour</a>
-          <a class="topnav__link" href="#donnas" data-panel="donnas">Donna's</a>
-          <a class="topnav__link" href="#target" data-panel="target">Target</a>
-          <a class="topnav__link" href="#mclovins" data-panel="mclovins">McLovin's</a>
+    <header class="topnav" data-topnav>
+      <div class="topnav__row topnav__row--top">
+        <div class="topnav__locale">
+          <span aria-hidden="true">📍</span>
+          <span>Los Angeles | English</span>
         </div>
-        <a class="topnav__brand" href="#start" aria-label="Tabitha Brown — home">
-          <img src="/src/assets/svg/tb-monogram.svg" alt="" />
+        <a class="topnav__wordmark" href="#start" aria-label="Tabitha Brown — home">Tabitha Brown</a>
+        <div class="topnav__utility">
+          <button type="button" class="topnav__icon" aria-label="Search">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="9" cy="9" r="6"/>
+              <line x1="13.5" y1="13.5" x2="18" y2="18" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <a class="topnav__icon" href="mailto:booking@tabithabrown.com" aria-label="Booking">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 6h10l-1 11H6L5 6z"/>
+              <path d="M7 6V4a3 3 0 0 1 6 0v2" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <nav class="topnav__row topnav__row--cats" aria-label="Primary">
+        <a class="topnav__cat" href="#donnas" data-panel="donnas">Donna's</a>
+        <a class="topnav__cat" href="#target" data-panel="target">Target</a>
+        <a class="topnav__cat" href="#mclovins" data-panel="mclovins">McLovin's</a>
+        <a class="topnav__cat" href="#cookbooks" data-panel="cookbooks">Cookbooks</a>
+        <a class="topnav__cat" href="#tabtime" data-panel="tabtime">Tab Time</a>
+        <a class="topnav__cat" href="#podcast" data-panel="podcast">Podcast</a>
+        <a class="topnav__cat" href="#tour" data-panel="tour">Tour</a>
+        <a class="topnav__cat topnav__cat--accent" href="mailto:booking@tabithabrown.com">Booking</a>
+        <a class="topnav__cat topnav__cat--sparkle" href="#newsletter" data-panel="newsletter">
+          <span class="spark" aria-hidden="true">✦</span>
+          Newsletter
+          <span class="spark" aria-hidden="true">✦</span>
         </a>
-        <div class="topnav__group">
-          <a class="topnav__link" href="#cookbooks" data-panel="cookbooks">Cookbooks</a>
-          <a class="topnav__link" href="#tabtime" data-panel="tabtime">Tab Time</a>
-          <a class="topnav__link" href="#podcast" data-panel="podcast">Podcast</a>
-          <a class="topnav__link" href="mailto:booking@tabithabrown.com">Booking</a>
-        </div>
       </nav>
     </header>
 
