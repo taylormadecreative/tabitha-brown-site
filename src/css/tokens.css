@@ -31,6 +31,8 @@
     --honey-gold-accessible: #7A5C1F;
     --terracotta: #D67658;
     --aubergine: #3D2B3D;
+    --deep-black: #0E0D0B;
+    --cinema-overlay: rgba(14, 13, 11, 0.55);
 
     /* Brand tints — used in Brand Hub */
     --brand-donnas: #7B8E5C;
@@ -49,11 +51,12 @@
     --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
     --font-script: 'Pinyon Script', cursive;
 
-    /* Type scale — fluid clamps */
-    --t-display-xl: clamp(80px, 14vw, 220px);
-    --t-display-lg: clamp(64px, 10vw, 140px);
-    --t-display-md: clamp(48px, 7vw, 110px);
-    --t-pull: clamp(40px, 6vw, 80px);
+    /* Type scale — fluid clamps (cinema-grade) */
+    --t-display-xxl: clamp(140px, 32vw, 640px);
+    --t-display-xl: clamp(120px, 22vw, 480px);
+    --t-display-lg: clamp(80px, 16vw, 320px);
+    --t-display-md: clamp(56px, 10vw, 180px);
+    --t-pull: clamp(80px, 18vw, 360px);
     --t-eyebrow: 13px;
     --t-body: 17px;
     --t-mono: 11px;

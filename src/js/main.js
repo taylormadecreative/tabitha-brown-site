@@ -12,9 +12,9 @@ const desktop = window.matchMedia('(min-width: 1024px)').matches;
 
 if (!reduced && desktop) {
   const lenis = new Lenis({
-    duration: 1.4,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    wheelMultiplier: 1.0,
+    duration: 2.0,
+    easing: (t) => 1 - Math.pow(1 - t, 4),
+    wheelMultiplier: 0.85,
   });
   function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
   requestAnimationFrame(raf);

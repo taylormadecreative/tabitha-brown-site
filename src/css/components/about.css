@@ -38,8 +38,11 @@
     object-fit: cover;
     border: 12px solid var(--cream);
     box-shadow: 0 14px 36px rgba(43,42,38,0.18);
-    transform: rotate(2deg);
-    transition: transform 12s var(--ease-exhale) infinite alternate;
+    animation: polaroid-drift 14s var(--ease-exhale) infinite alternate;
+  }
+  @keyframes polaroid-drift {
+    from { transform: rotate(2deg) scale(1); }
+    to   { transform: rotate(-1.5deg) scale(1.06); }
   }
   .about__signature {
     color: var(--honey-gold-accessible);
