@@ -54,7 +54,7 @@ if (menuBtn && overlay) {
 
 // Highlight nav link for currently visible panel
 const deck = document.querySelector('.deck');
-const links = document.querySelectorAll('.topnav__link[data-panel]');
+const links = document.querySelectorAll('.topnav__cat[data-panel]');
 const panels = document.querySelectorAll('.panel');
 
 if (deck && links.length && panels.length) {
@@ -105,5 +105,26 @@ if (deck) {
     if (window.matchMedia('(max-width: 720px)').matches) return;
     if (e.key === 'ArrowRight') { deck.scrollBy({ left: window.innerWidth, behavior: 'smooth' }); }
     if (e.key === 'ArrowLeft')  { deck.scrollBy({ left: -window.innerWidth, behavior: 'smooth' }); }
+  });
+}
+
+// Newsletter modal — opens on Newsletter nav click, closes on × or backdrop or ESC
+const newsletterModal = document.querySelector('[data-newsletter-modal]');
+if (newsletterModal) {
+  const openers = document.querySelectorAll('[data-newsletter-open]');
+  const closer = newsletterModal.querySelector('[data-newsletter-close]');
+  openers.forEach(b => b.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (typeof newsletterModal.showModal === 'function') {
+      newsletterModal.showModal();
+    } else {
+      // Fallback for older browsers
+      newsletterModal.setAttribute('open', '');
+    }
+  }));
+  closer?.addEventListener('click', () => newsletterModal.close());
+  // Click on backdrop closes
+  newsletterModal.addEventListener('click', (e) => {
+    if (e.target === newsletterModal) newsletterModal.close();
   });
 }
