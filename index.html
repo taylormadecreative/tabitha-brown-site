@@ -64,15 +64,50 @@
     <link rel="stylesheet" href="/src/css/deck.css" />
   </head>
   <body>
+    <div class="intro" data-intro aria-hidden="true">
+      <div class="intro__photos">
+        <picture class="intro__photo" data-i="0" data-active="true">
+          <source type="image/avif" srcset="/src/assets/img/dsc02789-1280.avif" />
+          <img src="/src/assets/img/dsc02789-1280.jpg" alt="" width="1280" height="1707" fetchpriority="high" />
+        </picture>
+        <picture class="intro__photo" data-i="1">
+          <source type="image/avif" srcset="/src/assets/img/img-0698-640.avif" />
+          <img src="/src/assets/img/img-0698-640.jpg" alt="" width="640" height="853" />
+        </picture>
+        <picture class="intro__photo" data-i="2">
+          <source type="image/avif" srcset="/src/assets/img/tabitha-with-sweet-potato-pie-collection-with-pie-in-hand-1280.avif" />
+          <img src="/src/assets/img/tabitha-with-sweet-potato-pie-collection-with-pie-in-hand-1280.jpg" alt="" width="1280" height="1707" />
+        </picture>
+        <picture class="intro__photo" data-i="3">
+          <source type="image/avif" srcset="/src/assets/img/dsc03543-1280.avif" />
+          <img src="/src/assets/img/dsc03543-1280.jpg" alt="" width="1280" height="1707" />
+        </picture>
+        <picture class="intro__photo" data-i="4">
+          <source type="image/avif" srcset="/src/assets/img/tab-today7400283-12-1280.avif" />
+          <img src="/src/assets/img/tab-today7400283-12-1280.jpg" alt="" width="1280" height="1707" />
+        </picture>
+      </div>
+      <span class="intro__star intro__star--left" aria-hidden="true">
+        <svg viewBox="0 0 12 12" fill="currentColor"><polygon points="6,0 7.5,4.5 12,6 7.5,7.5 6,12 4.5,7.5 0,6 4.5,4.5"/></svg>
+      </span>
+      <span class="intro__star intro__star--right" aria-hidden="true">
+        <svg viewBox="0 0 12 12" fill="currentColor"><polygon points="6,0 7.5,4.5 12,6 7.5,7.5 6,12 4.5,7.5 0,6 4.5,4.5"/></svg>
+      </span>
+    </div>
+
     <a class="skip-link" href="#start">Skip to content</a>
 
     <header class="topnav" data-topnav>
       <div class="topnav__row topnav__row--top">
+        <a class="topnav__bag-mobile" href="mailto:booking@tabithabrown.com" aria-label="Booking">Bag</a>
         <div class="topnav__locale">
           <span aria-hidden="true">📍</span>
           <span>Los Angeles | English</span>
         </div>
         <a class="topnav__wordmark" href="#start" aria-label="Tabitha Brown — home">Tabitha Brown</a>
+        <span class="topnav__star-mobile" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="currentColor"><polygon points="6,0 7.5,4.5 12,6 7.5,7.5 6,12 4.5,7.5 0,6 4.5,4.5"/></svg>
+        </span>
         <div class="topnav__utility">
           <button type="button" class="topnav__icon" aria-label="Search">
             <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -87,6 +122,7 @@
             </svg>
           </a>
         </div>
+        <button type="button" class="topnav__menu-mobile" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
       </div>
       <nav class="topnav__row topnav__row--cats" aria-label="Primary">
         <a class="topnav__cat" href="#donnas" data-panel="donnas">Donna's</a>
@@ -103,12 +139,29 @@
           <span class="spark" aria-hidden="true">✦</span>
         </a>
       </nav>
+      <div class="topnav__overlay" id="mobile-menu" data-mobile-menu hidden>
+        <button type="button" class="topnav__overlay-close" aria-label="Close menu">×</button>
+        <ul class="topnav__overlay-list">
+          <li><a href="#donnas">Donna's</a></li>
+          <li><a href="#target">Target</a></li>
+          <li><a href="#mclovins">McLovin's</a></li>
+          <li><a href="#cookbooks">Cookbooks</a></li>
+          <li><a href="#tabtime">Tab Time</a></li>
+          <li><a href="#podcast">Podcast</a></li>
+          <li><a href="#tour">Tour</a></li>
+          <li><a href="mailto:booking@tabithabrown.com">Booking</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+      </div>
     </header>
 
     <span class="deck-cue deck-cue--left" aria-hidden="true">
       <svg viewBox="0 0 12 12" fill="currentColor"><polygon points="6,0 7.5,4.5 12,6 7.5,7.5 6,12 4.5,7.5 0,6 4.5,4.5"/></svg>
     </span>
     <span class="deck-cue deck-cue--right" aria-hidden="true">
+      <svg viewBox="0 0 12 12" fill="currentColor"><polygon points="6,0 7.5,4.5 12,6 7.5,7.5 6,12 4.5,7.5 0,6 4.5,4.5"/></svg>
+    </span>
+    <span class="deck-cue deck-cue--bottom" aria-hidden="true">
       <svg viewBox="0 0 12 12" fill="currentColor"><polygon points="6,0 7.5,4.5 12,6 7.5,7.5 6,12 4.5,7.5 0,6 4.5,4.5"/></svg>
     </span>
 

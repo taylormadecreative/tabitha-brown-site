@@ -1,3 +1,57 @@
+// Intro splash — photo flip-book then star-separation
+const intro = document.querySelector('[data-intro]');
+if (intro) {
+  const photos = intro.querySelectorAll('.intro__photo');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduced || photos.length === 0) {
+    intro.hidden = true;
+  } else {
+    let i = 0;
+    const STEP = 280; // ms per photo
+    const PHOTO_COUNT = photos.length;
+
+    const tick = () => {
+      photos[i].removeAttribute('data-active');
+      i++;
+      if (i >= PHOTO_COUNT) {
+        // Photos done — separate stars
+        intro.dataset.stage = 'separating';
+        setTimeout(() => {
+          intro.classList.add('is-out');
+          setTimeout(() => { intro.hidden = true; }, 700);
+        }, 1200);
+        return;
+      }
+      photos[i].dataset.active = 'true';
+      setTimeout(tick, STEP);
+    };
+
+    setTimeout(tick, STEP);
+  }
+}
+
+// Mobile menu toggle
+const menuBtn = document.querySelector('.topnav__menu-mobile');
+const overlay = document.querySelector('[data-mobile-menu]');
+const overlayClose = overlay?.querySelector('.topnav__overlay-close');
+if (menuBtn && overlay) {
+  const open = () => {
+    overlay.hidden = false;
+    menuBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    overlay.hidden = true;
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+  menuBtn.addEventListener('click', open);
+  overlayClose?.addEventListener('click', close);
+  overlay.addEventListener('click', (e) => { if (e.target.tagName === 'A') close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !overlay.hidden) close(); });
+}
+
 // Highlight nav link for currently visible panel
 const deck = document.querySelector('.deck');
 const links = document.querySelectorAll('.topnav__link[data-panel]');
