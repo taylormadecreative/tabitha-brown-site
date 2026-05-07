@@ -60,181 +60,130 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/css/reset.css" />
     <link rel="stylesheet" href="/src/css/tokens.css" />
-    <link rel="stylesheet" href="/src/css/layout.css" />
     <link rel="stylesheet" href="/src/css/motion.css" />
-    <link rel="stylesheet" href="/src/css/style.css" />
-    <link rel="stylesheet" href="/src/css/components/nav.css" />
-    <link rel="stylesheet" href="/src/css/components/hero.css" />
-    <link rel="stylesheet" href="/src/css/components/pullquote.css" />
-    <link rel="stylesheet" href="/src/css/components/about.css" />
-    <link rel="stylesheet" href="/src/css/components/empire.css" />
-    <link rel="stylesheet" href="/src/css/components/tour.css" />
-    <link rel="stylesheet" href="/src/css/components/universe.css" />
-    <link rel="stylesheet" href="/src/css/components/newsletter.css" />
-    <link rel="stylesheet" href="/src/css/components/footer.css" />
+    <link rel="stylesheet" href="/src/css/deck.css" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header id="site-nav" data-nav class="nav">
-      <div class="nav__inner container">
-        <a class="nav__logo" href="#hero" aria-label="Tabitha Brown — home">
-          <img src="/src/assets/svg/tb-monogram.svg" alt="" width="60" height="36" />
+    <a class="skip-link" href="#start">Skip to content</a>
+
+    <header class="topnav">
+      <nav class="topnav__inner" aria-label="Primary">
+        <div class="topnav__group">
+          <a class="topnav__link" href="#tour" data-panel="tour">Tour</a>
+          <a class="topnav__link" href="#donnas" data-panel="donnas">Donna's</a>
+          <a class="topnav__link" href="#target" data-panel="target">Target</a>
+          <a class="topnav__link" href="#mclovins" data-panel="mclovins">McLovin's</a>
+        </div>
+        <a class="topnav__brand" href="#start" aria-label="Tabitha Brown — home">
+          <img src="/src/assets/svg/tb-monogram.svg" alt="" />
         </a>
-        <nav aria-label="Primary" class="nav__center">
-          <ul class="nav__links">
-            <li><a href="#about" class="nav__link">About</a></li>
-            <li>
-              <button type="button" class="nav__link nav__brands-toggle"
-                      aria-expanded="false" aria-controls="brands-panel">
-                Brands <span aria-hidden="true">▾</span>
-              </button>
-            </li>
-            <li><a href="#tour" class="nav__link">Tour</a></li>
-            <li><a href="#newsletter" class="nav__link">Newsletter</a></li>
-          </ul>
-        </nav>
-        <div class="nav__right">
-          <span class="nav__ticker" data-ticker>Currently: <strong></strong></span>
-          <a class="nav__follow" href="https://instagram.com/iamtabithabrown"
-             target="_blank" rel="noopener noreferrer">
-            Follow @iamtabithabrown <span aria-hidden="true">↗</span>
-          </a>
-          <button type="button" class="nav__mobile-trigger" aria-expanded="false"
-                  aria-controls="mobile-menu" aria-label="Open menu">Menu</button>
+        <div class="topnav__group">
+          <a class="topnav__link" href="#cookbooks" data-panel="cookbooks">Cookbooks</a>
+          <a class="topnav__link" href="#tabtime" data-panel="tabtime">Tab Time</a>
+          <a class="topnav__link" href="#podcast" data-panel="podcast">Podcast</a>
+          <a class="topnav__link" href="mailto:booking@tabithabrown.com">Booking</a>
         </div>
-      </div>
-      <div id="brands-panel" class="nav__panel" hidden>
-        <div class="nav__panel-inner container">
-          <ul class="nav__brand-grid" data-brand-grid>
-            <!-- Populated by nav.js from brands.json -->
-          </ul>
-        </div>
-      </div>
-      <div id="mobile-menu" class="nav__mobile" hidden>
-        <button type="button" class="nav__mobile-close" aria-label="Close menu">×</button>
-        <ul class="nav__mobile-links">
-          <li><a href="#about" class="nav__mobile-link">About</a></li>
-          <li>
-            <button type="button" class="nav__mobile-link nav__mobile-brands-toggle"
-                    aria-expanded="false">Brands <span aria-hidden="true">▾</span></button>
-            <ul class="nav__mobile-brand-list" hidden data-mobile-brands></ul>
-          </li>
-          <li><a href="#tour" class="nav__mobile-link">Tour</a></li>
-          <li><a href="#newsletter" class="nav__mobile-link">Newsletter</a></li>
-        </ul>
-        <div class="nav__mobile-social">
-          <a href="https://instagram.com/iamtabithabrown" target="_blank" rel="noopener noreferrer">
-            Follow @iamtabithabrown ↗
-          </a>
-        </div>
-      </div>
+      </nav>
     </header>
-    <main id="main">
-      <section id="hero" data-hero class="hero">
-        <picture class="hero__image">
-          <source type="image/avif" srcset="/src/assets/img/dsc02789-640.avif 640w, /src/assets/img/dsc02789-1280.avif 1280w" sizes="100vw" />
-          <source type="image/webp" srcset="/src/assets/img/dsc02789-640.webp 640w, /src/assets/img/dsc02789-1280.webp 1280w" sizes="100vw" />
+
+    <span class="deck-cue deck-cue--left" aria-hidden="true">
+      <svg viewBox="0 0 12 12" fill="currentColor"><polygon points="6,0 7.5,4.5 12,6 7.5,7.5 6,12 4.5,7.5 0,6 4.5,4.5"/></svg>
+    </span>
+    <span class="deck-cue deck-cue--right" aria-hidden="true">
+      <svg viewBox="0 0 12 12" fill="currentColor"><polygon points="6,0 7.5,4.5 12,6 7.5,7.5 6,12 4.5,7.5 0,6 4.5,4.5"/></svg>
+    </span>
+
+    <main class="deck" role="main" id="main">
+      <section class="panel" id="start" aria-label="Tabitha Brown">
+        <picture class="panel__media">
+          <source type="image/avif" srcset="/src/assets/img/dsc02789-1280.avif" />
           <img src="/src/assets/img/dsc02789-1280.jpg" alt="Tabitha Brown" width="1280" height="1707" fetchpriority="high" />
         </picture>
-        <div class="hero__overlay" aria-hidden="true"></div>
-        <div class="hero__grain" aria-hidden="true"></div>
-        <div class="hero__content container">
-          <h1 class="hero__title">
-            <span class="hero__line-1">Hey there,</span>
-            <span class="hero__line-2 script">friend.</span>
-          </h1>
-        </div>
       </section>
-      <section id="in-her-words" data-pullquote class="pullquote">
-        <div class="pullquote__inner container">
-          <blockquote class="pullquote__text pull-quote">
-            "I'm not selling anything except the idea that you deserve good things."
-          </blockquote>
-        </div>
-      </section>
-      <section id="about" data-about class="about">
-        <picture class="about__bg">
-          <source type="image/avif" srcset="/src/assets/img/dsc03543-640.avif 640w, /src/assets/img/dsc03543-1280.avif 1280w" sizes="100vw" />
-          <img src="/src/assets/img/dsc03543-1280.jpg" alt="Tabitha Brown editorial portrait" width="1280" height="1707" loading="lazy" />
-        </picture>
-        <div class="about__overlay" aria-hidden="true"></div>
-        <div class="about__content container">
-          <h2 class="about__hed display-xl">From Eden, NC.<br/>Two minutes changed it.</h2>
-          <p class="script about__signature">— Tab</p>
-        </div>
-      </section>
-      <section id="empire" data-brand-hub class="empire">
-        <header class="empire__intro container">
-          <p class="eyebrow">The Empire</p>
-          <h2 class="display-lg empire__hed">Everything she's<br />building.</h2>
-          <p class="lede empire__sub">Step inside, friend.</p>
-        </header>
 
-        <div class="empire__stage" aria-hidden="true">
-          <div class="empire__stage-inner" data-empire-stage>
-            <!-- Pinned image cross-fades populated by empire.js -->
+      <section class="panel" id="tour" aria-label="Tour">
+        <picture class="panel__media">
+          <source type="image/avif" srcset="/src/assets/img/dsc03543-1280.avif" />
+          <img src="/src/assets/img/dsc03543-1280.jpg" alt="Tabitha Brown — Tour" width="1280" height="1707" loading="lazy" />
+        </picture>
+        <span class="panel__label">Tour</span>
+      </section>
+
+      <section class="panel" id="donnas" aria-label="Donna's Recipe">
+        <picture class="panel__media">
+          <source type="image/avif" srcset="/src/assets/img/chance-and-tabitha-applying-oil-to-wife-1280.avif" />
+          <img src="/src/assets/img/chance-and-tabitha-applying-oil-to-wife-1280.jpg" alt="Donna's Recipe" width="1280" height="1707" loading="lazy" />
+        </picture>
+        <a class="panel__label" href="https://donnasrecipe.com" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">Donna's Recipe ↗</a>
+      </section>
+
+      <section class="panel" id="target" aria-label="Tabitha Brown for Target">
+        <picture class="panel__media">
+          <source type="image/avif" srcset="/src/assets/img/tab-today7400283-12-1280.avif" />
+          <img src="/src/assets/img/tab-today7400283-12-1280.jpg" alt="Tabitha Brown for Target" width="1280" height="1707" loading="lazy" />
+        </picture>
+        <a class="panel__label" href="https://www.target.com/c/tabitha-brown" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">Tabitha for Target ↗</a>
+      </section>
+
+      <section class="panel" id="mclovins" aria-label="McLovin's Pet Food">
+        <picture class="panel__media">
+          <source type="image/avif" srcset="/src/assets/img/img-0698-640.avif" />
+          <img src="/src/assets/img/img-0698-640.jpg" alt="McLovin's Pet Food" width="640" height="853" loading="lazy" />
+        </picture>
+        <a class="panel__label" href="https://www.mclovinspetfood.com" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">McLovin's ↗</a>
+      </section>
+
+      <section class="panel" id="cookbooks" aria-label="Cookbooks">
+        <picture class="panel__media">
+          <source type="image/avif" srcset="/src/assets/img/tabitha-with-sweet-potato-pie-collection-with-pie-in-hand-1280.avif" />
+          <img src="/src/assets/img/tabitha-with-sweet-potato-pie-collection-with-pie-in-hand-1280.jpg" alt="Cookbooks" width="1280" height="1707" loading="lazy" />
+        </picture>
+        <a class="panel__label" href="https://www.tabithabrown.com/books" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">Cookbooks ↗</a>
+      </section>
+
+      <section class="panel" id="tabtime" aria-label="Tab Time">
+        <picture class="panel__media">
+          <source type="image/avif" srcset="/src/assets/img/dsc02078-1280.avif" />
+          <img src="/src/assets/img/dsc02078-1280.jpg" alt="Tab Time" width="1280" height="1707" loading="lazy" />
+        </picture>
+        <a class="panel__label panel__label--dark" href="https://tv.apple.com/show/tab-time" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">Tab Time ↗</a>
+      </section>
+
+      <section class="panel" id="podcast" aria-label="The Tab Time Podcast">
+        <picture class="panel__media">
+          <source type="image/avif" srcset="/src/assets/img/c9803-00-20-06-14-still005-640.avif" />
+          <img src="/src/assets/img/c9803-00-20-06-14-still005-640.jpg" alt="Podcast" width="640" height="360" loading="lazy" />
+        </picture>
+        <a class="panel__label" href="https://open.spotify.com/show/tab-time-podcast" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">The Tab Time Podcast ↗</a>
+      </section>
+
+      <section class="panel panel--newsletter" id="newsletter" aria-label="Newsletter">
+        <picture class="panel__media">
+          <source type="image/avif" srcset="/src/assets/img/img-0712-1280.avif" />
+          <img src="/src/assets/img/img-0712-1280.jpg" alt="" width="1280" height="1707" loading="lazy" />
+        </picture>
+        <div class="panel__form">
+          <div>
+            <h2>Sundays.</h2>
+            <p class="sub">From me to you.</p>
+            <form data-newsletter-form novalidate>
+              <label for="nl-email" class="sr-only">Email address</label>
+              <input id="nl-email" type="email" name="email" placeholder="your email" required autocomplete="email" />
+              <label class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+              <button type="submit" aria-label="Subscribe">Send →</button>
+            </form>
           </div>
-        </div>
-
-        <ol class="empire__chapters" data-empire-chapters>
-          <!-- 9 brand chapters populated by empire.js -->
-        </ol>
-
-        <div class="empire__closer container">
-          <p class="script empire__closer-text">we're just getting started, friend.</p>
-        </div>
-      </section>
-      <section id="tour" data-tour class="tour container">
-        <header class="tour__intro">
-          <p class="eyebrow">On the Road</p>
-          <h2 class="display-md tour__hed">Where she's headed next.</h2>
-        </header>
-        <ul class="tour__list" data-tour-list></ul>
-        <a class="link-underline tour__all" href="#tour">See all appearances <span aria-hidden="true">↗</span></a>
-      </section>
-      <section id="universe" data-universe class="universe container">
-        <header class="universe__intro">
-          <p class="eyebrow">The Map</p>
-          <h2 class="display-md universe__hed">A whole little universe.</h2>
-          <p class="lede universe__sub">Tap a stop on the map.</p>
-        </header>
-        <div class="universe__map">
-          <img src="/src/assets/svg/tab-universe.svg" alt="Tabitha Brown's brand universe — illustrated map of her nine ventures" />
-        </div>
-      </section>
-      <section id="newsletter" data-newsletter class="newsletter">
-        <picture class="newsletter__bg" aria-hidden="true">
-          <img src="/src/assets/img/dsc02078-1280.jpg" alt="" loading="lazy" />
-        </picture>
-        <div class="newsletter__overlay" aria-hidden="true"></div>
-        <div class="newsletter__inner container">
-          <h2 class="newsletter__hed display-lg">Sundays.</h2>
-          <p class="newsletter__sub">From me to you.</p>
-          <form class="newsletter__form" data-newsletter-form novalidate>
-            <label class="sr-only" for="newsletter-email">Email address</label>
-            <input id="newsletter-email" type="email" name="email" placeholder="your email" required autocomplete="email" />
-            <label class="newsletter__hp" aria-hidden="true">
-              <input type="text" name="website" tabindex="-1" autocomplete="off" />
-            </label>
-            <button type="submit" class="newsletter__submit" aria-label="Subscribe">
-              <span class="newsletter__submit-label" aria-hidden="true">Send →</span>
-            </button>
-            <output class="newsletter__output" data-newsletter-output role="status" aria-live="polite"></output>
-          </form>
+          <output role="status" aria-live="polite"></output>
         </div>
       </section>
     </main>
-    <footer id="site-footer" data-footer class="footer">
-      <div class="footer__wordmark" aria-hidden="true">TABITHA BROWN</div>
-      <div class="footer__bottom container">
-        <p class="footer__copy mono-detail">Made with love. And a little hot sauce.</p>
-        <p class="footer__credit mono-detail">
-          <a href="https://taylormadecreative.net" target="_blank" rel="noopener noreferrer">
-            Site by Taylormade Creative <span aria-hidden="true">↗</span>
-          </a>
-        </p>
-      </div>
-    </footer>
+
+    <div class="bottommeta">
+      <span>© 2026 Tabitha Brown</span>
+      <a href="/privacy">Privacy</a>
+      <a href="https://taylormadecreative.net" target="_blank" rel="noopener noreferrer">Site by Taylormade Creative ↗</a>
+    </div>
+
     <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>
