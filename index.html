@@ -158,33 +158,14 @@
         </div>
       </section>
       <section id="about" data-about class="about">
-        <div class="about__inner">
-          <picture class="about__portrait">
-            <source type="image/avif" srcset="/src/assets/img/dsc03543-640.avif 640w, /src/assets/img/dsc03543-1280.avif 1280w" sizes="(min-width: 1024px) 60vw, 100vw" />
-            <img src="/src/assets/img/dsc03543-1280.jpg" alt="Tabitha Brown editorial portrait" width="1280" height="1707" loading="lazy" />
-          </picture>
-          <div class="about__column">
-            <p class="eyebrow">The Woman</p>
-            <h2 class="display-md about__hed">The story they didn't print.</h2>
-            <hr class="about__rule" />
-            <p class="mono-detail about__bio">
-              Actress. Author. Founder of Donna's Recipe. Target collaborator. Podcast host. Children's TV star. Proud mama. From Eden, North Carolina. Call her Tab.
-            </p>
-            <hr class="about__rule" />
-            <p class="lede about__voice">
-              "I'm Tab. Came up in Eden, NC. Was tired — not Hollywood-tired, bone tired — when I tried vegan to manage chronic pain. Two-minute TikTok about a BLT changed everything. The rest you can Google. What you can't Google is how much I love making something with my hands and giving it to you. That's the whole thing, friend."
-            </p>
-            <picture class="about__polaroid">
-              <source type="image/avif" srcset="/src/assets/img/img-0712-640.avif" />
-              <img src="/src/assets/img/img-0712-640.jpg" alt="Tabitha Brown candid" width="280" height="280" loading="lazy" />
-            </picture>
-            <p class="script about__signature">"hey there, friend." — Tab</p>
-            <p class="mono-detail about__row">
-              From Eden, North Carolina · Based in Los Angeles<br />
-              Mama to Choyce & Que · Wife to Chance<br />
-              Favorite word: "baby."
-            </p>
-          </div>
+        <picture class="about__bg">
+          <source type="image/avif" srcset="/src/assets/img/dsc03543-640.avif 640w, /src/assets/img/dsc03543-1280.avif 1280w" sizes="100vw" />
+          <img src="/src/assets/img/dsc03543-1280.jpg" alt="Tabitha Brown editorial portrait" width="1280" height="1707" loading="lazy" />
+        </picture>
+        <div class="about__overlay" aria-hidden="true"></div>
+        <div class="about__content container">
+          <h2 class="about__hed display-xl">From Eden, NC.<br/>Two minutes changed it.</h2>
+          <p class="script about__signature">— Tab</p>
         </div>
       </section>
       <section id="empire" data-brand-hub class="empire">
@@ -230,56 +211,19 @@
         <picture class="newsletter__bg" aria-hidden="true">
           <img src="/src/assets/img/dsc02078-1280.jpg" alt="" loading="lazy" />
         </picture>
+        <div class="newsletter__overlay" aria-hidden="true"></div>
         <div class="newsletter__inner container">
-          <p class="eyebrow">Stay Close</p>
-          <h2 class="display-md newsletter__hed">Let's stay in touch, friend.</h2>
-          <p class="lede newsletter__sub">Sundays. From me to you. A recipe, a reminder, sometimes a song.</p>
-
+          <h2 class="newsletter__hed display-lg">Sundays.</h2>
+          <p class="newsletter__sub">From me to you.</p>
           <form class="newsletter__form" data-newsletter-form novalidate>
-            <div class="newsletter__toggle" role="tablist" aria-label="Subscribe via">
-              <button type="button" role="tab" class="newsletter__tab" data-tab="email" aria-selected="true">Email</button>
-              <button type="button" role="tab" class="newsletter__tab" data-tab="sms" aria-selected="false">Text</button>
-            </div>
-
-            <label class="newsletter__field" data-field="email">
-              <span class="sr-only">Email address</span>
-              <input type="email" name="email" placeholder="your email"
-                     required autocomplete="email" />
-            </label>
-
-            <label class="newsletter__field" data-field="sms" hidden>
-              <span class="sr-only">Phone number</span>
-              <input type="tel" name="phone" placeholder="+1 your phone number"
-                     autocomplete="tel" />
-              <span class="newsletter__hint mono-detail">We'll text recipes & tour drops. Reply STOP anytime.</span>
-            </label>
-
-            <fieldset class="newsletter__segments">
-              <legend class="sr-only">What brings you here?</legend>
-              <p class="mono-detail newsletter__seg-label">What brings you here? (optional)</p>
-              <div class="newsletter__seg-row">
-                <label><input type="radio" name="segment" value="recipes" /> Recipes</label>
-                <label><input type="radio" name="segment" value="style" /> Style</label>
-                <label><input type="radio" name="segment" value="tour" /> Tour</label>
-                <label><input type="radio" name="segment" value="vibing" /> Just vibing</label>
-              </div>
-            </fieldset>
-
+            <label class="sr-only" for="newsletter-email">Email address</label>
+            <input id="newsletter-email" type="email" name="email" placeholder="your email" required autocomplete="email" />
             <label class="newsletter__hp" aria-hidden="true">
               <input type="text" name="website" tabindex="-1" autocomplete="off" />
             </label>
-
             <button type="submit" class="newsletter__submit" aria-label="Subscribe">
-              <span class="newsletter__submit-label">Send <span aria-hidden="true">→</span></span>
-              <span class="newsletter__submit-loading" hidden>Sending...</span>
-              <span class="newsletter__submit-success" hidden aria-hidden="true">✓</span>
+              <span class="newsletter__submit-label" aria-hidden="true">Send →</span>
             </button>
-
-            <p class="mono-detail newsletter__legal">
-              By subscribing, you agree to receive emails. We don't share your info.
-              Unsubscribe anytime. <a href="/privacy" class="link-underline">Read the privacy note ↗</a>
-            </p>
-
             <output class="newsletter__output" data-newsletter-output role="status" aria-live="polite"></output>
           </form>
         </div>

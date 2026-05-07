@@ -15,13 +15,34 @@
     display: grid;
     place-items: center;
   }
-  .chapter__card { display: flex; flex-direction: column; gap: var(--s-3); max-width: 720px; }
-  .chapter__counter { color: var(--soft-black); opacity: 0.6; }
-  .chapter__name { color: var(--soft-black); }
-  .chapter__quote { color: var(--soft-black); opacity: 0.85; max-width: 22ch; }
-  .chapter__desc { max-width: 56ch; }
-  .chapter__cta { font-family: var(--font-mono); font-size: 14px; text-transform: uppercase; letter-spacing: 0.14em; align-self: start; padding-block: var(--s-2); }
-  .chapter__row { color: var(--soft-black); opacity: 0.55; }
+  .chapter__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+    max-width: 920px;
+    text-align: left;
+  }
+  .chapter__name {
+    color: var(--soft-black);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+  }
+  .chapter__cta {
+    align-self: start;
+    padding: var(--s-3) var(--s-5);
+    border: 1px solid var(--soft-black);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--soft-black);
+    transition: all var(--dur-fast) var(--ease-exhale);
+  }
+  .chapter__cta:hover {
+    background: var(--soft-black);
+    color: var(--cream);
+  }
 
   .chapter__photo-mobile {
     margin-top: var(--s-5);

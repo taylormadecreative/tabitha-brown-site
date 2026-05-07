@@ -1,68 +1,43 @@
 @layer components {
-  .about { padding-block: var(--s-9); background: var(--cream); }
-  .about__inner {
+  .about {
+    position: relative;
+    min-height: 100svh;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--s-5);
-    align-items: start;
-    max-width: var(--max-w);
-    margin-inline: auto;
-    padding-inline: var(--gutter);
-  }
-  .about__portrait {
-    aspect-ratio: 16/9;
+    place-items: end start;
     overflow: hidden;
-    border-radius: 4px;
+    isolation: isolate;
   }
-  .about__portrait img {
+  .about__bg { position: absolute; inset: 0; z-index: -2; }
+  .about__bg img {
     width: 100%; height: 100%;
     object-fit: cover;
-    filter: blur(8px);
-    transition: filter 1.4s var(--ease-exhale);
+    object-position: center 30%;
+    filter: saturate(0.7) contrast(1.08) brightness(0.92);
   }
-  .about__portrait[data-loaded="true"] img { filter: blur(0); }
-
-  .about__column { display: flex; flex-direction: column; gap: var(--s-3); }
-  .about__hed { margin-block: var(--s-2) var(--s-3); }
-  .about__rule { border: 0; border-top: 1px solid var(--sage); opacity: 0.4; margin: var(--s-3) 0; }
-  .about__bio { color: var(--soft-black); opacity: 0.7; }
-  .about__voice { font-family: var(--font-display); font-style: italic; font-size: 22px; line-height: 1.5; max-width: 36ch; }
-  .about__polaroid {
-    align-self: center;
-    width: 280px;
-    margin-block: var(--s-4);
+  .about__overlay {
+    position: absolute; inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(180deg, transparent 40%, rgba(14,13,11,0.65) 100%),
+      linear-gradient(90deg, rgba(14,13,11,0.4) 0%, transparent 50%);
   }
-  .about__polaroid img {
+  .about__content {
+    padding-block: var(--s-7);
+    color: var(--cream);
+    max-width: var(--max-w);
     width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border: 12px solid var(--cream);
-    box-shadow: 0 14px 36px rgba(43,42,38,0.18);
-    animation: polaroid-drift 14s var(--ease-exhale) infinite alternate;
   }
-  @keyframes polaroid-drift {
-    from { transform: rotate(2deg) scale(1); }
-    to   { transform: rotate(-1.5deg) scale(1.06); }
+  .about__hed {
+    color: var(--cream);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    max-width: 14ch;
+    text-shadow: 0 4px 60px rgba(0,0,0,0.5);
   }
   .about__signature {
-    color: var(--honey-gold-accessible);
-    font-size: 32px;
-  }
-  .about__row { color: var(--soft-black); opacity: 0.7; }
-
-  @media (min-width: 1024px) {
-    .about__inner {
-      grid-template-columns: 60% 40%;
-      gap: var(--s-6);
-    }
-    .about__portrait {
-      aspect-ratio: 3/4;
-      height: 100%;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .about__portrait img { filter: none; }
-    .about__polaroid img { transition: none; }
+    color: var(--cream);
+    font-size: clamp(36px, 5vw, 72px);
+    margin-top: var(--s-3);
+    opacity: 0.85;
   }
 }

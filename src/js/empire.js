@@ -53,16 +53,10 @@ async function renderChapters() {
   chaptersEl.innerHTML = brands.map((b, i) => `
     <li class="chapter" data-chapter="${i}" style="--tint:${b.tint}">
       <article class="chapter__card container">
-        <p class="mono-detail chapter__counter">${b.chapter} — ${b.name}</p>
-        <h3 class="display-lg chapter__name">${b.name}</h3>
-        <blockquote class="pull-quote chapter__quote">"${b.tabQuote}"</blockquote>
-        <p class="body chapter__desc">${b.description}</p>
-        <a class="link-underline chapter__cta" href="${b.url}" target="_blank" rel="noopener noreferrer">
-          Visit ${b.name} <span aria-hidden="true">→</span>
+        <h3 class="chapter__name display-xl">${b.name}</h3>
+        <a class="chapter__cta" href="${b.url}" target="_blank" rel="noopener noreferrer">
+          Enter <span aria-hidden="true">→</span>
         </a>
-        <p class="mono-detail chapter__row">
-          Founded ${b.founded} · ${b.category}
-        </p>
       </article>
       <picture class="chapter__photo-mobile">
         <img src="${imgSrc(b)}" alt="${b.name}" loading="lazy" width="1280" height="1280" />
