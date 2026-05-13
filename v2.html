@@ -1,0 +1,1350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Tabitha Brown · Welcome</title>
+<meta name="description" content="Tabitha Brown — joy you can taste. Donna's Recipe, Tab + Chance, cookbooks, Tab Time, merch, and the live tour." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#FFD60A" />
+
+<link rel="preload" href="/src/assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/src/assets/fonts/inter-tight.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" as="image" href="/src/assets/img/hero-colorful-striped-1920.avif" type="image/avif" fetchpriority="high" />
+
+<style>
+  /* ============ FONTS ============ */
+  @font-face {
+    font-family: 'Fraunces';
+    src: url('/src/assets/fonts/fraunces.woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Inter Tight';
+    src: url('/src/assets/fonts/inter-tight.woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-display: swap;
+  }
+
+  /* ============ TOKENS ============ */
+  :root {
+    --bg: #FFD60A;
+    --ink: #1F0D38;
+    --ink-soft: #4A2A6B;
+
+    --c-hero:    #E91A5F;
+    --c-tour:    #0F8C8C;
+    --c-donnas:  #0E7A4E;
+    --c-merch:   #F0530A;
+    --c-podcast: #1F4FE0;
+    --c-books:   #C2305A;
+    --c-tabtime: #5B2F8F;
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter Tight', system-ui, -apple-system, sans-serif;
+
+    --max-w: 1440px;
+    --gutter: clamp(1rem, 4vw, 4rem);
+    /* Emil's strong custom easings — built-ins are too weak */
+    --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+    --slide-duration: 6500ms;
+    --crossfade-duration: 720ms;
+  }
+
+  /* ============ RESET ============ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg); color: var(--ink);
+    font-family: var(--font-body); font-size: 17px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body { min-height: 100dvh; }
+  a { color: inherit; text-decoration: none; }
+  img, picture, source { display: block; max-width: 100%; }
+  button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+  ul, ol { list-style: none; }
+
+  .skip-link { position: absolute; top: -100px; left: 0; padding: 12px 16px; background: var(--ink); color: var(--bg); font-weight: 600; z-index: 999; }
+  .skip-link:focus { top: 0; }
+
+  /* ============ INTRO — photo cycle + wordmark (~2.5s total) ============ */
+  .intro {
+    position: fixed; inset: 0; z-index: 300; background: var(--bg);
+    display: grid; place-items: center;
+    pointer-events: none;
+    animation: introOut 0.45s var(--ease-out) 2.4s forwards;
+    overflow: hidden;
+  }
+  @keyframes introOut { to { opacity: 0; visibility: hidden; } }
+
+  .intro__photo {
+    position: absolute; inset: 0;
+    width: min(64vw, 520px); height: min(76vh, 680px);
+    margin: auto;
+    opacity: 0; transform: scale(1.04);
+    border-radius: 4px; overflow: hidden;
+    box-shadow: 0 36px 90px -36px rgba(31, 13, 56, 0.55);
+    animation: cyclePhoto 1.0s var(--ease-out) forwards;
+  }
+  .intro__photo img { width: 100%; height: 100%; object-fit: cover; object-position: var(--obj-pos, center 22%); }
+  .intro__photo:nth-child(1) { animation-delay: 0.00s; }
+  .intro__photo:nth-child(2) { animation-delay: 0.22s; }
+  .intro__photo:nth-child(3) { animation-delay: 0.44s; }
+  .intro__photo:nth-child(4) { animation-delay: 0.66s; }
+  .intro__photo:nth-child(5) { animation-delay: 0.88s; }
+  @keyframes cyclePhoto {
+    0%   { opacity: 0; transform: scale(1.03); }
+    25%  { opacity: 1; transform: scale(1); }
+    60%  { opacity: 1; transform: scale(1); }
+    90%  { opacity: 0; transform: scale(0.99); }
+    100% { opacity: 0; }
+  }
+
+  .intro__wordmark {
+    position: relative; z-index: 2;
+    font-family: var(--font-display); font-style: italic; font-weight: 300;
+    font-size: clamp(56px, 11vw, 160px);
+    color: var(--c-hero);
+    letter-spacing: -0.02em; line-height: 1;
+    text-align: center;
+    text-shadow: 0 14px 50px rgba(31, 13, 56, 0.45);
+    opacity: 0;
+    animation: wmIn 0.5s var(--ease-out) 1.55s forwards, wmOut 0.35s var(--ease-out) 2.3s forwards;
+  }
+  @keyframes wmIn { from { opacity: 0; transform: translateY(14px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes wmOut { to { opacity: 0; transform: translateY(-6px) scale(0.98); } }
+
+  .intro__sub {
+    position: absolute; bottom: clamp(28px, 6vh, 60px); z-index: 2;
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--ink); font-weight: 600;
+    opacity: 0;
+    animation: subIn 0.4s var(--ease-out) 1.8s forwards, wmOut 0.3s var(--ease-out) 2.3s forwards;
+  }
+  @keyframes subIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 0.78; transform: translateY(0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .intro { animation-delay: 0.6s; }
+    .intro__photo { animation: none; opacity: 0; }
+    .intro__photo:nth-child(1) { opacity: 1; transform: scale(1); }
+    .intro__wordmark, .intro__sub { animation: none; opacity: 1; }
+  }
+
+  /* ============ TOP NAV ============ */
+  .topnav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  }
+  .topnav__row {
+    max-width: var(--max-w); margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: flex; align-items: center;
+  }
+  .topnav__row--top {
+    height: 64px;
+    justify-content: center;
+    position: relative;
+  }
+  .topnav__wordmark {
+    font-family: var(--font-display); font-style: italic; font-weight: 400;
+    font-size: 26px; letter-spacing: -0.01em;
+    color: var(--ink);
+    text-align: center;
+  }
+  .topnav__menu-mobile {
+    position: absolute;
+    right: var(--gutter);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .topnav__row--cats {
+    border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+    height: 48px;
+    justify-content: center;
+    gap: clamp(22px, 2.6vw, 40px);
+  }
+  .topnav__cat {
+    font-family: var(--font-body); font-weight: 500;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 4px 0;
+    position: relative;
+    color: var(--ink);
+    transition: color 0.4s var(--ease-out);
+  }
+  .topnav__cat::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: -2px;
+    height: 2px; background: var(--cat-color, var(--c-hero));
+    transform: scaleX(0); transform-origin: right;
+    transition: transform 0.45s var(--ease-out);
+  }
+  .topnav__cat:hover::after, .topnav__cat[aria-current="true"]::after { transform: scaleX(1); transform-origin: left; }
+  .topnav__cat[data-jump="1"] { --cat-color: var(--c-donnas); }
+  .topnav__cat[data-jump="2"] { --cat-color: var(--c-merch); }
+  .topnav__cat[data-jump="3"] { --cat-color: var(--c-books); }
+  .topnav__cat[data-jump="4"] { --cat-color: var(--c-tabtime); }
+  .topnav__cat[data-jump="5"] { --cat-color: var(--c-podcast); }
+  .topnav__cat[data-jump="6"] { --cat-color: var(--c-tour); }
+  .topnav__cat--cta {
+    background: var(--ink); color: var(--bg);
+    padding: 9px 20px; border-radius: 999px;
+    letter-spacing: 0.18em;
+    transition: background 200ms var(--ease-out), transform 140ms var(--ease-out);
+  }
+  .topnav__cat--cta::after { display: none; }
+  @media (hover: hover) and (pointer: fine) {
+    .topnav__cat--cta:hover { background: var(--c-hero); }
+  }
+  .topnav__cat--cta:active { transform: scale(0.97); }
+
+  .topnav__menu-mobile { display: none; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
+  @media (max-width: 900px) {
+    .topnav__row--cats { display: none; }
+    .topnav__menu-mobile { display: inline-flex; align-items: center; }
+  }
+
+  /* ============ DECK STAGE ============ */
+  .stage {
+    position: relative;
+    width: 100%; height: 100dvh;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  .slide {
+    position: absolute; inset: 0;
+    opacity: 0; pointer-events: none;
+    transition: opacity var(--crossfade-duration) var(--ease-out);
+  }
+  .slide[data-active="true"] {
+    opacity: 1; pointer-events: auto;
+    z-index: 2;
+  }
+
+  .slide__media {
+    position: absolute; inset: 0;
+    overflow: hidden;
+  }
+  .slide__media picture, .slide__media img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: var(--obj-pos, center);
+  }
+  .slide__media img {
+    transform: scale(1.0);
+    transition: transform 7s linear;
+  }
+  .slide[data-active="true"] .slide__media img {
+    transform: scale(1.08);
+  }
+
+  /* Cinematic bottom-up gradient for legibility */
+  .slide::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      rgba(31, 13, 56, 0.15) 0%,
+      rgba(31, 13, 56, 0) 35%,
+      rgba(31, 13, 56, 0) 50%,
+      rgba(31, 13, 56, 0.55) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Slide content */
+  .slide__content {
+    position: absolute; inset: 0;
+    z-index: 2;
+    padding: clamp(132px, 16vh, 184px) var(--gutter) clamp(96px, 13vh, 148px);
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  @media (max-width: 900px) {
+    .slide__content { padding-top: clamp(88px, 12vh, 120px); }
+  }
+
+  .slide__eyebrow {
+    display: inline-flex; align-items: center; gap: 14px;
+    align-self: flex-start;
+    padding: 0;
+    font-family: var(--font-body); font-weight: 700;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 2px 14px rgba(31, 13, 56, 0.55);
+    opacity: 0; transform: translateY(-10px);
+    transition: opacity 0.7s var(--ease-out) 0.4s, transform 0.7s var(--ease-out) 0.4s;
+  }
+  .slide[data-active="true"] .slide__eyebrow { opacity: 1; transform: translateY(0); }
+  .slide__eyebrow::before {
+    content: ''; display: inline-block; width: 26px; height: 2px;
+    background: var(--accent);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 70%, transparent);
+  }
+
+  .slide__bottom {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 32px; flex-wrap: wrap;
+    pointer-events: none;
+  }
+
+  .slide__overlay {
+    font-family: var(--font-display);
+    font-style: italic; font-weight: 300;
+    color: #fff;
+    text-shadow: 0 8px 36px rgba(31, 13, 56, 0.55);
+    letter-spacing: -0.018em;
+    line-height: 0.92;
+    font-size: clamp(48px, 8vw, 138px);
+    max-width: min(94%, 980px);
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.9s var(--ease-out) 0.55s, transform 0.9s var(--ease-out) 0.55s;
+    pointer-events: auto;
+  }
+  .slide[data-active="true"] .slide__overlay { opacity: 1; transform: translateY(0); }
+
+  .slide__cta-wrap {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.8s var(--ease-out) 0.75s, transform 0.8s var(--ease-out) 0.75s;
+    pointer-events: auto;
+  }
+  .slide[data-active="true"] .slide__cta-wrap { opacity: 1; transform: translateY(0); }
+
+  .slide__caption {
+    font-family: var(--font-display); font-style: italic; font-weight: 400;
+    font-size: clamp(15px, 1.4vw, 19px); line-height: 1.4;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 36ch;
+    text-shadow: 0 4px 18px rgba(31, 13, 56, 0.55);
+    text-align: right;
+  }
+  .slide__cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-body); font-weight: 600;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    border-radius: 999px;
+    transition: gap 200ms var(--ease-out), background 200ms ease, transform 140ms var(--ease-out);
+    box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.4);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .slide__cta:hover { gap: 16px; }
+  }
+  .slide__cta:active { transform: scale(0.97); }
+  .slide__cta svg { width: 16px; height: 8px; stroke: currentColor; }
+
+  /* Slide accents */
+  .slide[data-slide="0"] { --accent: var(--c-hero); }
+  .slide[data-slide="1"] { --accent: var(--c-donnas); }
+  .slide[data-slide="2"] { --accent: var(--c-merch); }
+  .slide[data-slide="3"] { --accent: var(--c-books); }
+  .slide[data-slide="4"] { --accent: var(--c-tabtime); }
+  .slide[data-slide="5"] { --accent: var(--c-podcast); }
+  .slide[data-slide="6"] { --accent: var(--c-tour); }
+
+
+  /* ============ DECK CONTROLS ============ */
+  .controls {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: clamp(14px, 2.4vh, 26px) var(--gutter);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+    background: linear-gradient(180deg, transparent 0%, rgba(31, 13, 56, 0.45) 100%);
+    pointer-events: none;
+    transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out);
+  }
+  .controls > * { pointer-events: auto; }
+  .controls.controls--hidden { opacity: 0; transform: translateY(20px); pointer-events: none; }
+  .controls.controls--hidden > * { pointer-events: none; }
+  /* Hint follows controls in/out so it doesn't float over the footer */
+  .hint.hint--scrolled-past { opacity: 0 !important; pointer-events: none; }
+
+  .controls__counter {
+    font-family: var(--font-body); font-weight: 600;
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    display: flex; align-items: center; gap: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  .controls__counter strong { color: var(--bg); font-weight: 700; font-size: 13px; }
+  .controls__counter::before {
+    content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent, var(--c-hero));
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.18);
+    animation: pulse 2.2s ease-in-out infinite;
+    transition: opacity 0.3s ease;
+  }
+  body[data-deck-paused="true"] .controls__counter::before {
+    animation-play-state: paused;
+    opacity: 0.55;
+  }
+  body[data-deck-paused="true"] .controls__dot[data-active="true"] .controls__dot__fill {
+    animation-play-state: paused;
+  }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.25); opacity: 0.7; } }
+
+  .controls__dots {
+    display: flex; gap: 10px; justify-content: center; align-items: center;
+  }
+  .controls__dot {
+    position: relative;
+    width: 36px; height: 3px;
+    background: rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    overflow: hidden;
+    transition: width 240ms var(--ease-out), background 200ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .controls__dot:hover { background: rgba(255, 255, 255, 0.48); }
+  }
+  .controls__dot:active { transform: scale(0.94); }
+  .controls__dot[data-active="true"] {
+    width: 72px;
+    background: rgba(255, 255, 255, 0.22);
+  }
+  .controls__dot__fill {
+    position: absolute; inset: 0;
+    background: var(--bg);
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  .controls__dot[data-active="true"] .controls__dot__fill {
+    animation: fill var(--slide-duration) linear forwards;
+  }
+  .controls__dot[data-played="true"] .controls__dot__fill { transform: scaleX(1); }
+  @keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  .controls__playpause {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    color: var(--ink);
+    transition: background 200ms ease, transform 140ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .controls__playpause:hover { background: var(--bg); }
+  }
+  .controls__playpause:active { transform: scale(0.97); }
+  .controls__playpause svg { width: 14px; height: 14px; fill: currentColor; }
+
+  /* ============ NAV HINT ============ */
+  .hint {
+    position: fixed; bottom: 84px; right: var(--gutter);
+    z-index: 60;
+    padding: 10px 16px;
+    background: var(--bg); color: var(--ink);
+    border-radius: 999px;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+  }
+  @keyframes hintIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes hintOut { to { opacity: 0; transform: translateY(10px); pointer-events: none; } }
+  .hint svg { width: 14px; height: 14px; }
+
+  /* ============ GRAIN ============ */
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 90;
+    opacity: 0.4; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='5'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.07 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* ============ FOCUS RING ============ */
+  :focus-visible {
+    outline: 2px solid var(--c-hero); outline-offset: 3px;
+  }
+
+  /* ============ REDUCED MOTION ============
+     Emil: fewer + gentler, not zero. Keep opacity changes that aid comprehension;
+     remove movement-based animation (ken burns, transforms). */
+  @media (prefers-reduced-motion: reduce) {
+    .slide { transition: opacity 200ms ease; }
+    .slide__media img,
+    .slide[data-active="true"] .slide__media img { transform: none; transition: none; }
+    .slide__overlay,
+    .slide[data-active="true"] .slide__overlay,
+    .slide__eyebrow,
+    .slide[data-active="true"] .slide__eyebrow,
+    .slide__cta-wrap,
+    .slide[data-active="true"] .slide__cta-wrap { transform: none; transition: opacity 200ms ease; }
+    .controls__dot[data-active="true"] .controls__dot__fill { animation: none; transform: scaleX(1); }
+    .controls__counter::before { animation: none; }
+  }
+
+  /* aria-live region (visually hidden) */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+
+  /* ============ MOBILE DRAWER ============ */
+  .drawer {
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--bg);
+    transform: translateX(100%);
+    transition: transform 360ms var(--ease-out);
+    display: flex; flex-direction: column;
+    padding: 80px var(--gutter) var(--gutter);
+    overflow-y: auto;
+  }
+  body[data-drawer-open="true"] .drawer { transform: translateX(0); }
+  .drawer__close {
+    position: absolute; top: 18px; right: var(--gutter);
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
+    color: var(--ink);
+    padding: 8px 6px;
+    transition: transform 140ms var(--ease-out);
+  }
+  .drawer__close:active { transform: scale(0.95); }
+  .drawer__list {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .drawer__link {
+    display: block; padding: 18px 4px;
+    font-family: var(--font-display); font-style: italic; font-weight: 400;
+    font-size: clamp(32px, 8vw, 56px);
+    color: var(--ink); letter-spacing: -0.015em; line-height: 1;
+    border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+    transition: color 200ms var(--ease-out), padding-left 220ms var(--ease-out);
+  }
+  .drawer__link:active { padding-left: 12px; color: var(--c-hero); }
+  .drawer__link--cta {
+    margin-top: 24px;
+    align-self: flex-start;
+    background: var(--ink); color: var(--bg);
+    padding: 16px 32px; border-radius: 999px;
+    font-family: var(--font-body); font-style: normal; font-weight: 600;
+    font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+    border-bottom: none;
+  }
+  .drawer__link--cta:active { padding-left: 32px; background: var(--c-hero); color: #fff; }
+  body[data-drawer-open="true"] { overflow: hidden; }
+
+  /* ============ BOOKING DIALOG ============ */
+  .dialog {
+    border: none; padding: 0; max-width: min(560px, 92vw); width: 92vw;
+    background: var(--bg); color: var(--ink);
+    border-radius: 18px;
+    box-shadow: 0 60px 120px -30px rgba(0, 0, 0, 0.55);
+    margin: auto;
+    opacity: 0; transform: translateY(20px) scale(0.96);
+    transition: opacity 280ms var(--ease-out), transform 280ms var(--ease-out);
+  }
+  .dialog[open] { opacity: 1; transform: translateY(0) scale(1); }
+  .dialog::backdrop {
+    background: color-mix(in srgb, var(--ink) 50%, transparent);
+    backdrop-filter: blur(6px) saturate(140%);
+  }
+  .dialog__panel { padding: clamp(24px, 4vw, 40px); }
+  .dialog__header {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+    margin-bottom: 24px;
+  }
+  .dialog__title {
+    font-family: var(--font-display); font-style: italic; font-weight: 400;
+    font-size: clamp(32px, 5vw, 52px); line-height: 0.95; letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .dialog__title em { color: var(--c-hero); font-style: italic; }
+  .dialog__close {
+    flex-shrink: 0;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: color-mix(in srgb, var(--ink) 8%, transparent);
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background 200ms ease, transform 140ms var(--ease-out);
+  }
+  .dialog__close:hover { background: color-mix(in srgb, var(--ink) 14%, transparent); }
+  .dialog__close:active { transform: scale(0.94); }
+  .dialog__intro {
+    font-size: 14px; line-height: 1.55; color: var(--ink-soft);
+    margin-bottom: 24px; max-width: 56ch;
+  }
+  .dialog__form { display: grid; gap: 14px; }
+  .dialog__row { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 520px) { .dialog__row { grid-template-columns: 1fr; } }
+  .dialog__field { display: flex; flex-direction: column; gap: 6px; }
+  .dialog__label {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink-soft);
+  }
+  .dialog__input,
+  .dialog__select,
+  .dialog__textarea {
+    font-family: var(--font-body); font-size: 15px; color: var(--ink);
+    background: rgba(255,255,255,0.55);
+    border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: border-color 200ms ease, background 200ms ease;
+    width: 100%;
+  }
+  .dialog__input:focus, .dialog__select:focus, .dialog__textarea:focus {
+    outline: none;
+    border-color: var(--c-hero);
+    background: #fff;
+  }
+  .dialog__textarea { min-height: 100px; resize: vertical; }
+  .dialog__submit {
+    margin-top: 6px;
+    background: var(--ink); color: var(--bg);
+    padding: 14px 26px; border-radius: 999px;
+    font-family: var(--font-body); font-weight: 600;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    align-self: flex-start;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: background 200ms ease, transform 140ms var(--ease-out);
+    cursor: pointer; border: none;
+  }
+  .dialog__submit:hover { background: var(--c-hero); }
+  .dialog__submit:active { transform: scale(0.97); }
+  .dialog__submit svg { width: 14px; height: 7px; }
+  .dialog__success {
+    display: none;
+    padding: 20px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--c-donnas) 18%, transparent);
+    color: var(--ink);
+    font-size: 14px; line-height: 1.5;
+    margin-top: 12px;
+  }
+  .dialog.is-sent .dialog__form { display: none; }
+  .dialog.is-sent .dialog__success { display: block; }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    position: relative; z-index: 5;
+    background: var(--bg); color: var(--ink);
+    padding: clamp(56px, 9vh, 96px) var(--gutter) clamp(40px, 6vh, 60px);
+    border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  }
+  .footer__inner {
+    max-width: var(--max-w); margin: 0 auto;
+    display: grid; gap: clamp(40px, 6vh, 64px);
+  }
+  .footer__top {
+    display: grid; gap: 36px;
+    grid-template-columns: 1.4fr 1fr;
+    align-items: end;
+  }
+  @media (max-width: 720px) { .footer__top { grid-template-columns: 1fr; } }
+  .footer__brand {
+    font-family: var(--font-display); font-style: italic; font-weight: 300;
+    font-size: clamp(56px, 11vw, 156px); line-height: 0.88;
+    color: var(--c-hero); letter-spacing: -0.024em;
+  }
+  .footer__brand small {
+    display: block;
+    font-style: normal; font-family: var(--font-body); font-weight: 700;
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--ink); margin-top: 14px;
+  }
+  .footer__newsletter { display: grid; gap: 14px; }
+  .footer__newsletter h3 {
+    font-family: var(--font-display); font-style: italic; font-weight: 400;
+    font-size: clamp(22px, 2.6vw, 30px); line-height: 1; letter-spacing: -0.012em;
+    color: var(--ink);
+  }
+  .footer__newsletter p {
+    font-size: 14px; line-height: 1.5; color: var(--ink-soft); max-width: 38ch;
+  }
+  .footer__form { display: flex; gap: 8px; flex-wrap: wrap; }
+  .footer__email {
+    flex: 1 1 220px; min-width: 0;
+    font-family: var(--font-body); font-size: 14px; color: var(--ink);
+    background: rgba(255,255,255,0.6);
+    border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+    border-radius: 999px;
+    padding: 12px 18px;
+    transition: border-color 200ms ease, background 200ms ease;
+  }
+  .footer__email:focus { outline: none; border-color: var(--c-hero); background: #fff; }
+  .footer__submit {
+    background: var(--ink); color: var(--bg);
+    padding: 12px 22px; border-radius: 999px;
+    font-family: var(--font-body); font-weight: 600;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    transition: background 200ms ease, transform 140ms var(--ease-out);
+    cursor: pointer; border: none;
+  }
+  .footer__submit:hover { background: var(--c-hero); }
+  .footer__submit:active { transform: scale(0.97); }
+  .footer__bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+    padding-top: clamp(28px, 4vh, 44px);
+    border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  }
+  .footer__socials {
+    display: flex; gap: 18px; flex-wrap: wrap;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
+  }
+  .footer__socials a {
+    padding: 8px 16px;
+    border: 1px solid var(--ink); border-radius: 999px;
+    color: var(--ink);
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .footer__socials a:hover { background: var(--ink); color: var(--bg); }
+  .footer__credit {
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: color-mix(in srgb, var(--ink) 55%, transparent);
+  }
+
+  /* Hint pill — overridden hide animation removed; JS now controls fade-out */
+  .hint { animation: hintIn 0.6s var(--ease-out) 3.4s forwards; }
+  .hint.hint--gone { animation: hintOut 0.45s var(--ease-out) forwards; }
+</style>
+</head>
+<body>
+
+<!-- ============ INTRO — photo cycle + wordmark ============ -->
+<div class="intro" aria-hidden="true">
+  <picture class="intro__photo" style="--obj-pos: center 22%;">
+    <source type="image/avif" srcset="/src/assets/img/hero-colorful-striped-1280.avif" />
+    <img src="/src/assets/img/hero-colorful-striped-1280.jpg" alt="" />
+  </picture>
+  <picture class="intro__photo" style="--obj-pos: center 18%;">
+    <source type="image/avif" srcset="/src/assets/img/tab-chance-couple-1280.avif" />
+    <img src="/src/assets/img/tab-chance-couple-1280.jpg" alt="" />
+  </picture>
+  <picture class="intro__photo" style="--obj-pos: center 22%;">
+    <source type="image/avif" srcset="/src/assets/img/cookbook-feeding-soul-1280.avif" />
+    <img src="/src/assets/img/cookbook-feeding-soul-1280.jpg" alt="" />
+  </picture>
+  <picture class="intro__photo" style="--obj-pos: center 30%;">
+    <source type="image/avif" srcset="/src/assets/img/choyce-and-tabitha-fresh-1280.avif" />
+    <img src="/src/assets/img/choyce-and-tabitha-fresh-1280.jpg" alt="" />
+  </picture>
+  <picture class="intro__photo" style="--obj-pos: center 45%;">
+    <source type="image/avif" srcset="/src/assets/img/booking-stage-crowd-1280.avif" />
+    <img src="/src/assets/img/booking-stage-crowd-1280.jpg" alt="" />
+  </picture>
+  <p class="intro__wordmark">Hey there, friend.</p>
+  <p class="intro__sub">Tabitha Brown &middot; The Empire</p>
+</div>
+
+<a class="skip-link" href="#stage">Skip to content</a>
+
+<!-- ============ TOP NAV ============ -->
+<header class="topnav">
+  <div class="topnav__row topnav__row--top">
+    <a class="topnav__wordmark" href="#stage" data-jump="0" aria-label="Tabitha Brown — home">Tabitha&nbsp;Brown</a>
+    <button type="button" class="topnav__menu-mobile">Menu</button>
+  </div>
+  <nav class="topnav__row topnav__row--cats" aria-label="Primary">
+    <a class="topnav__cat" href="#" data-jump="1">Donna&rsquo;s Recipe</a>
+    <a class="topnav__cat" href="#" data-jump="2">Merch</a>
+    <a class="topnav__cat" href="#" data-jump="3">Cookbooks</a>
+    <a class="topnav__cat" href="#" data-jump="4">Tab Time</a>
+    <a class="topnav__cat" href="#" data-jump="5">Tab&nbsp;+&nbsp;Chance</a>
+    <a class="topnav__cat" href="#" data-jump="6">Tour</a>
+    <a class="topnav__cat topnav__cat--cta" href="mailto:booking@tabithabrown.com">Booking</a>
+  </nav>
+</header>
+
+<!-- ============ STAGE ============ -->
+<section class="stage" id="stage" data-stage data-paused="false" aria-roledescription="carousel" aria-label="Tabitha Brown empire">
+
+  <!-- SLIDE 0 — HERO -->
+  <article class="slide" data-slide="0" data-active="true" role="group" aria-roledescription="slide" aria-label="1 of 7: Tabitha Brown">
+    <div class="slide__media" style="--obj-pos: center 22%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/hero-colorful-striped-1280.avif 1280w, /src/assets/img/hero-colorful-striped-1920.avif 1920w" sizes="100vw" />
+        <img src="/src/assets/img/hero-colorful-striped-1280.jpg" alt="Tabitha Brown" fetchpriority="high" />
+      </picture>
+    </div>
+    <div class="slide__content">
+      <p class="slide__eyebrow">Tabitha Brown &middot; 2026</p>
+      <div class="slide__bottom">
+        <p class="slide__overlay">Hey there,<br>friend.</p>
+        <div class="slide__cta-wrap">
+          <p class="slide__caption">A vegan empire of food, family, hair, comedy, books, and joy. Held together by one woman who tells the truth.</p>
+          <button type="button" class="slide__cta" data-advance>
+            Walk the empire
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- SLIDE 1 — DONNA'S RECIPE -->
+  <article class="slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 7: Donna's Recipe">
+    <div class="slide__media" style="--obj-pos: center 30%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/choyce-and-tabitha-fresh-1280.avif" />
+        <img src="/src/assets/img/choyce-and-tabitha-fresh-1280.jpg" alt="Donna's Recipe — Tabitha and her daughter Choyce" loading="lazy" />
+      </picture>
+    </div>
+    <div class="slide__content">
+      <p class="slide__eyebrow">Donna&rsquo;s Recipe &middot; Hair</p>
+      <div class="slide__bottom">
+        <p class="slide__overlay">For her hair.<br>And ours.</p>
+        <div class="slide__cta-wrap">
+          <p class="slide__caption">Plant-based hair care, born in the kitchen, named for her mother.</p>
+          <a class="slide__cta" href="https://donnasrecipe.com" target="_blank" rel="noopener">
+            Shop Donna&rsquo;s Recipe
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- SLIDE 2 — MERCH (Shopify) -->
+  <article class="slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 7: Merch">
+    <div class="slide__media" style="--obj-pos: center 30%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/merch-hoodie-1280.avif 1280w, /src/assets/img/merch-hoodie-1920.avif 1920w" sizes="100vw" />
+        <img src="/src/assets/img/merch-hoodie-1280.jpg" alt="Tabitha in a Have a Good Day hoodie — Tabitha Brown Shopify" loading="lazy" />
+      </picture>
+    </div>
+    <div class="slide__content">
+      <p class="slide__eyebrow">Tabitha Brown Merch</p>
+      <div class="slide__bottom">
+        <p class="slide__overlay">Wear<br>the joy.</p>
+        <div class="slide__cta-wrap">
+          <p class="slide__caption">Pieces that say what Tabitha already said: loud, soft, and on the right side of every conversation.</p>
+          <a class="slide__cta" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener">
+            Shop the collection
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- SLIDE 3 — COOKBOOKS -->
+  <article class="slide" data-slide="3" role="group" aria-roledescription="slide" aria-label="4 of 7: Cookbooks">
+    <div class="slide__media" style="--obj-pos: center 24%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/cookbook-feeding-soul-1280.avif 1280w, /src/assets/img/cookbook-feeding-soul-1920.avif 1920w" sizes="100vw" />
+        <img src="/src/assets/img/cookbook-feeding-soul-1280.jpg" alt="Tabitha holding Feeding The Soul cookbook" loading="lazy" />
+      </picture>
+    </div>
+    <div class="slide__content">
+      <p class="slide__eyebrow">Feeding The Soul &middot; Cookbooks</p>
+      <div class="slide__bottom">
+        <p class="slide__overlay">The whole<br>table.</p>
+        <div class="slide__cta-wrap">
+          <p class="slide__caption">Two cookbooks, a children&rsquo;s book, and a memoir. Recipes for plates and for living.</p>
+          <a class="slide__cta" href="https://www.barnesandnoble.com/s/tabitha+brown" target="_blank" rel="noopener">
+            Find at Barnes &amp; Noble
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- SLIDE 4 — TAB TIME -->
+  <article class="slide" data-slide="4" role="group" aria-roledescription="slide" aria-label="5 of 7: Tab Time">
+    <div class="slide__media" style="--obj-pos: center 35%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/tab-time-banner-1280.avif 1280w, /src/assets/img/tab-time-banner-1920.avif 1920w, /src/assets/img/tab-time-banner-2560.avif 2560w" sizes="100vw" />
+        <img src="/src/assets/img/tab-time-banner-1280.jpg" alt="Tab Time — Tabitha with the show's animated characters" loading="lazy" />
+      </picture>
+    </div>
+    <div class="slide__content">
+      <p class="slide__eyebrow">Tab Time &middot; For The Kids</p>
+      <div class="slide__bottom">
+        <p class="slide__overlay">Lunchtime,<br>baby!</p>
+        <div class="slide__cta-wrap">
+          <p class="slide__caption">The YouTube show where little folks learn manners, kindness, and how to be themselves. Out loud and on purpose.</p>
+          <a class="slide__cta" href="https://www.youtube.com/@iamtabithabrown" target="_blank" rel="noopener">
+            Watch on YouTube
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- SLIDE 5 — TAB + CHANCE (Tabitha + her husband Chance Brown) -->
+  <article class="slide" data-slide="5" role="group" aria-roledescription="slide" aria-label="6 of 7: Tab + Chance">
+    <div class="slide__media" style="--obj-pos: center 12%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/tab-chance-couple-1280.avif" />
+        <img src="/src/assets/img/tab-chance-couple-1280.jpg" alt="Tabitha and her husband Chance Brown" loading="lazy" />
+      </picture>
+    </div>
+    <div class="slide__content">
+      <p class="slide__eyebrow">Tab + Chance &middot; The Podcast</p>
+      <div class="slide__bottom">
+        <p class="slide__overlay">Love,<br>out loud.</p>
+        <div class="slide__cta-wrap">
+          <p class="slide__caption">Tabitha and her husband Chance. Marriage in real time: the conversation, the laughs, and the work that keeps it whole.</p>
+          <a class="slide__cta" href="https://tabandchance.com" target="_blank" rel="noopener">
+            Listen now
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- SLIDE 6 — BOOKING (Tabitha on stage, centered) -->
+  <article class="slide" data-slide="6" role="group" aria-roledescription="slide" aria-label="7 of 7: Book Tabitha">
+    <div class="slide__media" style="--obj-pos: center 50%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/booking-stage-crowd-1280.avif 1280w, /src/assets/img/booking-stage-crowd-1920.avif 1920w" sizes="100vw" />
+        <img src="/src/assets/img/booking-stage-crowd-1280.jpg" alt="Tabitha Brown on stage, smiley-face suit, crowd cheering" loading="lazy" />
+      </picture>
+    </div>
+    <div class="slide__content">
+      <p class="slide__eyebrow">Book Tabitha &middot; 2026</p>
+      <div class="slide__bottom">
+        <p class="slide__overlay">On stage,<br>on demand.</p>
+        <div class="slide__cta-wrap">
+          <p class="slide__caption">Speaking, storytelling, and stand-up that feels like Sunday dinner with the people who raised you right.</p>
+          <button type="button" class="slide__cta" data-open-booking>
+            Start a booking
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <p class="sr-only" data-aria-live aria-live="polite" aria-atomic="true"></p>
+</section>
+
+<!-- ============ CONTROLS ============ -->
+<div class="controls" aria-label="Deck controls">
+  <div class="controls__counter">
+    <span><strong data-counter-current>01</strong> / 07</span>
+  </div>
+  <div class="controls__dots" role="tablist">
+    <button class="controls__dot" data-jump="0" data-active="true" aria-label="Slide 1 — Tabitha Brown"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="1" aria-label="Slide 2 — Donna's Recipe"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="2" aria-label="Slide 3 — Merch"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="3" aria-label="Slide 4 — Cookbooks"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="4" aria-label="Slide 5 — Tab Time"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="5" aria-label="Slide 6 — Tab + Chance"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="6" aria-label="Slide 7 — Tour"><span class="controls__dot__fill"></span></button>
+  </div>
+  <button type="button" class="controls__playpause" data-playpause aria-label="Pause auto-advance">
+    <svg viewBox="0 0 16 16" fill="currentColor" data-icon="pause"><rect x="3" y="2" width="3.5" height="12" rx="0.5"/><rect x="9.5" y="2" width="3.5" height="12" rx="0.5"/></svg>
+    <svg viewBox="0 0 16 16" fill="currentColor" data-icon="play" style="display:none"><polygon points="4,2 13,8 4,14"/></svg>
+  </button>
+</div>
+
+<!-- Keyboard / swipe hint -->
+<div class="hint" data-hint aria-hidden="true">
+  <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 8l3-3v6L5 8zm6 0L8 5v6l3-3z"/></svg>
+  Click, swipe, or arrows
+</div>
+
+<!-- ============ MOBILE DRAWER ============ -->
+<aside class="drawer" data-drawer aria-hidden="true">
+  <button type="button" class="drawer__close" data-drawer-close aria-label="Close menu">Close</button>
+  <ul class="drawer__list">
+    <li><a class="drawer__link" href="#" data-jump="0">Tabitha Brown</a></li>
+    <li><a class="drawer__link" href="#" data-jump="1">Donna&rsquo;s Recipe</a></li>
+    <li><a class="drawer__link" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener">Merch</a></li>
+    <li><a class="drawer__link" href="#" data-jump="3">Cookbooks</a></li>
+    <li><a class="drawer__link" href="#" data-jump="4">Tab Time</a></li>
+    <li><a class="drawer__link" href="#" data-jump="5">Tab + Chance</a></li>
+    <li><a class="drawer__link" href="#" data-jump="6">Tour</a></li>
+    <li><button type="button" class="drawer__link drawer__link--cta" data-open-booking>Booking</button></li>
+  </ul>
+</aside>
+
+<!-- ============ BOOKING DIALOG ============ -->
+<dialog class="dialog" data-booking-dialog aria-labelledby="bookingTitle">
+  <div class="dialog__panel">
+    <header class="dialog__header">
+      <h2 class="dialog__title" id="bookingTitle">Book <em>Tabitha</em>.</h2>
+      <button type="button" class="dialog__close" data-dialog-close aria-label="Close booking form">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+    <p class="dialog__intro">Speaking, storytelling, brand partnerships, and live tour dates. Tell us about the moment, we&rsquo;ll be in touch.</p>
+
+    <form class="dialog__form" data-booking-form>
+      <div class="dialog__row">
+        <div class="dialog__field">
+          <label class="dialog__label" for="bk_name">Your name</label>
+          <input class="dialog__input" id="bk_name" name="name" type="text" required autocomplete="name" />
+        </div>
+        <div class="dialog__field">
+          <label class="dialog__label" for="bk_org">Organization</label>
+          <input class="dialog__input" id="bk_org" name="org" type="text" autocomplete="organization" />
+        </div>
+      </div>
+      <div class="dialog__row">
+        <div class="dialog__field">
+          <label class="dialog__label" for="bk_type">Event type</label>
+          <select class="dialog__select" id="bk_type" name="event_type">
+            <option>Speaking engagement</option>
+            <option>Live performance</option>
+            <option>Brand partnership</option>
+            <option>Press / media</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="dialog__field">
+          <label class="dialog__label" for="bk_when">Target month</label>
+          <input class="dialog__input" id="bk_when" name="event_date" type="month" />
+        </div>
+      </div>
+      <div class="dialog__field">
+        <label class="dialog__label" for="bk_msg">Tell us about it</label>
+        <textarea class="dialog__textarea" id="bk_msg" name="message" rows="4" placeholder="Audience, venue, format, anything we should know."></textarea>
+      </div>
+      <button type="submit" class="dialog__submit">
+        Send inquiry
+        <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+
+    <div class="dialog__success" role="status">
+      <strong>Your mail draft is ready.</strong> We opened your email app with everything filled in. Hit send and we&rsquo;ll be in touch soon.
+    </div>
+  </div>
+</dialog>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <h2 class="footer__brand">
+        Tabitha&nbsp;Brown
+        <small>Joy you can taste</small>
+      </h2>
+      <div class="footer__newsletter">
+        <h3>Get the good word.</h3>
+        <p>New shows, new tour dates, new ways Tabitha is feeding the soul. Straight to your inbox.</p>
+        <form class="footer__form" data-newsletter>
+          <input class="footer__email" type="email" name="email" placeholder="you@example.com" required aria-label="Email address" />
+          <button class="footer__submit" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <ul class="footer__socials">
+        <li><a href="https://instagram.com/iamtabithabrown" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://tiktok.com/@iamtabithabrown" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.youtube.com/@iamtabithabrown" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://snapchat.com/add/iamtabithabrown" target="_blank" rel="noopener">Snapchat</a></li>
+      </ul>
+      <p class="footer__credit">&copy; 2026 Tabitha Brown &middot; Site by Taylormade Creative</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const stage = document.querySelector('[data-stage]');
+  const slides = Array.from(stage.querySelectorAll('.slide'));
+  const dots = Array.from(document.querySelectorAll('.controls__dot'));
+  const navCats = Array.from(document.querySelectorAll('.topnav__cat[data-jump]'));
+  const playPauseBtn = document.querySelector('[data-playpause]');
+  const counterCurrent = document.querySelector('[data-counter-current]');
+  const ariaLive = document.querySelector('[data-aria-live]');
+  const wordmark = document.querySelector('.topnav__wordmark[data-jump]');
+
+  const SLIDE_DURATION = 6500;
+  let current = 0;
+  let isPlaying = true;
+  let timer = null;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) isPlaying = false;
+
+  function setActive(idx, { resetTimer = true } = {}) {
+    if (idx < 0) idx = slides.length - 1;
+    if (idx >= slides.length) idx = 0;
+    if (idx === current) return;
+
+    // mark previous dots as played
+    dots[current].setAttribute('data-played', 'true');
+    dots[current].removeAttribute('data-active');
+
+    slides[current].setAttribute('data-active', 'false');
+    slides[current].removeAttribute('data-active');
+    current = idx;
+    slides[current].setAttribute('data-active', 'true');
+
+    // dot states forward of current cleared, current activated
+    dots.forEach((d, i) => {
+      if (i < current) d.setAttribute('data-played', 'true');
+      else d.removeAttribute('data-played');
+    });
+    dots[current].setAttribute('data-active', 'true');
+
+    // nav highlight
+    navCats.forEach(c => c.removeAttribute('aria-current'));
+    const navMatch = navCats.find(c => parseInt(c.dataset.jump, 10) === current);
+    if (navMatch) navMatch.setAttribute('aria-current', 'true');
+
+    // counter + aria
+    counterCurrent.textContent = String(current + 1).padStart(2, '0');
+    const label = slides[current].getAttribute('aria-label') || `Slide ${current + 1}`;
+    if (ariaLive) ariaLive.textContent = label;
+
+    if (resetTimer) restartTimer();
+  }
+
+  function next() { setActive(current + 1); }
+  function prev() { setActive(current - 1); }
+  function jumpTo(idx) { setActive(idx); }
+
+  function startTimer() {
+    if (!isPlaying) return;
+    clearTimeout(timer);
+    timer = setTimeout(next, SLIDE_DURATION);
+  }
+  function restartTimer() {
+    clearTimeout(timer);
+    if (isPlaying) startTimer();
+  }
+  function pauseAuto() {
+    isPlaying = false;
+    clearTimeout(timer);
+    stage.setAttribute('data-paused', 'true');
+    document.body.setAttribute('data-deck-paused', 'true');
+    playPauseBtn.setAttribute('aria-label', 'Resume auto-advance');
+    playPauseBtn.querySelector('[data-icon="pause"]').style.display = 'none';
+    playPauseBtn.querySelector('[data-icon="play"]').style.display = '';
+  }
+  function playAuto() {
+    isPlaying = true;
+    stage.setAttribute('data-paused', 'false');
+    document.body.setAttribute('data-deck-paused', 'false');
+    playPauseBtn.setAttribute('aria-label', 'Pause auto-advance');
+    playPauseBtn.querySelector('[data-icon="pause"]').style.display = '';
+    playPauseBtn.querySelector('[data-icon="play"]').style.display = 'none';
+
+    // re-trigger fill animation by toggling
+    const activeDot = dots[current];
+    const fill = activeDot.querySelector('.controls__dot__fill');
+    fill.style.animation = 'none';
+    void fill.offsetWidth;
+    fill.style.animation = '';
+
+    startTimer();
+  }
+  function togglePlay() { isPlaying ? pauseAuto() : playAuto(); }
+
+  // --- Controls
+  playPauseBtn.addEventListener('click', togglePlay);
+
+  dots.forEach((d, i) => {
+    d.addEventListener('click', () => {
+      jumpTo(i);
+      if (!isPlaying) playAuto();
+    });
+  });
+
+  navCats.forEach(c => {
+    c.addEventListener('click', (e) => {
+      e.preventDefault();
+      jumpTo(parseInt(c.dataset.jump, 10));
+      if (!isPlaying) playAuto();
+    });
+  });
+  if (wordmark) {
+    wordmark.addEventListener('click', (e) => {
+      e.preventDefault();
+      jumpTo(0);
+      if (!isPlaying) playAuto();
+    });
+  }
+
+  // --- Click on stage (but not on CTAs) advances
+  stage.addEventListener('click', (e) => {
+    if (e.target.closest('a, button, [data-playpause]')) return;
+    if (e.target.closest('[data-advance]')) { next(); return; }
+    // Click right half → next, left half → prev
+    const rect = stage.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    if (x > rect.width / 2) next(); else prev();
+  });
+
+  // --- Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { next(); }
+    else if (e.key === 'ArrowLeft') { prev(); }
+    else if (e.key === ' ' || e.key === 'k') { e.preventDefault(); togglePlay(); }
+  });
+
+  // --- Touch / swipe (velocity-aware — a flick beats a long drag)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartT = 0;
+  stage.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchStartT = performance.now();
+  }, { passive: true });
+  stage.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    const elapsed = performance.now() - touchStartT;
+    const velocity = Math.abs(dx) / Math.max(elapsed, 1);
+    const horizontal = Math.abs(dx) > Math.abs(dy);
+    // dismiss on distance OR on quick flick (Emil: velocity > ~0.11)
+    if (horizontal && (Math.abs(dx) > 48 || velocity > 0.11)) {
+      if (dx < 0) next(); else prev();
+    }
+  });
+
+  // --- Pause on hover over interactive bottom region only (not the whole stage,
+  // that'd block auto-play entirely). Instead, just pause if the user mouses
+  // onto the slide__cta-wrap.
+  const ctaWraps = stage.querySelectorAll('.slide__cta-wrap');
+  ctaWraps.forEach(w => {
+    w.addEventListener('mouseenter', () => { if (isPlaying) pauseAuto(); });
+  });
+
+  // --- Pause when tab is hidden (saves battery, prevents desync)
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) clearTimeout(timer);
+    else if (isPlaying) startTimer();
+  });
+
+  // --- Kick off after intro photo-cycle + fade (~2.85s)
+  setTimeout(() => {
+    if (isPlaying) {
+      const fill = dots[0].querySelector('.controls__dot__fill');
+      fill.style.animation = 'none';
+      void fill.offsetWidth;
+      fill.style.animation = '';
+      startTimer();
+    }
+  }, 2900);
+
+  // --- Hint: persists until first interaction, then fades
+  const hintEl = document.querySelector('[data-hint]');
+  function hideHint() {
+    if (!hintEl || hintEl.classList.contains('hint--gone')) return;
+    hintEl.classList.add('hint--gone');
+  }
+  ['click', 'keydown', 'touchstart', 'wheel'].forEach(evt =>
+    document.addEventListener(evt, hideHint, { once: true, passive: true })
+  );
+
+  // --- Mobile drawer
+  const drawer = document.querySelector('[data-drawer]');
+  const mobileBtn = document.querySelector('.topnav__menu-mobile');
+  const drawerClose = document.querySelector('[data-drawer-close]');
+  function openDrawer() {
+    document.body.setAttribute('data-drawer-open', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+    if (isPlaying) pauseAuto();
+    drawerClose && drawerClose.focus();
+  }
+  function closeDrawer() {
+    document.body.setAttribute('data-drawer-open', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
+  mobileBtn && mobileBtn.addEventListener('click', openDrawer);
+  drawerClose && drawerClose.addEventListener('click', closeDrawer);
+  // Drawer link → jump and close
+  drawer && drawer.querySelectorAll('[data-jump]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const idx = parseInt(link.dataset.jump, 10);
+      jumpTo(idx);
+      closeDrawer();
+      if (!isPlaying) playAuto();
+    });
+  });
+
+  // --- Booking dialog
+  const dialog = document.querySelector('[data-booking-dialog]');
+  const bookingForm = document.querySelector('[data-booking-form]');
+  document.querySelectorAll('[data-open-booking]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (isPlaying) pauseAuto();
+      closeDrawer();
+      if (dialog && typeof dialog.showModal === 'function') dialog.showModal();
+      else if (dialog) dialog.setAttribute('open', '');
+    });
+  });
+  document.querySelectorAll('[data-dialog-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (dialog) { dialog.close(); dialog.classList.remove('is-sent'); bookingForm && bookingForm.reset(); }
+    });
+  });
+  // Click backdrop to close
+  dialog && dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+  // Submit → build mailto, then show success state
+  bookingForm && bookingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(bookingForm);
+    const subject = `Booking inquiry: ${data.get('event_type') || 'general'}`;
+    const lines = [
+      `Name: ${data.get('name') || ''}`,
+      `Organization: ${data.get('org') || '(none)'}`,
+      `Event type: ${data.get('event_type') || ''}`,
+      `Target month: ${data.get('event_date') || '(TBD)'}`,
+      ``,
+      `${data.get('message') || ''}`,
+    ];
+    const mailto = `mailto:booking@tabithabrown.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+    window.location.href = mailto;
+    dialog.classList.add('is-sent');
+  });
+
+  // --- Newsletter (footer) — placeholder; needs real endpoint to ship
+  const newsletter = document.querySelector('[data-newsletter]');
+  newsletter && newsletter.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = newsletter.querySelector('[name="email"]').value;
+    const subject = 'Newsletter signup';
+    const body = `Please add this email to the Tabitha Brown newsletter: ${email}`;
+    window.location.href = `mailto:hello@tabithabrown.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+
+  // --- Focus-within pause: keyboard-only users navigating CTAs shouldn't fight auto-advance
+  stage.addEventListener('focusin', (e) => {
+    // Only pause for interactive elements, not the stage itself
+    if (e.target.closest('a, button, [tabindex]')) {
+      if (isPlaying) pauseAuto();
+    }
+  });
+
+  // --- Escape closes drawer + dialog
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (document.body.getAttribute('data-drawer-open') === 'true') { closeDrawer(); e.stopPropagation(); }
+  });
+
+  // --- Hide controls + hint when user scrolls past the stage to the footer
+  const controlsEl = document.querySelector('.controls');
+  const stageVisibility = new IntersectionObserver(([entry]) => {
+    if (!controlsEl) return;
+    if (entry.isIntersecting && entry.intersectionRatio > 0.15) {
+      controlsEl.classList.remove('controls--hidden');
+      hintEl && hintEl.classList.remove('hint--scrolled-past');
+    } else {
+      controlsEl.classList.add('controls--hidden');
+      hintEl && hintEl.classList.add('hint--scrolled-past');
+    }
+  }, { threshold: [0, 0.15, 0.5] });
+  stageVisibility.observe(stage);
+
+})();
+</script>
+
+</body>
+</html>
