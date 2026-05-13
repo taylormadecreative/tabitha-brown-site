@@ -271,69 +271,6 @@
     .slide__content { padding-top: clamp(88px, 12vh, 120px); }
   }
 
-  /* ============ MOBILE LAYOUT — centered text + tighter controls ============ */
-  @media (max-width: 720px) {
-    /* Center all slide content */
-    .slide__content {
-      align-items: center;
-      text-align: center;
-      padding-left: 20px; padding-right: 20px;
-      padding-bottom: 110px;
-    }
-    .slide__eyebrow { align-self: center; }
-    .slide__bottom {
-      flex-direction: column;
-      align-items: center;
-      gap: 18px;
-      width: 100%;
-    }
-    .slide__overlay {
-      text-align: center;
-      max-width: 100%;
-      font-size: clamp(40px, 12vw, 78px);
-      align-self: center;
-    }
-    .slide__cta-wrap {
-      align-items: center;
-      width: 100%;
-    }
-    .slide__caption {
-      text-align: center;
-      max-width: 32ch;
-    }
-    .slide__cta { align-self: center; }
-
-    /* Controls: counter + dots + play, condensed so play button isn't clipped */
-    .controls {
-      grid-template-columns: auto 1fr auto;
-      gap: 12px;
-      padding: 14px 14px;
-    }
-    .controls__counter {
-      font-size: 10px;
-      gap: 8px;
-    }
-    .controls__counter::before { width: 6px; height: 6px; }
-    .controls__counter strong { font-size: 11px; }
-    .controls__dots { gap: 5px; flex-wrap: nowrap; overflow: hidden; }
-    .controls__dot { width: 20px; height: 3px; }
-    .controls__dot[data-active="true"] { width: 36px; }
-    .controls__playpause {
-      width: 38px; height: 38px;
-      flex-shrink: 0;
-    }
-    .controls__playpause svg { width: 12px; height: 12px; }
-
-    /* Hint should sit higher so it doesn't fight the now-tighter controls */
-    .hint {
-      bottom: 76px;
-      right: 14px;
-      font-size: 10px;
-      padding: 8px 14px;
-      letter-spacing: 0.14em;
-    }
-  }
-
   .slide__eyebrow {
     display: inline-flex; align-items: center; gap: 14px;
     align-self: flex-start;
@@ -771,6 +708,60 @@
   /* Hint pill — overridden hide animation removed; JS now controls fade-out */
   .hint { animation: hintIn 0.6s var(--ease-out) 3.4s forwards; }
   .hint.hint--gone { animation: hintOut 0.45s var(--ease-out) forwards; }
+
+  /* ============ MOBILE LAYOUT — must come LAST so it wins cascade ============ */
+  @media (max-width: 720px) {
+    .slide__content {
+      align-items: center;
+      text-align: center;
+      padding-left: 20px; padding-right: 20px;
+      padding-bottom: 110px;
+    }
+    .slide__eyebrow { align-self: center; }
+    .slide__bottom {
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      width: 100%;
+    }
+    .slide__overlay {
+      text-align: center;
+      max-width: 100%;
+      font-size: clamp(40px, 12vw, 78px);
+      align-self: center;
+    }
+    .slide__cta-wrap {
+      align-items: center;
+      width: 100%;
+    }
+    .slide__caption {
+      text-align: center;
+      max-width: 32ch;
+    }
+    .slide__cta { align-self: center; }
+
+    /* Controls: condensed so play button isn't clipped */
+    .controls {
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      padding: 14px 14px;
+    }
+    .controls__counter { font-size: 10px; gap: 8px; }
+    .controls__counter::before { width: 6px; height: 6px; }
+    .controls__counter strong { font-size: 11px; }
+    .controls__dots { gap: 5px; flex-wrap: nowrap; overflow: hidden; }
+    .controls__dot { width: 20px; height: 3px; }
+    .controls__dot[data-active="true"] { width: 36px; }
+    .controls__playpause { width: 38px; height: 38px; flex-shrink: 0; }
+    .controls__playpause svg { width: 12px; height: 12px; }
+    .hint {
+      bottom: 76px;
+      right: 14px;
+      font-size: 10px;
+      padding: 8px 14px;
+      letter-spacing: 0.14em;
+    }
+  }
 </style>
 </head>
 <body>
