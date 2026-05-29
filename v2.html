@@ -1026,8 +1026,8 @@
         <p class="slide__overlay">The whole<br>table.</p>
         <div class="slide__cta-wrap">
           <p class="slide__caption">Two cookbooks, a children&rsquo;s book, and a memoir. Recipes for plates and for living.</p>
-          <a class="slide__cta" href="https://www.barnesandnoble.com/s/tabitha+brown" target="_blank" rel="noopener">
-            Find at Barnes &amp; Noble
+          <a class="slide__cta" href="https://www.harpercollins.com/pages/tabithabrownbooks-all" target="_blank" rel="noopener">
+            Browse the books
             <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -1134,7 +1134,7 @@
 </div>
 
 <!-- ============ MOBILE DRAWER ============ -->
-<aside class="drawer" data-drawer aria-hidden="true">
+<aside class="drawer" data-drawer aria-hidden="true" inert>
   <button type="button" class="drawer__close" data-drawer-close aria-label="Close menu">Close</button>
   <ul class="drawer__list">
     <li><a class="drawer__link" href="#" data-jump="0">My Story</a></li>
@@ -1511,13 +1511,19 @@
   const drawerClose = document.querySelector('[data-drawer-close]');
   function openDrawer() {
     document.body.setAttribute('data-drawer-open', 'true');
+    drawer.removeAttribute('inert');
     drawer.setAttribute('aria-hidden', 'false');
     if (isPlaying) pauseAuto();
     drawerClose && drawerClose.focus();
   }
   function closeDrawer() {
     document.body.setAttribute('data-drawer-open', 'false');
+    // Return focus to the trigger before hiding so AT users don't get stranded
+    if (drawer.contains(document.activeElement)) {
+      mobileBtn && mobileBtn.focus();
+    }
     drawer.setAttribute('aria-hidden', 'true');
+    drawer.setAttribute('inert', '');
   }
   mobileBtn && mobileBtn.addEventListener('click', openDrawer);
   drawerClose && drawerClose.addEventListener('click', closeDrawer);
