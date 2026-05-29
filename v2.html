@@ -11,38 +11,36 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Tabitha Brown" />
 <meta property="og:url" content="https://taylormadecreative.github.io/tabitha-brown-site/v2.html" />
-<meta property="og:title" content="Tabitha Brown — Hey there, friend." />
+<meta property="og:title" content="Tabitha Brown — Hello there, friend." />
 <meta property="og:description" content="A vegan empire of food, family, hair, comedy, books, and joy. Held together by one woman who tells the truth." />
 <meta property="og:image" content="https://taylormadecreative.github.io/tabitha-brown-site/og-1200x630.jpg" />
 <meta property="og:image:secure_url" content="https://taylormadecreative.github.io/tabitha-brown-site/og-1200x630.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Tabitha Brown — Hey there, friend. A vegan empire of food, family, hair, comedy, books, and joy." />
+<meta property="og:image:alt" content="Tabitha Brown — Hello there, friend. A vegan empire of food, family, hair, comedy, books, and joy." />
 <meta property="og:locale" content="en_US" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Tabitha Brown — Hey there, friend." />
+<meta name="twitter:title" content="Tabitha Brown — Hello there, friend." />
 <meta name="twitter:description" content="A vegan empire of food, family, hair, comedy, books, and joy." />
 <meta name="twitter:image" content="https://taylormadecreative.github.io/tabitha-brown-site/og-1200x630.jpg" />
-<meta name="twitter:image:alt" content="Tabitha Brown — Hey there, friend." />
+<meta name="twitter:image:alt" content="Tabitha Brown — Hello there, friend." />
 <meta name="twitter:site" content="@iamtabithabrown" />
 <meta name="twitter:creator" content="@iamtabithabrown" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#FFD60A" />
 
-<link rel="preload" href="/src/assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/src/assets/fonts/inter-tight.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" as="image" href="/src/assets/img/hero-colorful-striped-1920.avif" type="image/avif" fetchpriority="high" />
 
+<!-- Jost: open-source Futura — Apple/Adobe users see actual Futura, everyone else sees Jost (~99% identical) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" />
+
 <style>
   /* ============ FONTS ============ */
-  @font-face {
-    font-family: 'Fraunces';
-    src: url('/src/assets/fonts/fraunces.woff2') format('woff2-variations');
-    font-weight: 100 900;
-    font-display: swap;
-  }
   @font-face {
     font-family: 'Inter Tight';
     src: url('/src/assets/fonts/inter-tight.woff2') format('woff2-variations');
@@ -64,7 +62,7 @@
     --c-books:   #C2305A;
     --c-tabtime: #5B2F8F;
 
-    --font-display: 'Fraunces', Georgia, serif;
+    --font-display: 'Futura', 'Futura PT', 'Jost', system-ui, -apple-system, sans-serif;
     --font-body: 'Inter Tight', system-ui, -apple-system, sans-serif;
 
     --max-w: 1440px;
@@ -130,11 +128,12 @@
 
   .intro__wordmark {
     position: relative; z-index: 2;
-    font-family: var(--font-display); font-style: italic; font-weight: 300;
-    font-size: clamp(56px, 11vw, 160px);
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(48px, 9.5vw, 142px);
     color: var(--c-hero);
-    letter-spacing: -0.02em; line-height: 1;
+    letter-spacing: -0.025em; line-height: 0.96;
     text-align: center;
+    text-transform: none;
     text-shadow: 0 14px 50px rgba(31, 13, 56, 0.45);
     opacity: 0;
     animation: wmIn 0.5s var(--ease-out) 1.55s forwards, wmOut 0.35s var(--ease-out) 2.3s forwards;
@@ -177,10 +176,11 @@
     position: relative;
   }
   .topnav__wordmark {
-    font-family: var(--font-display); font-style: italic; font-weight: 400;
-    font-size: 26px; letter-spacing: -0.01em;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 20px; letter-spacing: 0.02em;
     color: var(--ink);
     text-align: center;
+    text-transform: uppercase;
   }
   .topnav__menu-mobile {
     position: absolute;
@@ -195,8 +195,8 @@
     gap: clamp(22px, 2.6vw, 40px);
   }
   .topnav__cat {
-    font-family: var(--font-body); font-weight: 500;
-    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-family: var(--font-display); font-weight: 400;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
     padding: 4px 0;
     position: relative;
     color: var(--ink);
@@ -228,7 +228,7 @@
   }
   .topnav__cat--cta:active { transform: scale(0.97); }
 
-  .topnav__menu-mobile { display: none; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
+  .topnav__menu-mobile { display: none; font-family: var(--font-display); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
   @media (max-width: 900px) {
     .topnav__row--cats { display: none; }
     .topnav__menu-mobile { display: inline-flex; align-items: center; }
@@ -320,13 +320,14 @@
 
   .slide__overlay {
     font-family: var(--font-display);
-    font-style: italic; font-weight: 300;
+    font-weight: 700;
     color: #fff;
     text-shadow: 0 8px 36px rgba(31, 13, 56, 0.55);
-    letter-spacing: -0.018em;
+    letter-spacing: -0.025em;
     line-height: 0.92;
-    font-size: clamp(48px, 8vw, 138px);
+    font-size: clamp(44px, 7.4vw, 124px);
     max-width: min(94%, 980px);
+    text-transform: none;
     opacity: 0; transform: translateY(20px);
     transition: opacity 0.9s var(--ease-out) 0.55s, transform 0.9s var(--ease-out) 0.55s;
     pointer-events: auto;
@@ -342,10 +343,10 @@
   .slide[data-active="true"] .slide__cta-wrap { opacity: 1; transform: translateY(0); }
 
   .slide__caption {
-    font-family: var(--font-display); font-style: italic; font-weight: 400;
-    font-size: clamp(15px, 1.4vw, 19px); line-height: 1.4;
+    font-family: var(--font-body); font-weight: 400;
+    font-size: clamp(14px, 1.3vw, 17px); line-height: 1.5;
     color: rgba(255, 255, 255, 0.92);
-    max-width: 36ch;
+    max-width: 38ch;
     text-shadow: 0 4px 18px rgba(31, 13, 56, 0.55);
     text-align: right;
   }
@@ -538,12 +539,13 @@
     display: flex; flex-direction: column; gap: 4px;
   }
   .drawer__link {
-    display: block; padding: 18px 4px;
-    font-family: var(--font-display); font-style: italic; font-weight: 400;
-    font-size: clamp(32px, 8vw, 56px);
-    color: var(--ink); letter-spacing: -0.015em; line-height: 1;
+    display: block; padding: 16px 4px;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(26px, 6.4vw, 44px);
+    color: var(--ink); letter-spacing: -0.018em; line-height: 1.05;
     border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
     transition: color 200ms var(--ease-out), padding-left 220ms var(--ease-out);
+    text-align: left;
   }
   .drawer__link:active { padding-left: 12px; color: var(--c-hero); }
   .drawer__link--cta {
@@ -551,8 +553,8 @@
     align-self: flex-start;
     background: var(--ink); color: var(--bg);
     padding: 16px 32px; border-radius: 999px;
-    font-family: var(--font-body); font-style: normal; font-weight: 600;
-    font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-family: var(--font-display); font-weight: 500;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
     border-bottom: none;
   }
   .drawer__link--cta:active { padding-left: 32px; background: var(--c-hero); color: #fff; }
@@ -579,11 +581,12 @@
     margin-bottom: 24px;
   }
   .dialog__title {
-    font-family: var(--font-display); font-style: italic; font-weight: 400;
-    font-size: clamp(32px, 5vw, 52px); line-height: 0.95; letter-spacing: -0.02em;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(28px, 4.4vw, 44px); line-height: 0.98; letter-spacing: -0.022em;
     color: var(--ink);
+    text-transform: none;
   }
-  .dialog__title em { color: var(--c-hero); font-style: italic; }
+  .dialog__title em { color: var(--c-hero); font-style: normal; }
   .dialog__close {
     flex-shrink: 0;
     width: 36px; height: 36px; border-radius: 50%;
@@ -595,8 +598,27 @@
   .dialog__close:active { transform: scale(0.94); }
   .dialog__intro {
     font-size: 14px; line-height: 1.55; color: var(--ink-soft);
-    margin-bottom: 24px; max-width: 56ch;
+    margin-bottom: 20px; max-width: 56ch;
   }
+  .dialog__wholesale {
+    margin-bottom: 24px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--c-hero) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c-hero) 22%, transparent);
+    display: grid; gap: 6px;
+  }
+  .dialog__wholesale p {
+    font-size: 13px; line-height: 1.45; color: var(--ink);
+  }
+  .dialog__wholesale strong { font-weight: 700; }
+  .dialog__wholesale a {
+    color: var(--c-hero); font-weight: 600;
+    text-decoration: underline; text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-thickness 160ms ease, color 160ms ease;
+  }
+  .dialog__wholesale a:hover { text-decoration-thickness: 2px; }
   .dialog__form { display: grid; gap: 14px; }
   .dialog__row { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
   @media (max-width: 520px) { .dialog__row { grid-template-columns: 1fr; } }
@@ -648,6 +670,78 @@
   .dialog.is-sent .dialog__form { display: none; }
   .dialog.is-sent .dialog__success { display: block; }
 
+  /* ============ POST-INTRO POP-UP (flash sales, drops, launches) ============ */
+  .popup {
+    border: none; padding: 0;
+    max-width: min(440px, 92vw); width: 92vw;
+    color: var(--ink); background: var(--bg);
+    border-radius: 18px;
+    box-shadow: 0 60px 120px -30px rgba(0, 0, 0, 0.55);
+    margin: auto;
+    overflow: hidden;
+    opacity: 0; transform: translateY(14px) scale(0.96);
+    transition: opacity 320ms var(--ease-out), transform 320ms var(--ease-out);
+  }
+  .popup[open] { opacity: 1; transform: translateY(0) scale(1); }
+  .popup::backdrop {
+    background: color-mix(in srgb, var(--ink) 55%, transparent);
+    backdrop-filter: blur(6px) saturate(140%);
+  }
+  .popup__panel {
+    position: relative;
+    padding: clamp(28px, 5vw, 40px);
+    background:
+      radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, var(--c-hero) 22%, transparent) 0%, transparent 60%),
+      var(--bg);
+  }
+  .popup__close {
+    position: absolute; top: 14px; right: 14px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: color-mix(in srgb, var(--ink) 8%, transparent);
+    color: var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background 200ms ease, transform 140ms var(--ease-out);
+  }
+  .popup__close:hover { background: color-mix(in srgb, var(--ink) 16%, transparent); }
+  .popup__close:active { transform: scale(0.94); }
+  .popup__close svg { width: 12px; height: 12px; }
+  .popup__eyebrow {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--c-hero);
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .popup__eyebrow::before {
+    content: ''; width: 22px; height: 2px; background: var(--c-hero);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--c-hero) 60%, transparent);
+  }
+  .popup__title {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(26px, 4vw, 36px); line-height: 1.04;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .popup__body {
+    font-size: 14px; line-height: 1.55; color: var(--ink-soft);
+    margin-bottom: 22px; max-width: 38ch;
+  }
+  .popup__cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 22px;
+    background: var(--ink); color: var(--bg);
+    border-radius: 999px;
+    font-family: var(--font-display); font-weight: 500;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    transition: gap 200ms var(--ease-out), background 200ms ease, transform 140ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .popup__cta:hover { gap: 14px; background: var(--c-hero); }
+  }
+  .popup__cta:active { transform: scale(0.97); }
+  .popup__cta svg { width: 16px; height: 8px; stroke: currentColor; }
+
   /* ============ FOOTER ============ */
   .footer {
     position: relative; z-index: 5;
@@ -666,9 +760,10 @@
   }
   @media (max-width: 720px) { .footer__top { grid-template-columns: 1fr; } }
   .footer__brand {
-    font-family: var(--font-display); font-style: italic; font-weight: 300;
-    font-size: clamp(56px, 11vw, 156px); line-height: 0.88;
-    color: var(--c-hero); letter-spacing: -0.024em;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(48px, 9.4vw, 140px); line-height: 0.9;
+    color: var(--c-hero); letter-spacing: -0.03em;
+    text-transform: uppercase;
   }
   .footer__brand small {
     display: block;
@@ -678,9 +773,10 @@
   }
   .footer__newsletter { display: grid; gap: 14px; }
   .footer__newsletter h3 {
-    font-family: var(--font-display); font-style: italic; font-weight: 400;
-    font-size: clamp(22px, 2.6vw, 30px); line-height: 1; letter-spacing: -0.012em;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(20px, 2.4vw, 28px); line-height: 1.05; letter-spacing: -0.015em;
     color: var(--ink);
+    text-transform: none;
   }
   .footer__newsletter p {
     font-size: 14px; line-height: 1.5; color: var(--ink-soft); max-width: 38ch;
@@ -713,16 +809,24 @@
     border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
   }
   .footer__socials {
-    display: flex; gap: 18px; flex-wrap: wrap;
-    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+    margin: 0; padding: 0;
   }
+  .footer__socials li { display: inline-flex; }
   .footer__socials a {
-    padding: 8px 16px;
-    border: 1px solid var(--ink); border-radius: 999px;
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
     color: var(--ink);
-    transition: background 200ms ease, color 200ms ease;
+    transition: background 200ms ease, color 200ms ease, transform 140ms var(--ease-out);
   }
   .footer__socials a:hover { background: var(--ink); color: var(--bg); }
+  .footer__socials a:active { transform: scale(0.94); }
+  .footer__socials svg { width: 17px; height: 17px; fill: currentColor; display: block; }
+  .footer__socials .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
   .footer__credit {
     font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
     color: color-mix(in srgb, var(--ink) 55%, transparent);
@@ -811,7 +915,7 @@
     <source type="image/avif" srcset="/src/assets/img/booking-stage-crowd-1280.avif" />
     <img src="/src/assets/img/booking-stage-crowd-1280.jpg" alt="" />
   </picture>
-  <p class="intro__wordmark">Hey there, friend.</p>
+  <p class="intro__wordmark">Hello there, friend.</p>
   <p class="intro__sub">Tabitha Brown &middot; The Empire</p>
 </div>
 
@@ -824,13 +928,15 @@
     <button type="button" class="topnav__menu-mobile">Menu</button>
   </div>
   <nav class="topnav__row topnav__row--cats" aria-label="Primary">
-    <a class="topnav__cat" href="#" data-jump="1">Donna&rsquo;s Recipe</a>
-    <a class="topnav__cat" href="#" data-jump="2">Merch</a>
-    <a class="topnav__cat" href="#" data-jump="3">Cookbooks</a>
-    <a class="topnav__cat" href="#" data-jump="4">Tab Time</a>
+    <a class="topnav__cat" href="#" data-jump="0">My Story</a>
     <a class="topnav__cat" href="#" data-jump="5">Tab&nbsp;+&nbsp;Chance</a>
-    <a class="topnav__cat" href="#" data-jump="6">Tour</a>
-    <a class="topnav__cat topnav__cat--cta" href="mailto:booking@tabithabrown.com">Booking</a>
+    <a class="topnav__cat" href="#" data-jump="1">Donna&rsquo;s Recipe</a>
+    <a class="topnav__cat" href="https://www.harpercollins.com/pages/tabithabrownbooks-all" target="_blank" rel="noopener">Books</a>
+    <a class="topnav__cat" href="#" data-jump="2">Clearance Merch</a>
+    <a class="topnav__cat" href="#" data-jump="4">Tab Time</a>
+    <a class="topnav__cat" href="#" data-jump="6">Events</a>
+    <a class="topnav__cat" href="#" data-press>Press</a>
+    <button type="button" class="topnav__cat topnav__cat--cta" data-open-booking>Inquiries</button>
   </nav>
 </header>
 
@@ -838,7 +944,7 @@
 <section class="stage" id="stage" data-stage data-paused="false" aria-roledescription="carousel" aria-label="Tabitha Brown empire">
 
   <!-- SLIDE 0 — HERO -->
-  <article class="slide" data-slide="0" data-active="true" role="group" aria-roledescription="slide" aria-label="1 of 7: Tabitha Brown">
+  <article class="slide" data-slide="0" data-active="true" role="group" aria-roledescription="slide" aria-label="1 of 7: My Story">
     <div class="slide__media" style="--obj-pos: center 22%;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/hero-colorful-striped-1280.avif 1280w, /src/assets/img/hero-colorful-striped-1920.avif 1920w" sizes="100vw" />
@@ -848,7 +954,7 @@
     <div class="slide__content">
       <p class="slide__eyebrow">Tabitha Brown &middot; 2026</p>
       <div class="slide__bottom">
-        <p class="slide__overlay">Hey there,<br>friend.</p>
+        <p class="slide__overlay">Hello there,<br>friend.</p>
         <div class="slide__cta-wrap">
           <p class="slide__caption">A vegan empire of food, family, hair, comedy, books, and joy. Held together by one woman who tells the truth.</p>
           <button type="button" class="slide__cta" data-advance>
@@ -884,7 +990,7 @@
   </article>
 
   <!-- SLIDE 2 — MERCH (Shopify) -->
-  <article class="slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 7: Merch">
+  <article class="slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 7: Clearance Merch">
     <div class="slide__media" style="--obj-pos: center 30%;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/merch-hoodie-1280.avif 1280w, /src/assets/img/merch-hoodie-1920.avif 1920w" sizes="100vw" />
@@ -907,7 +1013,7 @@
   </article>
 
   <!-- SLIDE 3 — COOKBOOKS -->
-  <article class="slide" data-slide="3" role="group" aria-roledescription="slide" aria-label="4 of 7: Cookbooks">
+  <article class="slide" data-slide="3" role="group" aria-roledescription="slide" aria-label="4 of 7: Books">
     <div class="slide__media" style="--obj-pos: center 24%;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/cookbook-feeding-soul-1280.avif 1280w, /src/assets/img/cookbook-feeding-soul-1920.avif 1920w" sizes="100vw" />
@@ -976,7 +1082,7 @@
   </article>
 
   <!-- SLIDE 6 — BOOKING (Tabitha on stage, centered) -->
-  <article class="slide" data-slide="6" role="group" aria-roledescription="slide" aria-label="7 of 7: Book Tabitha">
+  <article class="slide" data-slide="6" role="group" aria-roledescription="slide" aria-label="7 of 7: Events">
     <div class="slide__media" style="--obj-pos: center 50%;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/booking-stage-crowd-1280.avif 1280w, /src/assets/img/booking-stage-crowd-1920.avif 1920w" sizes="100vw" />
@@ -990,7 +1096,7 @@
         <div class="slide__cta-wrap">
           <p class="slide__caption">Speaking, storytelling, and stand-up that feels like Sunday dinner with the people who raised you right.</p>
           <button type="button" class="slide__cta" data-open-booking>
-            Start a booking
+            Start an inquiry
             <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
@@ -1007,13 +1113,13 @@
     <span><strong data-counter-current>01</strong> / 07</span>
   </div>
   <div class="controls__dots" role="tablist">
-    <button class="controls__dot" data-jump="0" data-active="true" aria-label="Slide 1 — Tabitha Brown"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="0" data-active="true" aria-label="Slide 1 — My Story"><span class="controls__dot__fill"></span></button>
     <button class="controls__dot" data-jump="1" aria-label="Slide 2 — Donna's Recipe"><span class="controls__dot__fill"></span></button>
-    <button class="controls__dot" data-jump="2" aria-label="Slide 3 — Merch"><span class="controls__dot__fill"></span></button>
-    <button class="controls__dot" data-jump="3" aria-label="Slide 4 — Cookbooks"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="2" aria-label="Slide 3 — Clearance Merch"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="3" aria-label="Slide 4 — Books"><span class="controls__dot__fill"></span></button>
     <button class="controls__dot" data-jump="4" aria-label="Slide 5 — Tab Time"><span class="controls__dot__fill"></span></button>
     <button class="controls__dot" data-jump="5" aria-label="Slide 6 — Tab + Chance"><span class="controls__dot__fill"></span></button>
-    <button class="controls__dot" data-jump="6" aria-label="Slide 7 — Tour"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="6" aria-label="Slide 7 — Events"><span class="controls__dot__fill"></span></button>
   </div>
   <button type="button" class="controls__playpause" data-playpause aria-label="Pause auto-advance">
     <svg viewBox="0 0 16 16" fill="currentColor" data-icon="pause"><rect x="3" y="2" width="3.5" height="12" rx="0.5"/><rect x="9.5" y="2" width="3.5" height="12" rx="0.5"/></svg>
@@ -1031,27 +1137,49 @@
 <aside class="drawer" data-drawer aria-hidden="true">
   <button type="button" class="drawer__close" data-drawer-close aria-label="Close menu">Close</button>
   <ul class="drawer__list">
-    <li><a class="drawer__link" href="#" data-jump="0">Tabitha Brown</a></li>
-    <li><a class="drawer__link" href="#" data-jump="1">Donna&rsquo;s Recipe</a></li>
-    <li><a class="drawer__link" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener">Merch</a></li>
-    <li><a class="drawer__link" href="#" data-jump="3">Cookbooks</a></li>
-    <li><a class="drawer__link" href="#" data-jump="4">Tab Time</a></li>
+    <li><a class="drawer__link" href="#" data-jump="0">My Story</a></li>
     <li><a class="drawer__link" href="#" data-jump="5">Tab + Chance</a></li>
-    <li><a class="drawer__link" href="#" data-jump="6">Tour</a></li>
-    <li><button type="button" class="drawer__link drawer__link--cta" data-open-booking>Booking</button></li>
+    <li><a class="drawer__link" href="#" data-jump="1">Donna&rsquo;s Recipe</a></li>
+    <li><a class="drawer__link" href="https://www.harpercollins.com/pages/tabithabrownbooks-all" target="_blank" rel="noopener">Books</a></li>
+    <li><a class="drawer__link" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener">Clearance Merch</a></li>
+    <li><a class="drawer__link" href="#" data-jump="4">Tab Time</a></li>
+    <li><a class="drawer__link" href="#" data-jump="6">Events</a></li>
+    <li><a class="drawer__link" href="#" data-press>Press</a></li>
+    <li><button type="button" class="drawer__link drawer__link--cta" data-open-booking>Inquiries</button></li>
   </ul>
 </aside>
+
+<!-- ============ POST-INTRO POP-UP (placeholder — used for flash sales, drops, launches) ============ -->
+<dialog class="popup" data-popup aria-labelledby="popupTitle">
+  <div class="popup__panel">
+    <button type="button" class="popup__close" data-popup-close aria-label="Close">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <p class="popup__eyebrow">Flash drop &middot; 48 hours only</p>
+    <h2 class="popup__title" id="popupTitle">Free shipping on every order this weekend.</h2>
+    <p class="popup__body">Use code <strong>JOY</strong> at checkout. Cookbooks, hair, merch, all of it.</p>
+    <a class="popup__cta" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener" data-popup-close>
+      Shop the drop
+      <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</dialog>
 
 <!-- ============ BOOKING DIALOG ============ -->
 <dialog class="dialog" data-booking-dialog aria-labelledby="bookingTitle">
   <div class="dialog__panel">
     <header class="dialog__header">
-      <h2 class="dialog__title" id="bookingTitle">Book <em>Tabitha</em>.</h2>
-      <button type="button" class="dialog__close" data-dialog-close aria-label="Close booking form">
+      <h2 class="dialog__title" id="bookingTitle">Send an <em>inquiry</em>.</h2>
+      <button type="button" class="dialog__close" data-dialog-close aria-label="Close inquiries form">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
     </header>
-    <p class="dialog__intro">Speaking, storytelling, brand partnerships, and live tour dates. Tell us about the moment, we&rsquo;ll be in touch.</p>
+    <p class="dialog__intro">Events, brand partnerships, press, and everything in between. Tell us about the moment, we&rsquo;ll be in touch.</p>
+
+    <aside class="dialog__wholesale" aria-label="Wholesale inquiries">
+      <p>For <strong>Tab&nbsp;+&nbsp;Chance</strong> wholesale inquiries, <a href="mailto:wholesale@tabandchance.com">click here</a>.</p>
+      <p>For <strong>Donna&rsquo;s Recipe</strong> wholesale inquiries, <a href="mailto:wholesale@donnasrecipe.com">click here</a>.</p>
+    </aside>
 
     <form class="dialog__form" data-booking-form>
       <div class="dialog__row">
@@ -1066,12 +1194,11 @@
       </div>
       <div class="dialog__row">
         <div class="dialog__field">
-          <label class="dialog__label" for="bk_type">Event type</label>
+          <label class="dialog__label" for="bk_type">Inquiry type</label>
           <select class="dialog__select" id="bk_type" name="event_type">
-            <option>Speaking engagement</option>
-            <option>Live performance</option>
-            <option>Brand partnership</option>
-            <option>Press / media</option>
+            <option>Events</option>
+            <option>Brand Partnerships</option>
+            <option>Press</option>
             <option>Other</option>
           </select>
         </div>
@@ -1114,11 +1241,31 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <ul class="footer__socials">
-        <li><a href="https://instagram.com/iamtabithabrown" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="https://tiktok.com/@iamtabithabrown" target="_blank" rel="noopener">TikTok</a></li>
-        <li><a href="https://www.youtube.com/@iamtabithabrown" target="_blank" rel="noopener">YouTube</a></li>
-        <li><a href="https://snapchat.com/add/iamtabithabrown" target="_blank" rel="noopener">Snapchat</a></li>
+      <ul class="footer__socials" aria-label="Tabitha Brown on social">
+        <li><a href="https://facebook.com/iamtabithabrown" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.494v-9.294H9.691v-3.622h3.128V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.764v2.31h3.59l-.468 3.622h-3.122V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
+          <span class="sr-only">Facebook</span>
+        </a></li>
+        <li><a href="https://instagram.com/iamtabithabrown" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.849.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.849.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span class="sr-only">Instagram</span>
+        </a></li>
+        <li><a href="https://tiktok.com/@iamtabithabrown" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V9.01a8.16 8.16 0 0 0 4.77 1.52V7.09a4.85 4.85 0 0 1-1.84-.4z"/></svg>
+          <span class="sr-only">TikTok</span>
+        </a></li>
+        <li><a href="https://www.youtube.com/@iamtabithabrown" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span class="sr-only">YouTube</span>
+        </a></li>
+        <li><a href="https://snapchat.com/add/iamtabithabrown" target="_blank" rel="noopener" aria-label="Snapchat">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.479-.42.899-1.291 1.245-.09.029-.213.075-.345.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.989-3.146 1.284-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.27-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.69-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.078-.54.078-.374 0-.523-.224-.583-.42-.061-.192-.09-.39-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226a.798.798 0 01-.045-.225.514.514 0 01.42-.509c3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.211-.479-1.361-.991-1.301-1.262.09-.42.616-.704 1.005-.704.12 0 .224.029.314.074.42.196.793.3 1.118.3.42 0 .61-.18.633-.21-.008-.16-.017-.325-.028-.495v-.06c-.105-1.63-.225-3.654.298-4.847C7.844 1.082 11.197.807 12.187.807l.421-.015h.029z"/></svg>
+          <span class="sr-only">Snapchat</span>
+        </a></li>
+        <li><a href="https://patreon.com/iamtabithabrown" target="_blank" rel="noopener" aria-label="Patreon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z"/></svg>
+          <span class="sr-only">Patreon</span>
+        </a></li>
       </ul>
       <p class="footer__credit">&copy; 2026 Tabitha Brown &middot; Site by Taylormade Creative</p>
     </div>
@@ -1236,6 +1383,22 @@
       if (!isPlaying) playAuto();
     });
   });
+
+  // Press link → open inquiries dialog pre-selected to Press
+  document.querySelectorAll('[data-press]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (isPlaying) pauseAuto();
+      const select = document.querySelector('[data-booking-form] select[name="event_type"]');
+      if (select) {
+        const press = Array.from(select.options).find(o => /press/i.test(o.value || o.textContent));
+        if (press) select.value = press.value || press.textContent;
+      }
+      closeDrawer();
+      if (dialog && typeof dialog.showModal === 'function') dialog.showModal();
+      else if (dialog) dialog.setAttribute('open', '');
+    });
+  });
   if (wordmark) {
     wordmark.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1307,6 +1470,31 @@
     }
   }, 2900);
 
+  // --- Post-intro pop-up (flash sales, product launches). Once per session.
+  const popup = document.querySelector('[data-popup]');
+  function openPopup() {
+    if (!popup) return;
+    if (typeof popup.showModal === 'function') popup.showModal();
+    else popup.setAttribute('open', '');
+  }
+  function closePopup() {
+    if (!popup) return;
+    if (typeof popup.close === 'function') popup.close();
+    else popup.removeAttribute('open');
+  }
+  if (popup && !sessionStorage.getItem('tb-popup-seen')) {
+    setTimeout(() => {
+      sessionStorage.setItem('tb-popup-seen', '1');
+      openPopup();
+    }, 3400);
+  }
+  document.querySelectorAll('[data-popup-close]').forEach(btn => {
+    btn.addEventListener('click', closePopup);
+  });
+  popup && popup.addEventListener('click', (e) => {
+    if (e.target === popup) closePopup();
+  });
+
   // --- Hint: persists until first interaction, then fades
   const hintEl = document.querySelector('[data-hint]');
   function hideHint() {
@@ -1368,16 +1556,16 @@
   bookingForm && bookingForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = new FormData(bookingForm);
-    const subject = `Booking inquiry: ${data.get('event_type') || 'general'}`;
+    const subject = `Inquiry: ${data.get('event_type') || 'general'}`;
     const lines = [
       `Name: ${data.get('name') || ''}`,
       `Organization: ${data.get('org') || '(none)'}`,
-      `Event type: ${data.get('event_type') || ''}`,
+      `Inquiry type: ${data.get('event_type') || ''}`,
       `Target month: ${data.get('event_date') || '(TBD)'}`,
       ``,
       `${data.get('message') || ''}`,
     ];
-    const mailto = `mailto:booking@tabithabrown.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+    const mailto = `mailto:inquiries@tabithabrown.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
     window.location.href = mailto;
     dialog.classList.add('is-sent');
   });
