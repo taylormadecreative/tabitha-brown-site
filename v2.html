@@ -691,10 +691,15 @@
     box-shadow: 0 60px 120px -30px rgba(0, 0, 0, 0.6);
     margin: auto;
     overflow: hidden; position: relative;
-    opacity: 0; transform: translateY(16px) scale(0.965);
-    transition: opacity 340ms var(--ease-out), transform 340ms var(--ease-out);
   }
-  .popup[open] { opacity: 1; transform: translateY(0) scale(1); }
+  /* Animate the card in with a keyframe (fill: both), NOT a transition —
+     iOS Safari won't run a transition off the dialog's display:none→open
+     change, which left the card stuck at opacity 0 (blur, no card). */
+  .popup[open] { animation: popupIn 0.34s var(--ease-out) both; }
+  @keyframes popupIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.965); }
+    to   { opacity: 1; transform: none; }
+  }
   .popup::backdrop {
     background: color-mix(in srgb, var(--ink) 62%, transparent);
     -webkit-backdrop-filter: blur(8px) saturate(135%);
@@ -777,6 +782,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .drop__frame--1, .drop__frame--2 { display: none; }
+    .popup[open],
     .popup[open] .drop__frame--3,
     .popup[open] .drop__frame--3 img,
     .popup[open] .drop__content { animation: none; opacity: 1; transform: none; }
