@@ -98,7 +98,7 @@
     position: fixed; inset: 0; z-index: 300; background: var(--bg);
     display: grid; place-items: center;
     pointer-events: none;
-    animation: introOut 0.45s var(--ease-out) 2.4s forwards;
+    animation: introOut 0.45s var(--ease-out) 3.4s forwards;
     overflow: hidden;
   }
   @keyframes introOut { to { opacity: 0; visibility: hidden; } }
@@ -118,6 +118,16 @@
   .intro__photo:nth-child(3) { animation-delay: 0.44s; }
   .intro__photo:nth-child(4) { animation-delay: 0.66s; }
   .intro__photo:nth-child(5) { animation-delay: 0.88s; }
+  /* New mist shots continue the rapid-fire; the last one lingers a beat longer. */
+  .intro__photo:nth-child(6) { animation-delay: 1.12s; }
+  .intro__photo:nth-child(7) { animation-delay: 1.36s; }
+  .intro__photo:nth-child(8) { animation-name: cyclePhotoHold; animation-delay: 1.62s; }
+  @keyframes cyclePhotoHold {
+    0%   { opacity: 0; transform: scale(1.05); }
+    26%  { opacity: 1; transform: scale(1); }
+    82%  { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.99); }
+  }
   @keyframes cyclePhoto {
     0%   { opacity: 0; transform: scale(1.03); }
     25%  { opacity: 1; transform: scale(1); }
@@ -136,7 +146,7 @@
     text-transform: none;
     text-shadow: 0 14px 50px rgba(31, 13, 56, 0.45);
     opacity: 0;
-    animation: wmIn 0.5s var(--ease-out) 1.55s forwards, wmOut 0.35s var(--ease-out) 2.3s forwards;
+    animation: wmIn 0.5s var(--ease-out) 2.55s forwards, wmOut 0.35s var(--ease-out) 3.3s forwards;
   }
   @keyframes wmIn { from { opacity: 0; transform: translateY(14px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
   @keyframes wmOut { to { opacity: 0; transform: translateY(-6px) scale(0.98); } }
@@ -146,7 +156,7 @@
     font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
     color: var(--ink); font-weight: 600;
     opacity: 0;
-    animation: subIn 0.4s var(--ease-out) 1.8s forwards, wmOut 0.3s var(--ease-out) 2.3s forwards;
+    animation: subIn 0.4s var(--ease-out) 2.75s forwards, wmOut 0.3s var(--ease-out) 3.3s forwards;
   }
   @keyframes subIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 0.78; transform: translateY(0); } }
 
@@ -670,77 +680,107 @@
   .dialog.is-sent .dialog__form { display: none; }
   .dialog.is-sent .dialog__success { display: block; }
 
-  /* ============ POST-INTRO POP-UP (flash sales, drops, launches) ============ */
+  /* ============ POST-INTRO "WHAT'S NEW" DROP POP-UP ============ */
+  /* Cinematic, image-led launch card. Frames flash + settle (echoes the    */
+  /* intro reveal). Reusable for ANY drop — edit the .popup.drop markup.     */
   .popup {
     border: none; padding: 0;
-    max-width: min(440px, 92vw); width: 92vw;
-    color: var(--ink); background: var(--bg);
-    border-radius: 18px;
-    box-shadow: 0 60px 120px -30px rgba(0, 0, 0, 0.55);
+    width: min(400px, 92vw); aspect-ratio: 4 / 5; max-height: 90vh;
+    color: #fff; background: #111;
+    border-radius: 20px;
+    box-shadow: 0 60px 120px -30px rgba(0, 0, 0, 0.6);
     margin: auto;
-    overflow: hidden;
-    opacity: 0; transform: translateY(14px) scale(0.96);
-    transition: opacity 320ms var(--ease-out), transform 320ms var(--ease-out);
+    overflow: hidden; position: relative;
+    opacity: 0; transform: translateY(16px) scale(0.965);
+    transition: opacity 340ms var(--ease-out), transform 340ms var(--ease-out);
   }
   .popup[open] { opacity: 1; transform: translateY(0) scale(1); }
   .popup::backdrop {
-    background: color-mix(in srgb, var(--ink) 55%, transparent);
-    backdrop-filter: blur(6px) saturate(140%);
+    background: color-mix(in srgb, var(--ink) 62%, transparent);
+    -webkit-backdrop-filter: blur(8px) saturate(135%);
+    backdrop-filter: blur(8px) saturate(135%);
   }
-  .popup__panel {
-    position: relative;
-    padding: clamp(28px, 5vw, 40px);
-    background:
-      radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, var(--c-hero) 22%, transparent) 0%, transparent 60%),
-      var(--bg);
+
+  /* --- flash-reveal media frames --- */
+  .drop__media { position: absolute; inset: 0; background: #111; }
+  .drop__frame { position: absolute; inset: 0; opacity: 0; }
+  .drop__frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 24%; display: block; }
+  .popup[open] .drop__frame--1 { animation: dropF1 2.3s var(--ease-out) forwards; }
+  .popup[open] .drop__frame--2 { animation: dropF2 2.3s var(--ease-out) forwards; }
+  .popup[open] .drop__frame--3 { animation: dropF3 2.3s var(--ease-out) forwards; }
+  .popup[open] .drop__frame--3 img { animation: dropSettle 3.4s var(--ease-out) forwards; transform-origin: 60% 42%; }
+  @keyframes dropF1 { 0%{opacity:0} 5%{opacity:1} 16%{opacity:1} 21%{opacity:0} 100%{opacity:0} }
+  @keyframes dropF2 { 0%,18%{opacity:0} 23%{opacity:1} 34%{opacity:1} 39%{opacity:0} 100%{opacity:0} }
+  @keyframes dropF3 { 0%,36%{opacity:0} 45%{opacity:1} 100%{opacity:1} }
+  @keyframes dropSettle { from { transform: scale(1.12); } to { transform: scale(1); } }
+
+  .drop__scrim {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top,
+      rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 26%, rgba(0,0,0,0.12) 52%, rgba(0,0,0,0) 70%);
   }
+  .drop__content {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: clamp(22px, 5vw, 34px);
+    opacity: 0; transform: translateY(16px);
+  }
+  .popup[open] .drop__content { animation: dropContent 0.6s var(--ease-out) 1.25s forwards; }
+  @keyframes dropContent { to { opacity: 1; transform: none; } }
+
   .popup__close {
-    position: absolute; top: 14px; right: 14px;
-    width: 32px; height: 32px; border-radius: 50%;
-    background: color-mix(in srgb, var(--ink) 8%, transparent);
-    color: var(--ink);
+    position: absolute; top: 14px; right: 14px; z-index: 3;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(0, 0, 0, 0.34); color: #fff;
     display: inline-flex; align-items: center; justify-content: center;
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
     transition: background 200ms ease, transform 140ms var(--ease-out);
   }
-  .popup__close:hover { background: color-mix(in srgb, var(--ink) 16%, transparent); }
-  .popup__close:active { transform: scale(0.94); }
+  .popup__close:hover { background: rgba(0, 0, 0, 0.55); }
+  .popup__close:active { transform: scale(0.92); }
   .popup__close svg { width: 12px; height: 12px; }
   .popup__eyebrow {
     font-family: var(--font-display); font-weight: 600;
-    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--c-hero);
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: #fff;
     display: inline-flex; align-items: center; gap: 10px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   .popup__eyebrow::before {
     content: ''; width: 22px; height: 2px; background: var(--c-hero);
-    box-shadow: 0 0 14px color-mix(in srgb, var(--c-hero) 60%, transparent);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--c-hero) 70%, transparent);
   }
   .popup__title {
     font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(26px, 4vw, 36px); line-height: 1.04;
-    letter-spacing: -0.022em;
-    color: var(--ink);
-    margin-bottom: 12px;
+    font-size: clamp(27px, 5.4vw, 38px); line-height: 1.02;
+    letter-spacing: -0.024em;
+    color: #fff;
+    margin-bottom: 12px; text-wrap: balance;
   }
   .popup__body {
-    font-size: 14px; line-height: 1.55; color: var(--ink-soft);
-    margin-bottom: 22px; max-width: 38ch;
+    font-size: 13.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.82);
+    margin-bottom: 22px; max-width: 34ch;
   }
   .popup__cta {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 13px 22px;
-    background: var(--ink); color: var(--bg);
+    padding: 13px 24px;
+    background: #fff; color: var(--ink);
     border-radius: 999px;
-    font-family: var(--font-display); font-weight: 500;
-    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
-    transition: gap 200ms var(--ease-out), background 200ms ease, transform 140ms var(--ease-out);
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    transition: gap 200ms var(--ease-out), background 200ms ease, color 200ms ease, transform 140ms var(--ease-out);
   }
   @media (hover: hover) and (pointer: fine) {
-    .popup__cta:hover { gap: 14px; background: var(--c-hero); }
+    .popup__cta:hover { gap: 14px; background: var(--c-hero); color: #fff; }
   }
   .popup__cta:active { transform: scale(0.97); }
   .popup__cta svg { width: 16px; height: 8px; stroke: currentColor; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .drop__frame--1, .drop__frame--2 { display: none; }
+    .popup[open] .drop__frame--3,
+    .popup[open] .drop__frame--3 img,
+    .popup[open] .drop__content { animation: none; opacity: 1; transform: none; }
+  }
 
   /* ============ FOOTER ============ */
   .footer {
@@ -914,6 +954,19 @@
   <picture class="intro__photo" style="--obj-pos: center 45%;">
     <source type="image/avif" srcset="/src/assets/img/booking-stage-crowd-1280.avif" />
     <img src="/src/assets/img/booking-stage-crowd-1280.jpg" alt="" />
+  </picture>
+  <!-- New Body Mist shots — the last frames of the rapid-fire reveal -->
+  <picture class="intro__photo intro__photo--mist" style="--obj-pos: center 22%;">
+    <source type="image/avif" srcset="/src/assets/img/mist-hello-there-1280.avif" />
+    <img src="/src/assets/img/mist-hello-there-1280.jpg" alt="" />
+  </picture>
+  <picture class="intro__photo intro__photo--mist" style="--obj-pos: center 30%;">
+    <source type="image/avif" srcset="/src/assets/img/mist-stay-focused-1280.avif" />
+    <img src="/src/assets/img/mist-stay-focused-1280.jpg" alt="" />
+  </picture>
+  <picture class="intro__photo intro__photo--mist" style="--obj-pos: center 26%;">
+    <source type="image/avif" srcset="/src/assets/img/mist-spread-love-1280.avif" />
+    <img src="/src/assets/img/mist-spread-love-1280.jpg" alt="Tabitha Brown Body Mist" />
   </picture>
   <p class="intro__wordmark">Hello there.</p>
   <p class="intro__sub">Tabitha Brown &middot; The Empire</p>
@@ -1149,16 +1202,43 @@
   </ul>
 </aside>
 
-<!-- ============ POST-INTRO POP-UP (placeholder — used for flash sales, drops, launches) ============ -->
-<dialog class="popup" data-popup aria-labelledby="popupTitle">
-  <div class="popup__panel">
-    <button type="button" class="popup__close" data-popup-close aria-label="Close">
-      <svg viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    </button>
-    <p class="popup__eyebrow">Flash drop &middot; 48 hours only</p>
-    <h2 class="popup__title" id="popupTitle">Free shipping on every order this weekend.</h2>
-    <p class="popup__body">Use code <strong>JOY</strong> at checkout. Cookbooks, hair, merch, all of it.</p>
-    <a class="popup__cta" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener" data-popup-close>
+<!-- ============ POST-INTRO "WHAT'S NEW" DROP POP-UP ============ -->
+<!-- Fires once per session, right after the intro finishes (add ?drop to the  -->
+<!-- URL to force it on demand). Frames flash + SETTLE on the last one, then    -->
+<!-- the "Shop the drop" CTA links out to buy.                                  -->
+<!-- TO FEATURE A FUTURE DROP: swap the frame images below (LAST frame holds)   -->
+<!-- and edit the eyebrow / title / body / CTA link.                            -->
+<dialog class="popup drop" data-popup aria-labelledby="popupTitle">
+  <button type="button" class="popup__close" data-popup-close aria-label="Close">
+    <svg viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <div class="drop__media" aria-hidden="true">
+    <div class="drop__frame drop__frame--1">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/mist-hello-there-640.avif 640w, /src/assets/img/mist-hello-there-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
+        <img src="/src/assets/img/mist-hello-there-1280.jpg" alt="" style="object-position: center 20%;" decoding="async" />
+      </picture>
+    </div>
+    <div class="drop__frame drop__frame--2">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/mist-stay-focused-640.avif 640w, /src/assets/img/mist-stay-focused-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
+        <img src="/src/assets/img/mist-stay-focused-1280.jpg" alt="" style="object-position: center 30%;" decoding="async" />
+      </picture>
+    </div>
+    <div class="drop__frame drop__frame--3">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/mist-spread-love-640.avif 640w, /src/assets/img/mist-spread-love-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
+        <img src="/src/assets/img/mist-spread-love-1280.jpg" alt="Tabitha Brown — Spread Love body mist" style="object-position: center 26%;" decoding="async" />
+      </picture>
+    </div>
+  </div>
+  <div class="drop__scrim"></div>
+  <div class="drop__content">
+    <p class="popup__eyebrow">Just Arrived</p>
+    <h2 class="popup__title" id="popupTitle">The Body&nbsp;Mist has landed.</h2>
+    <p class="popup__body">Three scents, one spirit — Spread&nbsp;Love, Hello&nbsp;There &amp; Stay&nbsp;Focused. Tabitha&nbsp;Brown Body&nbsp;Mist is here.</p>
+    <!-- TODO: swap to the exact mist collection/product URL once it's live in Shopify. -->
+    <a class="popup__cta" data-popup-close href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener">
       Shop the drop
       <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -1459,7 +1539,7 @@
     else if (isPlaying) startTimer();
   });
 
-  // --- Kick off after intro photo-cycle + fade (~2.85s)
+  // --- Kick off after intro photo-cycle + fade (~3.85s)
   setTimeout(() => {
     if (isPlaying) {
       const fill = dots[0].querySelector('.controls__dot__fill');
@@ -1468,9 +1548,11 @@
       fill.style.animation = '';
       startTimer();
     }
-  }, 2900);
+  }, 3900);
 
-  // --- Post-intro pop-up (flash sales, product launches). Once per session.
+  // --- Post-intro "What's New" drop pop-up — fires after the intro reveal, once per session.
+  //     Markup + flash frames live in the .popup.drop dialog above (edit there
+  //     to feature a future drop). Add ?drop to the URL to force it on demand.
   const popup = document.querySelector('[data-popup]');
   function openPopup() {
     if (!popup) return;
@@ -1482,11 +1564,13 @@
     if (typeof popup.close === 'function') popup.close();
     else popup.removeAttribute('open');
   }
-  if (popup && !sessionStorage.getItem('tb-popup-seen')) {
+  // Add ?drop (or #drop) to the URL to force the pop-up + skip the once-per-session guard.
+  const forceDrop = /(?:[?&]|#)drop\b/.test(location.search + location.hash);
+  if (popup && (forceDrop || !sessionStorage.getItem('tb-popup-seen'))) {
     setTimeout(() => {
-      sessionStorage.setItem('tb-popup-seen', '1');
+      if (!forceDrop) sessionStorage.setItem('tb-popup-seen', '1');
       openPopup();
-    }, 3400);
+    }, forceDrop ? 600 : 4200);
   }
   document.querySelectorAll('[data-popup-close]').forEach(btn => {
     btn.addEventListener('click', closePopup);
