@@ -544,6 +544,17 @@
     transition: transform 140ms var(--ease-out);
   }
   .drawer__close:active { transform: scale(0.95); }
+  .drawer__home {
+    position: absolute; top: 15px; left: var(--gutter); z-index: 1;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink);
+    padding: 8px 8px 8px 2px;
+    transition: transform 140ms var(--ease-out), color 200ms ease;
+  }
+  .drawer__home svg { width: 15px; height: 15px; }
+  .drawer__home:active { transform: scale(0.95); color: var(--c-hero); }
   .drawer__list {
     list-style: none; padding: 0; margin: 0;
     display: flex; flex-direction: column; gap: 4px;
@@ -990,7 +1001,7 @@
     <a class="topnav__cat" href="#" data-jump="0">My Story</a>
     <a class="topnav__cat" href="#" data-jump="5">Tab&nbsp;+&nbsp;Chance</a>
     <a class="topnav__cat" href="#" data-jump="1">Donna&rsquo;s Recipe</a>
-    <a class="topnav__cat" href="https://www.harpercollins.com/pages/tabithabrownbooks-all" target="_blank" rel="noopener">Books</a>
+    <a class="topnav__cat" href="#" data-jump="3">Books</a>
     <a class="topnav__cat" href="#" data-jump="2">Clearance Merch</a>
     <a class="topnav__cat" href="#" data-jump="4">Tab Time</a>
     <a class="topnav__cat" href="#" data-jump="6">Events</a>
@@ -1194,13 +1205,17 @@
 
 <!-- ============ MOBILE DRAWER ============ -->
 <aside class="drawer" data-drawer aria-hidden="true" inert>
+  <a class="drawer__home" href="#" data-jump="0" aria-label="Back to home">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 7l6-5 6 5M4 6.2V14h8V6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Home
+  </a>
   <button type="button" class="drawer__close" data-drawer-close aria-label="Close menu">Close</button>
   <ul class="drawer__list">
     <li><a class="drawer__link" href="#" data-jump="0">My Story</a></li>
     <li><a class="drawer__link" href="#" data-jump="5">Tab + Chance</a></li>
     <li><a class="drawer__link" href="#" data-jump="1">Donna&rsquo;s Recipe</a></li>
-    <li><a class="drawer__link" href="https://www.harpercollins.com/pages/tabithabrownbooks-all" target="_blank" rel="noopener">Books</a></li>
-    <li><a class="drawer__link" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener">Clearance Merch</a></li>
+    <li><a class="drawer__link" href="#" data-jump="3">Books</a></li>
+    <li><a class="drawer__link" href="#" data-jump="2">Clearance Merch</a></li>
     <li><a class="drawer__link" href="#" data-jump="4">Tab Time</a></li>
     <li><a class="drawer__link" href="#" data-jump="6">Events</a></li>
     <li><a class="drawer__link" href="#" data-press>Press</a></li>
