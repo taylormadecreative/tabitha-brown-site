@@ -1585,16 +1585,12 @@
     if (typeof popup.close === 'function') popup.close();
     else popup.removeAttribute('open');
   }
-  // Add ?drop (or #drop) to the URL to force the pop-up + skip the once-per-session guard.
-  // NOTE: bump this key whenever the pop-up content changes, so returning visitors
-  // (and anyone who caught a broken build) get a fresh showing instead of a stale "seen" flag.
-  const POPUP_KEY = 'tb-mist-drop-v2';
+  // Pop-up shows on EVERY visit/reload (per request). ?drop just makes it appear
+  // sooner. To throttle to once-per-session instead, guard openPopup on a
+  // sessionStorage flag (e.g. if (!sessionStorage.getItem('tb-mist-drop')) { ...; set it }).
   const forceDrop = /(?:[?&]|#)drop\b/.test(location.search + location.hash);
-  if (popup && (forceDrop || !sessionStorage.getItem(POPUP_KEY))) {
-    setTimeout(() => {
-      if (!forceDrop) sessionStorage.setItem(POPUP_KEY, '1');
-      openPopup();
-    }, forceDrop ? 600 : 4200);
+  if (popup) {
+    setTimeout(openPopup, forceDrop ? 600 : 4200);
   }
   document.querySelectorAll('[data-popup-close]').forEach(btn => {
     btn.addEventListener('click', closePopup);
