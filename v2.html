@@ -1586,10 +1586,13 @@
     else popup.removeAttribute('open');
   }
   // Add ?drop (or #drop) to the URL to force the pop-up + skip the once-per-session guard.
+  // NOTE: bump this key whenever the pop-up content changes, so returning visitors
+  // (and anyone who caught a broken build) get a fresh showing instead of a stale "seen" flag.
+  const POPUP_KEY = 'tb-mist-drop-v2';
   const forceDrop = /(?:[?&]|#)drop\b/.test(location.search + location.hash);
-  if (popup && (forceDrop || !sessionStorage.getItem('tb-popup-seen'))) {
+  if (popup && (forceDrop || !sessionStorage.getItem(POPUP_KEY))) {
     setTimeout(() => {
-      if (!forceDrop) sessionStorage.setItem('tb-popup-seen', '1');
+      if (!forceDrop) sessionStorage.setItem(POPUP_KEY, '1');
       openPopup();
     }, forceDrop ? 600 : 4200);
   }
