@@ -1,0 +1,1862 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Tabitha Brown · Tab's World</title>
+<meta name="description" content="Welcome to Tab's World. Stroll the path and visit everything Tabitha Brown built: Donna's Recipe, the Body Mist, Tab + Chance, books, merch, Tab Time, and the stage." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#FFD60A" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Tabitha Brown" />
+<meta property="og:title" content="Tabitha Brown: welcome to Tab's World." />
+<meta property="og:description" content="A world of food, family, hair, comedy, books, and joy. Take a stroll through all of it." />
+<link rel="canonical" href="https://taylormadecreative.github.io/tabitha-brown-site/v3.html" />
+<meta property="og:url" content="https://taylormadecreative.github.io/tabitha-brown-site/v3.html" />
+<meta property="og:image" content="https://taylormadecreative.github.io/tabitha-brown-site/og-1200x630.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Tabitha Brown — Hello there." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Tabitha Brown: welcome to Tab's World." />
+<meta name="twitter:description" content="A world of food, family, hair, comedy, books, and joy." />
+<meta name="twitter:image" content="https://taylormadecreative.github.io/tabitha-brown-site/og-1200x630.jpg" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap" />
+<link rel="preload" href="/src/assets/fonts/inter-tight.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" as="image" href="/src/assets/img/hero-colorful-striped-1280.avif" type="image/avif" fetchpriority="high" />
+
+<style>
+/* ================================================================
+   TAB'S WORLD (v3 prototype)
+   A hand-drawn world you simply scroll through. One winding path,
+   eight places, every one of them a door to a real Tabitha Brown
+   destination. No instructions needed: if you can scroll, you can
+   walk the whole neighborhood.
+   ================================================================ */
+
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('/src/assets/fonts/inter-tight.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --sun:        #FFD60A;
+  --sun-deep:   #F5C400;
+  --sun-soft:   #FFDF4D;
+  --paper:      #FFFDF2;
+  --ink:        #1F0D38;
+  --ink-soft:   #4A2A6B;
+
+  --c-hero:    #E91A5F;
+  --c-donnas:  #0E7A4E;
+  --c-merch:   #F0530A;
+  --c-podcast: #1F4FE0;
+  --c-books:   #C2305A;
+  --c-tabtime: #5B2F8F;
+  --c-tour:    #0F8C8C;
+  --c-mist:    #F04FA0;
+  --c-mist-blue: #2F6FD6;
+  --c-mist-sun:  #E8A400;
+  /* deep variants: the bright accents fail 4.5:1 for button/eyebrow text on
+     paper, so text-bearing surfaces use these while decoration keeps the pop */
+  --c-mist-deep:      #B0104E;
+  --c-mist-sun-deep:  #8A6100;
+  --c-mist-blue-deep: #1D4FA8;
+  --c-merch-deep:     #B93E00;
+  --c-tour-deep:      #0A6363;
+
+  --font-display: 'Futura', 'Futura PT', 'Jost', system-ui, -apple-system, sans-serif;
+  --font-hand: 'Caveat', 'Comic Sans MS', cursive;
+  --font-body: 'Inter Tight', system-ui, -apple-system, sans-serif;
+
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --shadow-card: 0 26px 60px -30px rgba(31, 13, 56, 0.42);
+  --shadow-pill: 0 10px 28px -12px rgba(31, 13, 56, 0.38);
+
+  --gutter: clamp(16px, 4vw, 56px);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+  /* clip, not hidden: decorative tape and polaroids overhang the cards, and
+     an unclipped html lets mobile browsers widen the layout viewport */
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background:
+    radial-gradient(1400px 900px at 15% 0%, rgba(255, 246, 200, 0.6), transparent 60%),
+    linear-gradient(180deg, #FFDE3D 0%, var(--sun) 30%, #F8CE00 100%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+a { color: inherit; text-decoration: none; }
+img, picture, source { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+ul, ol { list-style: none; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+:focus-visible { outline: 3px solid var(--c-hero); outline-offset: 3px; border-radius: 4px; }
+
+.skip-link { position: absolute; top: -100px; left: 0; padding: 12px 16px; background: var(--ink); color: var(--sun); font-weight: 600; z-index: 999; }
+.skip-link:focus { top: 0; }
+
+/* film grain. No blend mode: a full-screen mix-blend-mode layer forces the
+   GPU to re-composite the whole page on every scroll frame, which reads as
+   random flicker on some machines. Plain low-alpha speckle looks the same. */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 210;
+  opacity: 0.5; transform: translateZ(0);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ================= SHARED PIECES ================= */
+
+.cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px;
+  padding: 14px 28px;
+  background: var(--accent-deep, var(--accent, var(--c-hero)));
+  color: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+  box-shadow: 0 6px 0 -2px var(--ink);
+  transition: transform 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 0 -2px var(--ink); }
+  .cta:hover svg { transform: translateX(4px); }
+}
+.cta:active { transform: translateY(3px) scale(0.98); box-shadow: 0 2px 0 -2px var(--ink); }
+.cta svg { width: 16px; height: 8px; stroke: currentColor; flex: none; transition: transform 200ms var(--ease-out); }
+.cta--ghost { background: var(--paper); color: var(--ink); }
+
+.textlink {
+  font-size: 14px; font-weight: 600; color: var(--ink-soft);
+  text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 160ms ease;
+  min-height: 44px; display: inline-flex; align-items: center;
+}
+.textlink:hover { color: var(--accent-deep, var(--accent, var(--c-hero))); }
+
+.tape {
+  position: absolute; z-index: 4;
+  width: 92px; height: 26px;
+  background: linear-gradient(100deg, rgba(255,255,255,0.55), rgba(255,255,255,0.32));
+  border-left: 1px dashed rgba(31,13,56,0.25);
+  border-right: 1px dashed rgba(31,13,56,0.25);
+  box-shadow: 0 3px 8px -3px rgba(31,13,56,0.25);
+  pointer-events: none;
+}
+.tape--tl { top: -12px; left: -26px; transform: rotate(-38deg); }
+.tape--tr { top: -12px; right: -26px; transform: rotate(38deg); }
+
+/* ================= TOP BAR ================= */
+
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 120;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px clamp(12px, 3vw, 28px);
+  pointer-events: none;
+}
+.topbar > * { pointer-events: auto; }
+.topbar__wordmark {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 12px 18px;
+  background: var(--paper); border: 2px solid var(--ink); border-radius: 999px;
+  box-shadow: var(--shadow-pill);
+  transition: transform 150ms var(--ease-out);
+}
+.topbar__wordmark:active { transform: scale(0.96); }
+.pillbtn {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 44px;
+  padding: 11px 20px;
+  border: 2px solid var(--ink); border-radius: 999px;
+  background: var(--ink); color: var(--sun);
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+  box-shadow: var(--shadow-pill);
+  transition: transform 150ms var(--ease-out), background 180ms ease, color 180ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pillbtn:hover { background: var(--c-hero); color: var(--paper); }
+}
+.pillbtn:active { transform: scale(0.96); }
+
+/* ================= DOCK (jump nav) ================= */
+
+.dock {
+  position: fixed; left: 50%; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 120;
+  transform: translateX(-50%);
+  max-width: min(95vw, 1040px);
+  background: var(--paper);
+  border: 2px solid var(--ink); border-radius: 999px;
+  box-shadow: 0 18px 44px -18px rgba(31, 13, 56, 0.5);
+  padding: 6px;
+  display: flex; gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.dock::-webkit-scrollbar { display: none; }
+.chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  min-height: 44px;
+  padding: 9px 15px;
+  border-radius: 999px;
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink);
+  transition: background 200ms ease, color 200ms ease, transform 140ms var(--ease-out);
+}
+.chip::before {
+  content: ''; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--chip-c, var(--c-hero));
+  border: 1.5px solid var(--ink);
+  flex: none;
+}
+.chip:active { transform: scale(0.95); }
+.chip[aria-current="true"] { background: var(--ink); color: var(--sun); }
+.chip .newdot {
+  font-family: var(--font-hand); font-weight: 700; font-size: 15px;
+  color: var(--c-hero); text-transform: none; letter-spacing: 0;
+}
+.chip[aria-current="true"] .newdot { color: var(--sun-soft); }
+
+/* ================= INTRO (rapid-fire, the moment they loved) ================= */
+
+.intro {
+  position: fixed; inset: 0; z-index: 400;
+  background: var(--sun);
+  display: grid; place-items: center;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 800ms var(--ease-in-out);
+}
+.intro--out { clip-path: inset(0 0 100% 0); pointer-events: none; }
+
+.intro__photo {
+  position: absolute; inset: 0;
+  width: min(64vw, 480px); height: min(72vh, 620px);
+  margin: auto;
+  opacity: 0; transform: scale(1.04);
+  border-radius: 10px; overflow: hidden;
+  border: 2px solid var(--ink);
+  box-shadow: 0 36px 90px -36px rgba(31, 13, 56, 0.55);
+  animation: cyclePhoto 0.95s var(--ease-out) forwards;
+}
+.intro__photo img { width: 100%; height: 100%; object-fit: cover; object-position: var(--obj-pos, center 22%); }
+.intro__photo:nth-of-type(1) { animation-delay: 0.05s; }
+.intro__photo:nth-of-type(2) { animation-delay: 0.27s; }
+.intro__photo:nth-of-type(3) { animation-delay: 0.49s; }
+.intro__photo:nth-of-type(4) { animation-delay: 0.71s; }
+.intro__photo:nth-of-type(5) { animation-delay: 0.93s; }
+.intro__photo:nth-of-type(6) { animation-delay: 1.17s; }
+.intro__photo:nth-of-type(7) { animation-name: cyclePhotoHold; animation-duration: 2.5s; animation-delay: 1.45s; }
+@keyframes cyclePhoto {
+  0%   { opacity: 0; transform: scale(1.04); }
+  25%  { opacity: 1; transform: scale(1); }
+  60%  { opacity: 1; transform: scale(1); }
+  90%  { opacity: 0; transform: scale(0.99); }
+  100% { opacity: 0; }
+}
+@keyframes cyclePhotoHold {
+  0%   { opacity: 0; transform: scale(1.06); }
+  14%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.intro__wordmark {
+  position: relative; z-index: 2;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(52px, 10vw, 148px);
+  color: var(--c-hero);
+  letter-spacing: -0.025em; line-height: 0.95;
+  text-align: center;
+  text-shadow: 0 14px 50px rgba(31, 13, 56, 0.5);
+  opacity: 0;
+  animation: wmIn 0.55s var(--ease-out) 1.95s forwards;
+}
+@keyframes wmIn {
+  from { opacity: 0; transform: translateY(18px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.intro__sub {
+  position: absolute; bottom: clamp(26px, 6vh, 58px); z-index: 2;
+  font-family: var(--font-hand); font-weight: 700;
+  font-size: clamp(24px, 3.6vw, 38px);
+  color: var(--ink);
+  opacity: 0;
+  animation: subIn 0.5s var(--ease-out) 2.3s forwards;
+}
+@keyframes subIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro { transition: opacity 300ms ease; }
+  .intro--out { opacity: 0; clip-path: none; }
+  .intro__photo { animation: none; opacity: 0; }
+  .intro__photo:nth-of-type(7) { opacity: 1; transform: scale(1); }
+  .intro__wordmark, .intro__sub { animation: none; opacity: 1; }
+}
+
+/* ================= WORLD SCENERY ================= */
+
+.sunspin { position: fixed; top: 76px; left: 18px; z-index: 4; pointer-events: none; opacity: 0.95; }
+.sunspin svg { width: clamp(74px, 9vw, 120px); height: auto; animation: sunspin 90s linear infinite; transform-origin: 50% 50%; }
+@keyframes sunspin { to { transform: rotate(360deg); } }
+/* below 981px stations are centered and cards would slide under the sun */
+@media (max-width: 980px) { .sunspin { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .sunspin svg, .cloud, .badge-new { animation: none; }
+  .dialog[open] { animation: none; }
+}
+
+.cloud {
+  position: absolute; pointer-events: none; z-index: 1;
+  background: rgba(255, 253, 242, 0.85);
+  border-radius: 999px;
+  box-shadow: 40px 12px 0 -6px rgba(255, 253, 242, 0.8), -44px 14px 0 -10px rgba(255, 253, 242, 0.75);
+  animation: clouddrift 80s linear infinite;
+}
+@keyframes clouddrift { from { transform: translateX(-160px); } to { transform: translateX(105vw); } }
+
+/* winding dashed path between stops; dashes stroll while on screen */
+.pathseg { display: block; margin: clamp(-30px, -2vh, -10px) auto; width: min(420px, 62vw); height: auto; overflow: visible; }
+.pathseg path {
+  fill: none;
+  stroke: rgba(31, 13, 56, 0.4);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 2 26;
+}
+.pathseg.walking path { animation: stroll 2.6s linear infinite; }
+@keyframes stroll { to { stroke-dashoffset: -56; } }
+@media (prefers-reduced-motion: reduce) {
+  .pathseg.walking path { animation: none; }
+}
+
+/* ================= LAYOUT ================= */
+
+.trail {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) 40px;
+}
+
+/* ================= HERO (the porch) ================= */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding: clamp(92px, 12vh, 140px) 0 clamp(40px, 6vh, 80px);
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+}
+@media (max-width: 880px) {
+  .hero__grid { grid-template-columns: 1fr; }
+}
+
+.hero__greeting {
+  font-family: var(--font-hand); font-weight: 700;
+  font-size: clamp(26px, 3.2vw, 38px);
+  color: var(--c-hero);
+}
+.hero__title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(58px, 8.6vw, 128px);
+  line-height: 0.94; letter-spacing: -0.02em;
+  margin: 4px 0 18px;
+}
+.hero__title em { font-style: normal; color: var(--c-hero); }
+.hero__copy {
+  font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 52ch;
+  margin-bottom: 26px;
+}
+.hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+.hero__portrait { position: relative; }
+.hero__frame {
+  position: relative;
+  border: 2px solid var(--ink);
+  border-radius: 240px 240px 22px 22px;
+  overflow: hidden;
+  background: var(--sun-deep);
+  box-shadow: var(--shadow-card);
+  aspect-ratio: 4 / 5.1;
+  max-height: 74svh;
+  margin: 0 auto;
+}
+.hero__frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.hero__frame::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 8px var(--paper), inset 0 0 0 10px var(--ink);
+}
+.hero__stamp {
+  position: absolute; right: -10px; bottom: 34px; z-index: 5;
+  width: 104px; height: 104px;
+  animation: stampspin 26s linear infinite;
+}
+@keyframes stampspin { to { transform: rotate(360deg); } }
+.hero__stamp text {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 10.5px; letter-spacing: 0; text-transform: uppercase;
+  fill: var(--ink);
+}
+.hero__scrollhand {
+  position: absolute; left: 50%; bottom: calc(66px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  font-family: var(--font-hand); font-weight: 700;
+  font-size: 22px; color: var(--ink-soft);
+  display: inline-flex; align-items: center; gap: 8px;
+  animation: nudge 2.4s var(--ease-in-out) infinite;
+}
+@keyframes nudge { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(7px); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero__scrollhand, .hero__stamp { animation: none; }
+}
+
+/* ================= STATIONS ================= */
+
+.station {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 620px);
+  justify-content: center;
+  padding: clamp(28px, 5vh, 56px) 0;
+  scroll-margin-top: 90px;
+}
+/* alternate the stroll: cards swing left and right of center */
+@media (min-width: 981px) {
+  .station--left  { justify-content: start; padding-left: 4%; }
+  .station--right { justify-content: end; padding-right: 4%; }
+}
+
+.station__inner { position: relative; width: min(620px, 100%); }
+
+/* wake up when scrolled into view */
+.station .card, .station .maplabel {
+  opacity: 0; transform: translateY(26px) rotate(var(--tilt, 0deg));
+  transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+}
+.station.awake .card, .station.awake .maplabel { opacity: 1; transform: translateY(0) rotate(var(--tilt, 0deg)); }
+.station .polaroid { opacity: 0; transition: opacity 0.7s var(--ease-out) 0.25s, transform 0.65s var(--ease-out) 0.25s; }
+.station.awake .polaroid { opacity: 1; }
+
+.maplabel {
+  position: relative; z-index: 3;
+  display: inline-block;
+  font-family: var(--font-hand); font-weight: 700;
+  font-size: clamp(28px, 3vw, 36px); line-height: 1;
+  color: var(--ink);
+  margin: 0 0 10px 20px;
+}
+.maplabel::after {
+  content: ''; display: block; height: 3.5px; width: 82%;
+  margin-top: 3px; border-radius: 99px;
+  background: var(--accent, var(--c-hero));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.55s var(--ease-out) 0.35s;
+}
+.station.awake .maplabel::after { transform: scaleX(1); }
+
+.card {
+  position: relative;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 20px 26px 18px 28px;
+  box-shadow: var(--shadow-card);
+  padding: 14px 14px 22px;
+  transform: rotate(var(--tilt, 0deg));
+}
+
+.card__media {
+  position: relative;
+  border-radius: 12px 16px 10px 14px;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  aspect-ratio: var(--media-ar, 4 / 3.4);
+  background: var(--sun-deep);
+}
+.card__media img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: var(--obj-pos, center 25%);
+  transform: scale(1.03);
+  transition: transform 5s var(--ease-out);
+}
+.station.awake .card__media img { transform: scale(1.1); }
+
+.card__body { padding: 18px 10px 0; }
+
+.card__eyebrow {
+  font-family: var(--font-hand); font-weight: 600;
+  font-size: 22px; color: var(--accent-deep, var(--accent, var(--c-hero)));
+  margin-bottom: 2px;
+}
+.card__title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(28px, 3.4vw, 40px);
+  letter-spacing: 0.01em; line-height: 1.02;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card__copy {
+  font-size: 15.5px; line-height: 1.6; color: var(--ink-soft);
+  max-width: 46ch;
+  margin-bottom: 18px;
+}
+
+.polaroid {
+  position: absolute; z-index: 5;
+  width: var(--pw, 150px);
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  padding: 7px 7px 8px;
+  box-shadow: 0 16px 36px -18px rgba(31, 13, 56, 0.45);
+  transform: rotate(var(--rot, 0deg));
+}
+.polaroid img {
+  width: 100%; aspect-ratio: 1 / 1.05; object-fit: cover;
+  object-position: var(--obj-pos, center 22%);
+  border-radius: 3px;
+}
+.polaroid figcaption {
+  font-family: var(--font-hand); font-weight: 600;
+  font-size: 17px; line-height: 1.1; color: var(--ink);
+  padding-top: 5px; text-align: center;
+}
+@media (max-width: 680px) {
+  .polaroid { --pw: 116px; }
+  .polaroid figcaption { font-size: 14px; }
+}
+
+/* ---------- mist bar ---------- */
+.station--mist { --accent: var(--c-mist); --accent-deep: var(--c-mist-deep); }
+.station--mist[data-scent="hello"]   { --accent: var(--c-mist-sun); --accent-deep: var(--c-mist-sun-deep); }
+.station--mist[data-scent="focused"] { --accent: var(--c-mist-blue); --accent-deep: var(--c-mist-blue-deep); }
+.badge-new {
+  position: absolute; top: -26px; right: -12px; z-index: 6;
+  width: 78px; height: 78px; border-radius: 50%;
+  background: var(--c-hero); color: var(--paper);
+  border: 2px solid var(--ink);
+  display: grid; place-items: center;
+  font-family: var(--font-hand); font-weight: 700; font-size: 25px;
+  transform: rotate(12deg);
+  box-shadow: var(--shadow-pill);
+  animation: badgewiggle 4s var(--ease-in-out) infinite;
+}
+@keyframes badgewiggle {
+  0%, 86%, 100% { transform: rotate(12deg) scale(1); }
+  90% { transform: rotate(4deg) scale(1.07); }
+  95% { transform: rotate(16deg) scale(1); }
+}
+.mist__frames { position: absolute; inset: 0; }
+.mist__frames picture {
+  position: absolute; inset: 0; opacity: 0;
+  transition: opacity 300ms var(--ease-out), filter 300ms var(--ease-out);
+  filter: blur(3px);
+}
+.mist__frames picture img { width: 100%; height: 100%; object-fit: cover; }
+.station--mist[data-scent="spread"]  .mist__frames picture[data-frame="spread"],
+.station--mist[data-scent="hello"]   .mist__frames picture[data-frame="hello"],
+.station--mist[data-scent="focused"] .mist__frames picture[data-frame="focused"] {
+  opacity: 1; filter: blur(0);
+}
+.scent-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.scent {
+  display: inline-flex; align-items: center; gap: 7px;
+  min-height: 44px;
+  padding: 9px 16px;
+  border: 2px solid var(--ink); border-radius: 999px;
+  background: var(--paper);
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+  transition: background 180ms ease, color 180ms ease, transform 150ms var(--ease-out);
+}
+.scent::before { content: ''; width: 11px; height: 11px; border-radius: 50%; background: var(--dot); border: 1.5px solid var(--ink); }
+.scent[data-scent="spread"]  { --dot: var(--c-mist); }
+.scent[data-scent="hello"]   { --dot: var(--c-mist-sun); }
+.scent[data-scent="focused"] { --dot: var(--c-mist-blue); }
+.scent:active { transform: scale(0.95); }
+.scent[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.mist__notes { min-height: 52px; }
+.mist__notes span { display: none; }
+.station--mist[data-scent="spread"]  .mist__notes [data-note="spread"],
+.station--mist[data-scent="hello"]   .mist__notes [data-note="hello"],
+.station--mist[data-scent="focused"] .mist__notes [data-note="focused"] { display: block; }
+
+/* ---------- garden ---------- */
+.station--donnas { --accent: var(--c-donnas); }
+.flower { position: absolute; z-index: 6; pointer-events: none; transform: scale(0); transform-origin: bottom center; transition: transform 0.7s var(--ease-out) 0.5s; }
+.station--donnas.awake .flower { transform: scale(1); animation: sway 4.5s var(--ease-in-out) 1.4s infinite alternate; }
+@keyframes sway { from { transform: scale(1) rotate(-4deg); } to { transform: scale(1) rotate(5deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .station--donnas.awake .flower { animation: none; }
+}
+
+/* ---------- tv den ---------- */
+.station--tabtime { --accent: var(--c-tabtime); }
+.tv {
+  position: relative;
+  border: 2px solid var(--ink); border-radius: 18px;
+  background: var(--c-tabtime);
+  padding: 12px 46px 12px 12px;
+}
+.tv__screen {
+  position: relative; overflow: hidden;
+  border: 2px solid var(--ink); border-radius: 10px;
+  aspect-ratio: 4 / 2.9; background: #241236;
+}
+.tv__screen img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 35%;
+  opacity: 0; transform: scale(1.04);
+  transition: opacity 420ms var(--ease-out), transform 900ms var(--ease-out);
+}
+.tv__static {
+  position: absolute; inset: 0; opacity: 0.9;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='1' seed='3'/></filter><rect width='100%25' height='100%25' filter='url(%23s)' opacity='0.5'/></svg>");
+  transition: opacity 500ms ease;
+}
+.tv.on .tv__screen img { opacity: 1; transform: scale(1); }
+.tv.on .tv__static { opacity: 0; }
+.tv__standby {
+  position: absolute; right: 14px; bottom: 12px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #FF5B5B; box-shadow: 0 0 8px #FF5B5B;
+}
+.tv.on .tv__standby { background: #7CFFA0; box-shadow: 0 0 8px #7CFFA0; }
+.tv__knob {
+  position: absolute; right: 9px; top: 16px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--paper); border: 2px solid var(--ink);
+  transition: transform 200ms var(--ease-out);
+}
+.tv__knob::after { content: ''; position: absolute; left: 50%; top: 3px; width: 2px; height: 9px; background: var(--ink); transform: translateX(-50%); }
+/* invisible halo so the 28px knob still meets the 44px touch target */
+.tv__knob::before { content: ''; position: absolute; inset: -10px; border-radius: 50%; }
+.tv__knob:active { transform: scale(0.9) rotate(40deg); }
+.tv.on .tv__knob { transform: rotate(90deg); }
+.tv__knob2 { top: 54px; width: 18px; height: 18px; right: 14px; pointer-events: none; }
+.tv__legs { display: flex; justify-content: space-between; padding: 0 40px; }
+.tv__legs i { width: 3px; height: 16px; background: var(--ink); transform: rotate(var(--lr, 14deg)); border-radius: 2px; }
+
+/* ---------- studio ---------- */
+.station--podcast { --accent: var(--c-podcast); }
+.onair {
+  position: absolute; top: -12px; right: 24px; z-index: 6;
+  transform: rotate(2deg);
+  padding: 8px 15px;
+  background: #C41450; color: var(--paper);
+  border: 2px solid var(--ink); border-radius: 8px;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+  box-shadow: var(--shadow-pill);
+}
+.station--podcast.awake .onair { animation: onairblink 2.4s steps(1) infinite; }
+@keyframes onairblink { 0%, 100% { opacity: 1; } 82% { opacity: 1; } 88% { opacity: 0.45; } 94% { opacity: 1; } }
+.eq { display: inline-flex; align-items: flex-end; gap: 3px; height: 18px; margin-left: 10px; vertical-align: middle; }
+.eq i { width: 4px; border-radius: 2px; background: var(--c-podcast); height: 100%; transform: scaleY(0.3); transform-origin: bottom; }
+.station--podcast.awake .eq i { animation: eqbounce 900ms var(--ease-in-out) infinite alternate; }
+.eq i:nth-child(1) { animation-delay: 0ms; }
+.eq i:nth-child(2) { animation-delay: 140ms; }
+.eq i:nth-child(3) { animation-delay: 60ms; }
+.eq i:nth-child(4) { animation-delay: 220ms; }
+.eq i:nth-child(5) { animation-delay: 100ms; }
+@keyframes eqbounce { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .station--podcast.awake .onair, .station--podcast.awake .eq i { animation: none; }
+}
+
+/* ---------- stage ---------- */
+.station--stage { --accent: var(--c-tour); --accent-deep: var(--c-tour-deep); }
+.stagelights {
+  position: absolute; top: -13px; left: 14px; right: 14px; z-index: 6;
+  display: flex; justify-content: space-between;
+}
+.stagelights i {
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--sun-soft); border: 2px solid var(--ink);
+}
+.station--stage.awake .stagelights i { animation: bulbchase 1.2s linear infinite; animation-delay: calc(var(--i) * 0.15s); }
+@keyframes bulbchase {
+  0%, 60%, 100% { background: var(--sun-soft); box-shadow: none; }
+  20% { background: #FFF3B0; box-shadow: 0 0 14px 3px rgba(255, 214, 10, 0.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .station--stage.awake .stagelights i { animation: none; }
+}
+
+/* ---------- closet ---------- */
+.station--merch { --accent: var(--c-merch); --accent-deep: var(--c-merch-deep); }
+.rail {
+  position: relative; z-index: 6;
+  height: 4px; margin: 22px 6% 16px;
+  background: var(--ink); border-radius: 4px;
+}
+.rail::before, .rail::after {
+  content: ''; position: absolute; bottom: 100%; width: 3px; height: 14px; background: var(--ink);
+}
+.rail::before { left: 12px; transform: rotate(-16deg); }
+.rail::after { right: 12px; transform: rotate(16deg); }
+.hanger-card { position: relative; transform-origin: top center; }
+.station--merch.awake .hanger-card { animation: hangswing 5s var(--ease-in-out) infinite alternate; }
+@keyframes hangswing { from { transform: rotate(-1.1deg); } to { transform: rotate(1.3deg); } }
+.station--merch.awake .hanger-card.bigswing, .hanger-card.bigswing { animation: hangswingbig 1.6s var(--ease-in-out); }
+@keyframes hangswingbig {
+  0% { transform: rotate(0deg); } 25% { transform: rotate(-4.5deg); }
+  55% { transform: rotate(3.5deg); } 80% { transform: rotate(-1.8deg); } 100% { transform: rotate(0deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .station--merch.awake .hanger-card, .hanger-card.bigswing { animation: none; }
+}
+
+/* ---------- books ---------- */
+.station--books { --accent: var(--c-books); }
+
+/* ---------- mailbox ---------- */
+.station--mail { --accent: var(--c-podcast); }
+.mailflag {
+  position: absolute; top: -36px; right: 34px; z-index: 6;
+  transform-origin: bottom center;
+  transform: rotate(95deg);
+  transition: transform 600ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.station--mail.sent .mailflag { transform: rotate(0deg); }
+.mail__form { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.mail__email {
+  flex: 1 1 200px; min-width: 0;
+  font-family: var(--font-body); font-size: 16px; color: var(--ink);
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid var(--ink); border-radius: 999px;
+  padding: 13px 18px;
+  transition: background 200ms ease, box-shadow 200ms ease;
+}
+.mail__email:focus { outline: none; background: #fffef9; box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-podcast) 30%, transparent); }
+.mail__note {
+  display: none;
+  font-family: var(--font-hand); font-weight: 700; font-size: 23px; color: var(--c-donnas);
+}
+.station--mail.sent .mail__note { display: block; }
+.station--mail.sent .mail__form { display: none; }
+
+.signpost { margin-top: 18px; padding-top: 16px; border-top: 2px dashed rgba(31, 13, 56, 0.25); }
+.signpost p { font-family: var(--font-hand); font-weight: 700; font-size: 23px; margin-bottom: 10px; }
+.signpost__row { display: flex; gap: 10px; flex-wrap: wrap; }
+.signpost__row a {
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 2px solid var(--ink);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--paper);
+  transition: background 180ms ease, color 180ms ease, transform 150ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .signpost__row a:hover { background: var(--ink); color: var(--sun); transform: translateY(-2px) rotate(-4deg); }
+}
+.signpost__row a:active { transform: scale(0.92); }
+.signpost__row svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* handwritten notes filling the open side of each stop on wide screens */
+.sidenote {
+  display: none;
+  position: absolute; top: 44%; z-index: 1;
+  font-family: var(--font-hand); font-weight: 700;
+  font-size: clamp(30px, 3vw, 46px);
+  color: rgba(31, 13, 56, 0.62);
+  pointer-events: none;
+  white-space: nowrap;
+}
+@media (min-width: 981px) {
+  .sidenote { display: block; }
+  .station--right .sidenote { left: 7%; transform: rotate(-4deg); }
+  .station--left .sidenote { right: 7%; transform: rotate(3deg); }
+}
+
+/* ---------- moments (between stops) ---------- */
+.moments {
+  display: flex; justify-content: center; align-items: flex-start;
+  gap: clamp(14px, 3vw, 40px);
+  padding: clamp(20px, 4vh, 44px) 0;
+  flex-wrap: wrap;
+}
+.moment {
+  width: clamp(132px, 16vw, 186px);
+  background: var(--paper);
+  border: 2px solid var(--ink); border-radius: 6px;
+  padding: 8px 8px 9px;
+  box-shadow: 0 18px 40px -20px rgba(31, 13, 56, 0.45);
+  transform: rotate(var(--rot, 0deg));
+  transition: transform 300ms var(--ease-out);
+}
+.moment img { width: 100%; aspect-ratio: 1 / 1.1; object-fit: cover; object-position: var(--obj-pos, center 20%); border-radius: 3px; }
+.moment figcaption { font-family: var(--font-hand); font-weight: 600; font-size: 18px; text-align: center; padding-top: 6px; }
+@media (hover: hover) and (pointer: fine) {
+  .moment:hover { transform: rotate(var(--rot)) scale(1.06); }
+}
+.moment.wobble { animation: wobble 700ms var(--ease-in-out); }
+@keyframes wobble {
+  0% { transform: rotate(var(--rot)) scale(1); }
+  30% { transform: rotate(calc(var(--rot) - 5deg)) scale(1.06); }
+  60% { transform: rotate(calc(var(--rot) + 4deg)) scale(1.04); }
+  100% { transform: rotate(var(--rot)) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .moment.wobble { animation: none; }
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+  position: relative;
+  padding: clamp(30px, 6vh, 70px) var(--gutter) calc(96px + env(safe-area-inset-bottom, 0px));
+  display: grid; justify-items: center; gap: 8px;
+  text-align: center;
+}
+.townsign__board {
+  background: var(--paper); border: 2px solid var(--ink); border-radius: 12px;
+  padding: 14px 22px 12px;
+  box-shadow: var(--shadow-card);
+  transform: rotate(-1.2deg);
+}
+.townsign__board strong {
+  display: block; font-family: var(--font-display); font-weight: 800;
+  font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.townsign__board span { font-family: var(--font-hand); font-weight: 600; font-size: 19px; color: var(--ink-soft); }
+.townsign__post { width: 5px; height: 46px; background: var(--ink); border-radius: 3px; }
+.footer__credit {
+  margin-top: 10px;
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(31, 13, 56, 0.8);
+}
+.footer__top {
+  margin-top: 6px;
+}
+
+/* tap hearts + confetti (confetti sits above the intro so the send-off
+   burst is visible while the overlay is still wiping away) */
+.tapheart { position: fixed; z-index: 230; pointer-events: none; width: 22px; height: 22px; color: var(--c-hero); }
+.tapheart svg { width: 100%; height: 100%; fill: currentColor; }
+.confetti { position: fixed; z-index: 500; pointer-events: none; width: 9px; height: 13px; border-radius: 2px; }
+
+/* ================= "WHAT'S NEW" DROP POP-UP ================= */
+/* Fires after the intro on EVERY visit (per Stephen). Add ?drop to the URL
+   to force it immediately. TO FEATURE A FUTURE DROP: swap the three frame
+   images in the .popup markup (the LAST frame holds) and edit the
+   eyebrow / title / body / CTA link. */
+.popup {
+  border: 2px solid var(--ink); padding: 0;
+  width: min(400px, 92vw); aspect-ratio: 4 / 5; max-height: 88dvh;
+  color: var(--paper); background: #241236;
+  border-radius: 22px;
+  box-shadow: 0 60px 120px -30px rgba(31, 13, 56, 0.6);
+  margin: auto; overflow: hidden; position: relative;
+}
+/* keyframe with fill:both, NOT a transition: iOS Safari will not run a
+   transition off the dialog's display:none -> open flip (v2 lesson) */
+.popup[open] { animation: popupIn 340ms var(--ease-out) both; }
+@keyframes popupIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.965); }
+  to   { opacity: 1; transform: none; }
+}
+.popup::backdrop {
+  background: rgba(31, 13, 56, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.drop__media { position: absolute; inset: 0; }
+.drop__frame { position: absolute; inset: 0; opacity: 0; }
+.drop__frame img { width: 100%; height: 100%; object-fit: cover; object-position: var(--obj-pos, center 24%); }
+.popup[open] .drop__frame--1 { animation: dropF1 2.3s var(--ease-out) forwards; }
+.popup[open] .drop__frame--2 { animation: dropF2 2.3s var(--ease-out) forwards; }
+.popup[open] .drop__frame--3 { animation: dropF3 2.3s var(--ease-out) forwards; }
+.popup[open] .drop__frame--3 img { animation: dropSettle 3.4s var(--ease-out) forwards; transform-origin: 60% 42%; }
+@keyframes dropF1 { 0% { opacity: 0; } 5% { opacity: 1; } 16% { opacity: 1; } 21% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes dropF2 { 0%, 18% { opacity: 0; } 23% { opacity: 1; } 34% { opacity: 1; } 39% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes dropF3 { 0%, 36% { opacity: 0; } 45% { opacity: 1; } 100% { opacity: 1; } }
+@keyframes dropSettle { from { transform: scale(1.12); } to { transform: scale(1); } }
+.drop__scrim {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top,
+    rgba(20, 8, 36, 0.86) 0%, rgba(20, 8, 36, 0.56) 28%, rgba(20, 8, 36, 0.1) 55%, rgba(20, 8, 36, 0) 72%);
+}
+.drop__content {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: clamp(22px, 5vw, 32px);
+  opacity: 0; transform: translateY(16px);
+}
+.popup[open] .drop__content { animation: dropContent 600ms var(--ease-out) 1.25s forwards; }
+@keyframes dropContent { to { opacity: 1; transform: none; } }
+.popup__close {
+  position: absolute; top: 12px; right: 12px; z-index: 3;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(20, 8, 36, 0.42); color: var(--paper);
+  display: inline-flex; align-items: center; justify-content: center;
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  transition: background 200ms ease, transform 140ms var(--ease-out);
+}
+.popup__close:hover { background: rgba(20, 8, 36, 0.65); }
+.popup__close:active { transform: scale(0.92); }
+.popup__close svg { width: 13px; height: 13px; }
+.popup__eyebrow {
+  font-family: var(--font-hand); font-weight: 700;
+  font-size: 23px; color: #FFC7DE;
+  margin-bottom: 4px;
+}
+.popup__title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(26px, 5.4vw, 35px); line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px; text-wrap: balance;
+}
+.popup__body {
+  font-size: 14px; line-height: 1.5; color: rgba(255, 253, 242, 0.88);
+  margin-bottom: 18px; max-width: 36ch;
+}
+.popup__row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.popup__stroll {
+  font-family: var(--font-hand); font-weight: 700;
+  font-size: 20px; color: rgba(255, 253, 242, 0.92);
+  text-decoration: underline; text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+  min-height: 44px;
+  transition: color 160ms ease;
+}
+.popup__stroll:hover { color: #FFC7DE; }
+@media (prefers-reduced-motion: reduce) {
+  .drop__frame--1, .drop__frame--2 { display: none; }
+  .popup[open],
+  .popup[open] .drop__frame--3,
+  .popup[open] .drop__frame--3 img,
+  .popup[open] .drop__content { animation: none; opacity: 1; transform: none; }
+}
+
+/* ================= INQUIRY DIALOG ================= */
+.dialog {
+  border: 2px solid var(--ink); padding: 0;
+  max-width: min(560px, 92vw); width: 92vw;
+  background: var(--paper); color: var(--ink);
+  border-radius: 20px;
+  box-shadow: 0 60px 120px -30px rgba(31, 13, 56, 0.55);
+  margin: auto;
+}
+.dialog[open] { animation: dialogIn 300ms var(--ease-out) both; }
+@keyframes dialogIn {
+  from { opacity: 0; transform: translateY(18px) scale(0.965); }
+  to   { opacity: 1; transform: none; }
+}
+.dialog::backdrop {
+  background: rgba(31, 13, 56, 0.5);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+.dialog__panel { padding: clamp(22px, 4vw, 36px); max-height: 86vh; overflow-y: auto; }
+.dialog__header { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 16px; }
+.dialog__title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(26px, 4vw, 38px); line-height: 1; letter-spacing: -0.01em;
+}
+.dialog__title em { color: var(--c-hero); font-style: normal; }
+.dialog__close {
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+  border: 2px solid var(--ink);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 180ms ease, transform 140ms var(--ease-out);
+}
+.dialog__close:hover { background: rgba(31, 13, 56, 0.08); }
+.dialog__close:active { transform: scale(0.92); }
+.dialog__intro { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 16px; max-width: 56ch; }
+.dialog__wholesale {
+  margin-bottom: 20px; padding: 12px 14px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--c-hero) 8%, transparent);
+  border: 1.5px dashed color-mix(in srgb, var(--c-hero) 40%, transparent);
+  display: grid; gap: 5px;
+}
+.dialog__wholesale p { font-size: 13.5px; }
+.dialog__wholesale a { color: var(--c-hero); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.dialog__form { display: grid; gap: 13px; }
+.dialog__row { display: grid; gap: 13px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 520px) { .dialog__row { grid-template-columns: 1fr; } }
+.dialog__field { display: flex; flex-direction: column; gap: 5px; }
+.dialog__label { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: var(--ink-soft); }
+.dialog__input, .dialog__select, .dialog__textarea {
+  font-family: var(--font-body); font-size: 16px; color: var(--ink);
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(31, 13, 56, 0.55); border-radius: 10px;
+  padding: 12px 14px; width: 100%;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+.dialog__input:focus, .dialog__select:focus, .dialog__textarea:focus {
+  outline: none; border-color: var(--c-hero); background: #fffef9;
+}
+.dialog__textarea { min-height: 96px; resize: vertical; }
+.dialog__submit { margin-top: 4px; justify-self: start; }
+.dialog__success {
+  display: none; margin-top: 12px; padding: 16px 18px;
+  border-radius: 12px;
+  border: 2px solid var(--c-donnas);
+  background: color-mix(in srgb, var(--c-donnas) 12%, transparent);
+  font-size: 14.5px;
+}
+.dialog.is-sent .dialog__form { display: none; }
+.dialog.is-sent .dialog__success { display: block; }
+
+/* ================= SMALL SCREENS ================= */
+@media (max-width: 700px) {
+  .topbar { padding: 10px 12px; }
+  .topbar__wordmark { font-size: 12px; padding: 10px 14px; letter-spacing: 0.13em; }
+  .pillbtn { font-size: 11px; padding: 10px 15px; }
+  .hero { padding-top: 84px; }
+  .hero__frame { max-height: 56svh; }
+  .cloud { display: none; }
+  .card__body { padding: 16px 6px 0; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#top">Skip to content</a>
+
+<noscript>
+  <style>
+    .intro { display: none; }
+    .station .card, .station .maplabel, .station .polaroid { opacity: 1; transform: none; }
+    .flower { transform: scale(1); }
+    .tv__screen img { opacity: 1; }
+    .tv__static { opacity: 0; }
+  </style>
+</noscript>
+
+<!-- ============ INTRO: rapid-fire photos, then the greeting ============ -->
+<div class="intro" id="intro" aria-hidden="true">
+  <picture class="intro__photo" style="--obj-pos: center 18%;">
+    <source type="image/avif" srcset="/src/assets/img/6c4a8054-1280.avif" />
+    <img src="/src/assets/img/6c4a8054-1280.jpg" alt="" fetchpriority="high" />
+  </picture>
+  <picture class="intro__photo" style="--obj-pos: center 12%;">
+    <source type="image/avif" srcset="/src/assets/img/tab-chance-couple-1280.avif" />
+    <img src="/src/assets/img/tab-chance-couple-1280.jpg" alt="" />
+  </picture>
+  <picture class="intro__photo" style="--obj-pos: center 24%;">
+    <source type="image/avif" srcset="/src/assets/img/cookbook-feeding-soul-1280.avif" />
+    <img src="/src/assets/img/cookbook-feeding-soul-1280.jpg" alt="" />
+  </picture>
+  <picture class="intro__photo" style="--obj-pos: center 28%;">
+    <source type="image/avif" srcset="/src/assets/img/merch-hoodie-1280.avif" />
+    <img src="/src/assets/img/merch-hoodie-1280.jpg" alt="" />
+  </picture>
+  <picture class="intro__photo" style="--obj-pos: center 50%;">
+    <source type="image/avif" srcset="/src/assets/img/booking-stage-crowd-1280.avif" />
+    <img src="/src/assets/img/booking-stage-crowd-1280.jpg" alt="" />
+  </picture>
+  <picture class="intro__photo" style="--obj-pos: center 26%;">
+    <source type="image/avif" srcset="/src/assets/img/mist-spread-love-1280.avif" />
+    <img src="/src/assets/img/mist-spread-love-1280.jpg" alt="" />
+  </picture>
+  <picture class="intro__photo" style="--obj-pos: center 20%;">
+    <source type="image/avif" srcset="/src/assets/img/hero-colorful-striped-1280.avif" />
+    <img src="/src/assets/img/hero-colorful-striped-1280.jpg" alt="" />
+  </picture>
+  <p class="intro__wordmark">Hello there.</p>
+  <p class="intro__sub">welcome to Tab's World</p>
+</div>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <a class="topbar__wordmark" href="#top">Tabitha Brown</a>
+  <button type="button" class="pillbtn" data-open-booking>Inquiries</button>
+</header>
+
+<!-- the sun keeps you company while you stroll -->
+<div class="sunspin" aria-hidden="true">
+  <svg viewBox="0 0 150 150" fill="none">
+    <circle cx="75" cy="75" r="34" fill="#FFB703" stroke="#1F0D38" stroke-width="4"/>
+    <g stroke="#1F0D38" stroke-width="4" stroke-linecap="round">
+      <line x1="75" y1="8"  x2="75" y2="26"/><line x1="75" y1="124" x2="75" y2="142"/>
+      <line x1="8"  y1="75" x2="26" y2="75"/><line x1="124" y1="75" x2="142" y2="75"/>
+      <line x1="28" y1="28" x2="41" y2="41"/><line x1="109" y1="109" x2="122" y2="122"/>
+      <line x1="122" y1="28" x2="109" y2="41"/><line x1="41" y1="109" x2="28" y2="122"/>
+    </g>
+    <path d="M63 78 q4 6 12 6 q8 0 12 -6" stroke="#1F0D38" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <circle cx="64" cy="68" r="3.4" fill="#1F0D38"/><circle cx="86" cy="68" r="3.4" fill="#1F0D38"/>
+  </svg>
+</div>
+
+<main class="trail" id="top">
+
+  <!-- ============ HERO: the front porch ============ -->
+  <section class="hero" id="porch" aria-label="Welcome">
+    <div class="cloud" style="left: 4%; top: 90px; width: 130px; height: 42px;" aria-hidden="true"></div>
+    <div class="cloud" style="left: 55%; top: 40px; width: 160px; height: 48px; animation-duration: 110s; animation-delay: -40s;" aria-hidden="true"></div>
+    <div class="hero__grid">
+      <div>
+        <p class="hero__greeting" data-greeting>Hey sunshine,</p>
+        <h1 class="hero__title">Hello <em>there.</em></h1>
+        <p class="hero__copy">You made it to Tab's World. Everything Tabitha built lives along this one little road: hair care, a podcast, books, a kids' show, merch, and a brand new body mist. Just scroll, honey. Every stop opens its own door.</p>
+        <div class="hero__ctas">
+          <a class="cta" href="#mist" style="--accent: var(--ink);">
+            See the new mist
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="cta cta--ghost" href="#garden">Walk the whole road</a>
+        </div>
+      </div>
+      <div class="hero__portrait">
+        <div class="hero__frame">
+          <picture>
+            <source type="image/avif" srcset="/src/assets/img/hero-colorful-striped-1280.avif" />
+            <img src="/src/assets/img/hero-colorful-striped-1280.jpg" alt="Tabitha Brown smiling in a colorful striped outfit" fetchpriority="high" />
+          </picture>
+        </div>
+        <svg class="hero__stamp" viewBox="0 0 104 104" aria-hidden="true">
+          <defs><path id="circ" d="M52,52 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0" /></defs>
+          <circle cx="52" cy="52" r="50" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+          <text><textPath href="#circ" textLength="249" lengthAdjust="spacingAndGlyphs">joy you can taste &middot; joy you can taste &middot;</textPath></text>
+          <circle cx="52" cy="52" r="12" fill="var(--c-hero)" stroke="var(--ink)" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+    <p class="hero__scrollhand" aria-hidden="true">
+      take a stroll
+      <svg width="16" height="20" viewBox="0 0 16 20" fill="none"><path d="M8 2v14M3 11l5 6 5-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </p>
+  </section>
+
+  <svg class="pathseg" data-pathseg viewBox="0 0 420 150" aria-hidden="true"><path d="M210 6 C 320 40, 340 80, 250 110 C 190 130, 180 138, 200 146" /></svg>
+
+  <!-- ============ STOP 1: THE MIST BAR (new) ============ -->
+  <section class="station station--mist station--right" id="mist" data-scent="spread" aria-label="The Body Mist, new">
+    <p class="sidenote" aria-hidden="true">spray a little joy on it</p>
+    <div class="station__inner">
+      <p class="maplabel">first stop: the mist bar</p>
+      <span class="badge-new" aria-hidden="true">new!</span>
+      <div class="card" style="--tilt: 0.7deg;">
+        <span class="tape tape--tl" aria-hidden="true"></span>
+        <div class="card__media" style="--media-ar: 4 / 3.6;">
+          <div class="mist__frames">
+            <picture data-frame="spread">
+              <source type="image/avif" srcset="/src/assets/img/mist-spread-love-1280.avif" />
+              <img src="/src/assets/img/mist-spread-love-1280.jpg" alt="Tabitha with the pink Spread Love body mist" style="object-position: center 26%;" decoding="async" />
+            </picture>
+            <picture data-frame="hello">
+              <source type="image/avif" srcset="/src/assets/img/mist-hello-there-1280.avif" />
+              <img src="/src/assets/img/mist-hello-there-1280.jpg" alt="Tabitha with the yellow Hello There body mist" loading="lazy" decoding="async" style="object-position: center 20%;" />
+            </picture>
+            <picture data-frame="focused">
+              <source type="image/avif" srcset="/src/assets/img/mist-stay-focused-1280.avif" />
+              <img src="/src/assets/img/mist-stay-focused-1280.jpg" alt="Tabitha with the blue Stay Focused body mist" loading="lazy" decoding="async" style="object-position: center 30%;" />
+            </picture>
+          </div>
+        </div>
+        <div class="card__body">
+          <p class="card__eyebrow">three scents, one spirit</p>
+          <h2 class="card__title">The Body Mist</h2>
+          <div class="scent-row" role="group" aria-label="Pick a scent">
+            <button type="button" class="scent" data-scent="spread" aria-pressed="true">Spread Love</button>
+            <button type="button" class="scent" data-scent="hello" aria-pressed="false">Hello There</button>
+            <button type="button" class="scent" data-scent="focused" aria-pressed="false">Stay Focused</button>
+          </div>
+          <p class="card__copy mist__notes">
+            <span data-note="spread">Soft sugar and cream. Vanilla, lime, tonka, and a little sweetness for your whole day.</span>
+            <span data-note="hello">Sunshine citrus. Lemon, ginger, mandarin, jasmine, and vanilla. A greeting in a bottle.</span>
+            <span data-note="focused">Shower fresh. Jasmine, rose, lemon, peach, and vanilla. Clean and locked in.</span>
+          </p>
+          <a class="cta" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener" data-confetti>
+            Shop the drop
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="pathseg" data-pathseg viewBox="0 0 420 150" aria-hidden="true"><path d="M260 6 C 140 40, 100 80, 180 110 C 240 130, 230 140, 210 146" /></svg>
+
+  <!-- ============ STOP 2: THE GARDEN ============ -->
+  <section class="station station--donnas station--left" id="garden" aria-label="Donna's Recipe">
+    <p class="sidenote" aria-hidden="true">like so, like that</p>
+    <div class="station__inner">
+      <p class="maplabel">the garden</p>
+      <figure class="polaroid" style="--rot: 6deg; right: -14px; top: 34px; --obj-pos: center 40%;">
+        <img src="/src/assets/img/tabitha-with-sweet-potato-pie-collection-with-pie-in-hand-640.jpg" alt="Tabitha with the Donna's Recipe sweet potato pie collection" loading="lazy" decoding="async" />
+        <figcaption>the sweet potato drop</figcaption>
+      </figure>
+      <div class="card" style="--tilt: -0.8deg;">
+        <span class="tape tape--tr" aria-hidden="true"></span>
+        <div class="card__media" style="--obj-pos: center 18%; --media-ar: 4 / 3.8;">
+          <picture>
+            <source type="image/avif" srcset="/src/assets/img/6c4a8054-1280.avif" />
+            <img src="/src/assets/img/6c4a8054-1280.jpg" alt="Tabitha with a sculptural braided crown in a garden" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="card__body">
+          <p class="card__eyebrow">plant-based hair care</p>
+          <h2 class="card__title">Donna's Recipe</h2>
+          <p class="card__copy">Born in her kitchen and named for her mother. Clean, plant-based care for every crown in the house. Water yours.</p>
+          <a class="cta" href="https://donnasrecipe.com" target="_blank" rel="noopener" data-confetti>
+            Shop Donna's Recipe
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <span class="flower" style="left: -26px; bottom: 40px;" aria-hidden="true">
+        <svg width="46" height="64" viewBox="0 0 46 64" fill="none"><line x1="23" y1="34" x2="23" y2="62" stroke="#0E7A4E" stroke-width="4" stroke-linecap="round"/><path d="M23 44 q-10 -2 -12 -10" stroke="#0E7A4E" stroke-width="3.4" stroke-linecap="round" fill="none"/><g stroke="#1F0D38" stroke-width="2"><circle cx="23" cy="12" r="7" fill="#E91A5F"/><circle cx="12" cy="20" r="7" fill="#E91A5F"/><circle cx="34" cy="20" r="7" fill="#E91A5F"/><circle cx="16" cy="30" r="7" fill="#E91A5F"/><circle cx="30" cy="30" r="7" fill="#E91A5F"/><circle cx="23" cy="21" r="6" fill="#FFD60A"/></g></svg>
+      </span>
+      <span class="flower" style="right: -20px; bottom: 120px; transition-delay: 0.65s;" aria-hidden="true">
+        <svg width="38" height="54" viewBox="0 0 46 64" fill="none"><line x1="23" y1="34" x2="23" y2="62" stroke="#0E7A4E" stroke-width="4" stroke-linecap="round"/><g stroke="#1F0D38" stroke-width="2"><circle cx="23" cy="12" r="7" fill="#5B2F8F"/><circle cx="12" cy="20" r="7" fill="#5B2F8F"/><circle cx="34" cy="20" r="7" fill="#5B2F8F"/><circle cx="16" cy="30" r="7" fill="#5B2F8F"/><circle cx="30" cy="30" r="7" fill="#5B2F8F"/><circle cx="23" cy="21" r="6" fill="#FFD60A"/></g></svg>
+      </span>
+    </div>
+  </section>
+
+  <svg class="pathseg" data-pathseg viewBox="0 0 420 150" aria-hidden="true"><path d="M180 6 C 300 44, 330 84, 240 112 C 186 128, 192 138, 208 146" /></svg>
+
+  <!-- ============ STOP 3: THE CLOSET ============ -->
+  <section class="station station--merch station--right" id="closet" aria-label="Merch">
+    <p class="sidenote" aria-hidden="true">have a good day!</p>
+    <div class="station__inner">
+      <p class="maplabel">the closet</p>
+      <div class="rail" aria-hidden="true"></div>
+      <div class="hanger-card" data-hanger>
+        <div class="card" style="--tilt: 0deg;">
+          <span class="tape tape--tl" aria-hidden="true"></span>
+          <div class="card__media" style="--obj-pos: center 28%; --media-ar: 4 / 3.6;">
+            <picture>
+              <source type="image/avif" srcset="/src/assets/img/merch-hoodie-1280.avif" />
+              <img src="/src/assets/img/merch-hoodie-1280.jpg" alt="Tabitha in a Have a Good Day hoodie" loading="lazy" decoding="async" />
+            </picture>
+          </div>
+          <div class="card__body">
+            <p class="card__eyebrow">official merch</p>
+            <h2 class="card__title">Wear the Joy</h2>
+            <p class="card__copy">Pieces that say what Tabitha already said. Loud, soft, and on the right side of every conversation.</p>
+            <a class="cta" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener" data-confetti>
+              Shop the collection
+              <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- a few snapshots on the walk -->
+  <div class="moments" aria-label="Snapshots">
+    <figure class="moment" data-moment style="--rot: -5deg; --obj-pos: center 12%;">
+      <img src="/src/assets/img/img-6787-640.jpg" alt="Tabitha in golden light among palm leaves" loading="lazy" decoding="async" />
+      <figcaption>golden hour</figcaption>
+    </figure>
+    <figure class="moment" data-moment style="--rot: 4deg; --obj-pos: center 30%; margin-top: 26px;">
+      <img src="/src/assets/img/c-002406-01-026-projectjoy-july-taconight-still-air-fryer-iphone-01-640.jpg" alt="Tabitha with her air fryer" loading="lazy" decoding="async" />
+      <figcaption>taco night, baby</figcaption>
+    </figure>
+    <figure class="moment" data-moment style="--rot: -3deg; --obj-pos: center 10%;">
+      <img src="/src/assets/img/tab-today7400341-24-640.jpg" alt="Tabitha in black tulle with afro puffs" loading="lazy" decoding="async" />
+      <figcaption>the glow</figcaption>
+    </figure>
+  </div>
+
+  <svg class="pathseg" data-pathseg viewBox="0 0 420 150" aria-hidden="true"><path d="M240 6 C 120 42, 90 84, 190 112 C 246 127, 236 138, 214 146" /></svg>
+
+  <!-- ============ STOP 4: THE BOOK NOOK ============ -->
+  <section class="station station--books station--left" id="books" aria-label="Books">
+    <p class="sidenote" aria-hidden="true">feed your soul</p>
+    <div class="station__inner">
+      <p class="maplabel">the book nook</p>
+      <figure class="polaroid" style="--rot: -6deg; left: -16px; top: 44px; --obj-pos: center 18%;">
+        <img src="/src/assets/img/profile-photo-3d-book-2-640.jpg" alt="Tabitha with her book" loading="lazy" decoding="async" />
+        <figcaption>signed with love</figcaption>
+      </figure>
+      <div class="card" style="--tilt: 0.9deg;">
+        <span class="tape tape--tr" aria-hidden="true"></span>
+        <div class="card__media" style="--obj-pos: center 24%; --media-ar: 4 / 3.8;">
+          <picture>
+            <source type="image/avif" srcset="/src/assets/img/cookbook-feeding-soul-1280.avif" />
+            <img src="/src/assets/img/cookbook-feeding-soul-1280.jpg" alt="Tabitha holding her cookbook Feeding the Soul" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="card__body">
+          <p class="card__eyebrow">from her table to yours</p>
+          <h2 class="card__title">The Books</h2>
+          <p class="card__copy">Two cookbooks, a children's book, and a memoir. Recipes for plates and for living.</p>
+          <a class="cta" href="https://www.harpercollins.com/pages/tabithabrownbooks-all" target="_blank" rel="noopener" data-confetti>
+            Browse the books
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="pathseg" data-pathseg viewBox="0 0 420 150" aria-hidden="true"><path d="M186 6 C 306 40, 336 82, 246 110 C 190 128, 196 138, 212 146" /></svg>
+
+  <!-- ============ STOP 5: THE TV DEN ============ -->
+  <section class="station station--tabtime station--right" id="tabtime" aria-label="Tab Time">
+    <p class="sidenote" aria-hidden="true">lunchtime, baby!</p>
+    <div class="station__inner">
+      <p class="maplabel">the tv den</p>
+      <div class="card" style="--tilt: -0.6deg;">
+        <span class="tape tape--tl" aria-hidden="true"></span>
+        <div class="tv" data-tv>
+          <div class="tv__screen">
+            <img src="/src/assets/img/tab-time-banner-1280.jpg" alt="Tab Time, Tabitha with the show's puppet friends" loading="lazy" decoding="async" />
+            <div class="tv__static" aria-hidden="true"></div>
+            <span class="tv__standby" aria-hidden="true"></span>
+          </div>
+          <button type="button" class="tv__knob" data-tv-knob aria-label="Turn the TV on or off" aria-pressed="false"></button>
+          <span class="tv__knob tv__knob2" aria-hidden="true"></span>
+        </div>
+        <div class="tv__legs" aria-hidden="true"><i style="--lr: -14deg;"></i><i></i></div>
+        <div class="card__body">
+          <p class="card__eyebrow">for the little folks</p>
+          <h2 class="card__title">Tab Time</h2>
+          <p class="card__copy">Lunchtime, baby! The show where kids learn kindness, manners, and how to be themselves. Out loud and on purpose.</p>
+          <a class="cta" href="https://www.youtube.com/@iamtabithabrown" target="_blank" rel="noopener" data-confetti>
+            Watch on YouTube
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="pathseg" data-pathseg viewBox="0 0 420 150" aria-hidden="true"><path d="M254 6 C 134 42, 104 84, 194 112 C 250 127, 240 138, 218 146" /></svg>
+
+  <!-- ============ STOP 6: THE STUDIO ============ -->
+  <section class="station station--podcast station--left" id="studio" aria-label="Tab and Chance podcast">
+    <p class="sidenote" aria-hidden="true">love, out loud</p>
+    <div class="station__inner">
+      <p class="maplabel">the studio</p>
+      <span class="onair">On Air</span>
+      <figure class="polaroid" style="--rot: 7deg; right: -14px; top: 190px; --obj-pos: center 14%;">
+        <img src="/src/assets/img/img-0700-640.jpg" alt="Tabitha and Chance in a warm embrace" loading="lazy" decoding="async" />
+        <figcaption>date night</figcaption>
+      </figure>
+      <div class="card" style="--tilt: 0.5deg;">
+        <div class="card__media" style="--obj-pos: center 12%; --media-ar: 4 / 3.9;">
+          <picture>
+            <source type="image/avif" srcset="/src/assets/img/tab-chance-couple-1280.avif" />
+            <img src="/src/assets/img/tab-chance-couple-1280.jpg" alt="Tabitha and her husband Chance Brown" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="card__body">
+          <p class="card__eyebrow">the podcast <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></p>
+          <h2 class="card__title">Tab + Chance</h2>
+          <p class="card__copy">Marriage in real time with her husband Chance. The laughs, the truth, and the work that keeps it whole.</p>
+          <a class="cta" href="https://tabandchance.com" target="_blank" rel="noopener" data-confetti>
+            Listen to the podcast
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="pathseg" data-pathseg viewBox="0 0 420 150" aria-hidden="true"><path d="M192 6 C 312 40, 342 82, 252 110 C 196 128, 202 138, 216 146" /></svg>
+
+  <!-- ============ STOP 7: THE STAGE ============ -->
+  <section class="station station--stage station--right" id="stage" aria-label="Events and booking">
+    <p class="sidenote" aria-hidden="true">that's my business</p>
+    <div class="station__inner">
+      <p class="maplabel">the stage</p>
+      <figure class="polaroid" style="--rot: -6deg; left: -16px; top: 200px; --obj-pos: center 16%;">
+        <img src="/src/assets/img/tour-purple-leather-640.jpg" alt="Tabitha on a talk show set in purple leather" loading="lazy" decoding="async" />
+        <figcaption>press day</figcaption>
+      </figure>
+      <div class="card" style="--tilt: 0.6deg;">
+        <div class="stagelights" aria-hidden="true">
+          <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i>
+        </div>
+        <div class="card__media" style="--obj-pos: center 50%; --media-ar: 4 / 3.4;">
+          <picture>
+            <source type="image/avif" srcset="/src/assets/img/booking-stage-crowd-1280.avif" />
+            <img src="/src/assets/img/booking-stage-crowd-1280.jpg" alt="Tabitha on stage in her smiley suit, crowd cheering" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="card__body">
+          <p class="card__eyebrow">book Tabitha</p>
+          <h2 class="card__title">On Stage, On Demand</h2>
+          <p class="card__copy">Speaking, storytelling, and stand-up that feels like Sunday dinner with the people who raised you right.</p>
+          <p style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
+            <button type="button" class="cta" data-open-booking>
+              Start an inquiry
+              <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="textlink" data-press>press inquiries</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="pathseg" data-pathseg viewBox="0 0 420 150" aria-hidden="true"><path d="M248 6 C 128 42, 98 84, 188 112 C 244 127, 234 138, 212 146" /></svg>
+
+  <!-- ============ STOP 8: THE MAILBOX ============ -->
+  <section class="station station--mail" id="mail" aria-label="Newsletter and socials">
+    <div class="station__inner">
+      <p class="maplabel">last stop: the mailbox</p>
+      <span class="mailflag" aria-hidden="true">
+        <svg width="34" height="44" viewBox="0 0 34 44" fill="none"><line x1="5" y1="44" x2="5" y2="6" stroke="#1F0D38" stroke-width="4" stroke-linecap="round"/><path d="M7 6 h22 l-6 8 6 8 H7 Z" fill="#E91A5F" stroke="#1F0D38" stroke-width="2.5" stroke-linejoin="round"/></svg>
+      </span>
+      <div class="card" style="--tilt: -0.4deg;">
+        <div class="card__body" style="padding-top: 8px;">
+          <p class="card__eyebrow">the newsletter</p>
+          <h2 class="card__title">Get the Good Word</h2>
+          <p class="card__copy">New drops, new dates, new joy. Straight to your inbox, no junk in between.</p>
+          <form class="mail__form" data-newsletter>
+            <input class="mail__email" type="email" name="email" placeholder="you@example.com" required aria-label="Email address" />
+            <button class="cta" type="submit" style="--accent: var(--c-podcast);">Subscribe</button>
+          </form>
+          <p class="mail__note" role="status" tabindex="-1">your mail draft is ready. hit send and you're on the list, honey!</p>
+          <div class="signpost">
+            <p>find her everywhere</p>
+            <div class="signpost__row">
+              <a href="https://facebook.com/iamtabithabrown" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.494v-9.294H9.691v-3.622h3.128V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.764v2.31h3.59l-.468 3.622h-3.122V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
+              </a>
+              <a href="https://instagram.com/iamtabithabrown" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.849.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.849.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </a>
+              <a href="https://tiktok.com/@iamtabithabrown" target="_blank" rel="noopener" aria-label="TikTok">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V9.01a8.16 8.16 0 0 0 4.77 1.52V7.09a4.85 4.85 0 0 1-1.84-.4z"/></svg>
+              </a>
+              <a href="https://www.youtube.com/@iamtabithabrown" target="_blank" rel="noopener" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+              <a href="https://snapchat.com/add/iamtabithabrown" target="_blank" rel="noopener" aria-label="Snapchat">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.479-.42.899-1.291 1.245-.09.029-.213.075-.345.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.989-3.146 1.284-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.27-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.69-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.078-.54.078-.374 0-.523-.224-.583-.42-.061-.192-.09-.39-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226a.798.798 0 01-.045-.225.514.514 0 01.42-.509c3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.211-.479-1.361-.991-1.301-1.262.09-.42.616-.704 1.005-.704.12 0 .224.029.314.074.42.196.793.3 1.118.3.42 0 .61-.18.633-.21-.008-.16-.017-.325-.028-.495v-.06c-.105-1.63-.225-3.654.298-4.847C7.844 1.082 11.197.807 12.187.807l.421-.015h.029z"/></svg>
+              </a>
+              <a href="https://patreon.com/iamtabithabrown" target="_blank" rel="noopener" aria-label="Patreon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="townsign__board">
+    <strong>Tab's World</strong>
+    <span>est. with love &middot; pop. everybody</span>
+  </div>
+  <div class="townsign__post" aria-hidden="true"></div>
+  <a class="cta cta--ghost footer__top" href="#top">Back to the porch</a>
+  <p class="footer__credit">&copy; 2026 Tabitha Brown &middot; Site by Taylormade Creative</p>
+</footer>
+
+<!-- ============ DOCK: one tap to any stop ============ -->
+<nav class="dock" aria-label="Jump to a stop">
+  <a class="chip" href="#porch"  style="--chip-c: var(--c-hero);" aria-current="true">Home</a>
+  <a class="chip" href="#mist"   style="--chip-c: var(--c-mist);">Body Mist <span class="newdot">new!</span></a>
+  <a class="chip" href="#garden" style="--chip-c: var(--c-donnas);">Hair</a>
+  <a class="chip" href="#closet" style="--chip-c: var(--c-merch);">Merch</a>
+  <a class="chip" href="#books"  style="--chip-c: var(--c-books);">Books</a>
+  <a class="chip" href="#tabtime" style="--chip-c: var(--c-tabtime);">Tab Time</a>
+  <a class="chip" href="#studio" style="--chip-c: var(--c-podcast);">Podcast</a>
+  <a class="chip" href="#stage"  style="--chip-c: var(--c-tour);">Book Her</a>
+  <a class="chip" href="#mail"   style="--chip-c: var(--c-podcast);">Updates</a>
+</nav>
+
+<p class="sr-only" data-aria-live aria-live="polite" aria-atomic="true"></p>
+
+<!-- ============ "WHAT'S NEW" DROP POP-UP ============ -->
+<!-- Shows on EVERY visit right after the intro. ?drop forces it instantly.   -->
+<!-- TO FEATURE A FUTURE DROP: swap the frame images below (LAST frame holds) -->
+<!-- and edit the eyebrow / title / body / CTA link.                          -->
+<dialog class="popup drop" data-popup aria-labelledby="popupTitle">
+  <button type="button" class="popup__close" data-popup-close aria-label="Close">
+    <svg viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <div class="drop__media" aria-hidden="true">
+    <div class="drop__frame drop__frame--1" style="--obj-pos: center 20%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/mist-hello-there-640.avif 640w, /src/assets/img/mist-hello-there-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
+        <img src="/src/assets/img/mist-hello-there-1280.jpg" alt="" decoding="async" />
+      </picture>
+    </div>
+    <div class="drop__frame drop__frame--2" style="--obj-pos: center 30%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/mist-stay-focused-640.avif 640w, /src/assets/img/mist-stay-focused-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
+        <img src="/src/assets/img/mist-stay-focused-1280.jpg" alt="" decoding="async" />
+      </picture>
+    </div>
+    <div class="drop__frame drop__frame--3" style="--obj-pos: center 26%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/mist-spread-love-640.avif 640w, /src/assets/img/mist-spread-love-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
+        <img src="/src/assets/img/mist-spread-love-1280.jpg" alt="Tabitha Brown, Spread Love body mist" decoding="async" />
+      </picture>
+    </div>
+  </div>
+  <div class="drop__scrim" aria-hidden="true"></div>
+  <div class="drop__content">
+    <p class="popup__eyebrow">just arrived!</p>
+    <h2 class="popup__title" id="popupTitle">The Body Mist has landed.</h2>
+    <p class="popup__body">Three scents, one spirit: Spread Love, Hello There, and Stay Focused. Tabitha Brown Body Mist is here.</p>
+    <div class="popup__row">
+      <!-- TODO: swap to the exact mist collection/product URL once it's live in Shopify. -->
+      <a class="cta cta--ghost" data-popup-close href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener">
+        Shop the drop
+        <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button type="button" class="popup__stroll" data-popup-mist>or stroll to the mist bar</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- ============ INQUIRY DIALOG ============ -->
+<dialog class="dialog" data-booking-dialog aria-labelledby="bookingTitle">
+  <div class="dialog__panel">
+    <header class="dialog__header">
+      <h2 class="dialog__title" id="bookingTitle">Send an <em>inquiry.</em></h2>
+      <button type="button" class="dialog__close" data-dialog-close aria-label="Close inquiries form">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+    <p class="dialog__intro">Events, brand partnerships, press, and everything in between. Tell us about the moment, we'll be in touch.</p>
+    <aside class="dialog__wholesale" aria-label="Wholesale inquiries">
+      <p>For <strong>Tab + Chance</strong> wholesale inquiries, <a href="mailto:wholesale@tabandchance.com">click here</a>.</p>
+      <p>For <strong>Donna's Recipe</strong> wholesale inquiries, <a href="mailto:wholesale@donnasrecipe.com">click here</a>.</p>
+    </aside>
+    <form class="dialog__form" data-booking-form>
+      <div class="dialog__row">
+        <div class="dialog__field">
+          <label class="dialog__label" for="bk_name">Your name</label>
+          <input class="dialog__input" id="bk_name" name="name" type="text" required autocomplete="name" />
+        </div>
+        <div class="dialog__field">
+          <label class="dialog__label" for="bk_org">Organization</label>
+          <input class="dialog__input" id="bk_org" name="org" type="text" autocomplete="organization" />
+        </div>
+      </div>
+      <div class="dialog__row">
+        <div class="dialog__field">
+          <label class="dialog__label" for="bk_type">Inquiry type</label>
+          <select class="dialog__select" id="bk_type" name="event_type">
+            <option>Events</option>
+            <option>Brand Partnerships</option>
+            <option>Press</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="dialog__field">
+          <label class="dialog__label" for="bk_when">Target month</label>
+          <input class="dialog__input" id="bk_when" name="event_date" type="month" />
+        </div>
+      </div>
+      <div class="dialog__field">
+        <label class="dialog__label" for="bk_msg">Tell us about it</label>
+        <textarea class="dialog__textarea" id="bk_msg" name="message" rows="4" placeholder="Audience, venue, format, anything we should know."></textarea>
+      </div>
+      <button type="submit" class="cta dialog__submit" style="--accent: var(--ink);">
+        Send inquiry
+        <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+    <div class="dialog__success" role="status">
+      <strong>Your mail draft is ready.</strong> We opened your email app with everything filled in. Hit send and we'll be in touch soon.
+    </div>
+  </div>
+</dialog>
+
+<script>
+(() => {
+  'use strict';
+
+  const $  = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+  const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- intro: rapid-fire, then wipe up + confetti ---------- */
+  const intro = $('#intro');
+  const INTRO_MS = REDUCED ? 600 : 3150;
+  setTimeout(() => {
+    intro.classList.add('intro--out');
+    if (!REDUCED) {
+      burst(innerWidth / 2, innerHeight * 0.42, 22);
+      setTimeout(() => burst(innerWidth / 2, innerHeight * 0.3, 14), 160);
+    }
+    setTimeout(() => intro.remove(), 950);
+  }, INTRO_MS);
+
+  /* ---------- greeting by time of day ---------- */
+  const h = new Date().getHours();
+  $('[data-greeting]').textContent =
+    h < 5 ? 'Up late, sugar?' :
+    h < 12 ? 'Good morning, honey.' :
+    h < 17 ? 'Good afternoon, love.' : 'Good evening, sugar.';
+
+  /* ---------- stations wake up as they arrive on screen ---------- */
+  const ariaLive = $('[data-aria-live]');
+  const stations = $$('.station');
+  const wakeIO = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('awake');
+        if (en.target.id === 'tabtime') {
+          setTimeout(() => { $('[data-tv]').classList.add('on'); syncTv(); }, REDUCED ? 0 : 650);
+        }
+      }
+    });
+  }, { threshold: 0.35 });
+  stations.forEach(s => wakeIO.observe(s));
+
+  /* hero counts as awake immediately */
+  /* dashes stroll only while their segment is on screen */
+  const strollIO = new IntersectionObserver(entries => {
+    entries.forEach(en => en.target.classList.toggle('walking', en.isIntersecting));
+  }, { threshold: 0.05 });
+  $$('[data-pathseg]').forEach(p => strollIO.observe(p));
+
+  /* ---------- active chip follows scroll ---------- */
+  const chips = $$('.chip');
+  const chipFor = id => chips.find(c => c.getAttribute('href') === '#' + id);
+  const sections = ['porch', ...stations.map(s => s.id)];
+  let currentId = null;
+  function refreshCurrent() {
+    const mid = innerHeight * 0.45;
+    let cur = 'porch';
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const r = el.getBoundingClientRect();
+      if (r.top > mid) break;
+      cur = id;
+    }
+    if (cur === currentId) return;
+    currentId = cur;
+    chips.forEach(c => c.removeAttribute('aria-current'));
+    const chip = chipFor(cur);
+    if (chip) {
+      chip.setAttribute('aria-current', 'true');
+      /* scroll the dock itself, never scrollIntoView: Chrome may decide the
+         page is the nearest scrollable ancestor and yank the scroll position */
+      const dock = chip.parentElement;
+      const target = chip.offsetLeft - (dock.clientWidth - chip.offsetWidth) / 2;
+      dock.scrollTo({ left: Math.max(0, target), behavior: REDUCED ? 'auto' : 'smooth' });
+    }
+    const el = document.getElementById(cur);
+    const label = el && el.getAttribute('aria-label');
+    if (ariaLive && label) ariaLive.textContent = label;
+  }
+  let scrollTick = false;
+  addEventListener('scroll', () => {
+    if (scrollTick) return;
+    scrollTick = true;
+    requestAnimationFrame(() => { scrollTick = false; refreshCurrent(); });
+  }, { passive: true });
+  refreshCurrent();
+
+  /* ---------- confetti ---------- */
+  const CONFETTI_COLORS = ['#E91A5F', '#F0530A', '#FFD60A', '#0E7A4E', '#1F4FE0', '#5B2F8F', '#F04FA0'];
+  function burst(x, y, n) {
+    if (REDUCED) return;
+    const count = n || 16;
+    for (let i = 0; i < count; i++) {
+      const c = document.createElement('span');
+      c.className = 'confetti';
+      c.style.left = x + 'px';
+      c.style.top = y + 'px';
+      c.style.background = CONFETTI_COLORS[i % CONFETTI_COLORS.length];
+      document.body.appendChild(c);
+      const ang = (Math.PI * 2 * i) / count + Math.random() * 0.5;
+      const dist = 60 + Math.random() * 100;
+      const dx = Math.cos(ang) * dist;
+      const dy = Math.sin(ang) * dist * 0.8 - 44;
+      const rot = (Math.random() - 0.5) * 540;
+      c.animate([
+        { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
+        { transform: 'translate(' + dx + 'px,' + dy + 'px) rotate(' + rot * 0.6 + 'deg)', opacity: 1, offset: 0.55 },
+        { transform: 'translate(' + dx * 1.2 + 'px,' + (dy + 140) + 'px) rotate(' + rot + 'deg)', opacity: 0 }
+      ], { duration: 850 + Math.random() * 350, easing: 'cubic-bezier(0.23, 1, 0.32, 1)', fill: 'forwards' })
+        .onfinish = () => c.remove();
+    }
+  }
+  $$('[data-confetti]').forEach(a => {
+    a.addEventListener('click', () => {
+      const r = a.getBoundingClientRect();
+      burst(r.left + r.width / 2, r.top + r.height / 2);
+    });
+  });
+
+  /* ---------- micro-interactions ---------- */
+  const tvKnob = $('[data-tv-knob]');
+  function syncTv() {
+    tvKnob.setAttribute('aria-pressed', String($('[data-tv]').classList.contains('on')));
+  }
+  tvKnob.addEventListener('click', () => { $('[data-tv]').classList.toggle('on'); syncTv(); });
+
+  /* tap hearts: a little love wherever you tap the open ground.
+     'click', not 'pointerdown': a scroll flick must not spawn hearts */
+  let lastHeart = 0;
+  document.addEventListener('click', e => {
+    if (REDUCED) return;
+    if (e.target.closest('a, button, input, select, textarea, dialog, .card, .moment, .polaroid, .dock, .topbar, .hero__portrait')) return;
+    const now = performance.now();
+    if (now - lastHeart < 150) return;
+    lastHeart = now;
+    const el = document.createElement('span');
+    el.className = 'tapheart';
+    el.style.left = (e.clientX - 11) + 'px';
+    el.style.top = (e.clientY - 11) + 'px';
+    el.style.color = CONFETTI_COLORS[Math.floor(Math.random() * 5)];
+    el.innerHTML = '<svg viewBox="0 0 24 22"><path d="M12 20 C4 14, 1 8, 4 4 C7 1, 11 3, 12 6 C13 3, 17 1, 20 4 C23 8, 20 14, 12 20 Z"/></svg>';
+    document.body.appendChild(el);
+    el.animate([
+      { transform: 'translate(0,0) scale(0.6)', opacity: 0.95 },
+      { transform: 'translate(' + ((Math.random() - 0.5) * 36) + 'px, -' + (46 + Math.random() * 30) + 'px) scale(1.15)', opacity: 0 }
+    ], { duration: 850, easing: 'cubic-bezier(0.23, 1, 0.32, 1)', fill: 'forwards' }).onfinish = () => el.remove();
+  });
+
+  const hanger = $('[data-hanger]');
+  hanger.addEventListener('click', e => {
+    if (e.target.closest('a, button')) return;
+    hanger.classList.remove('bigswing');
+    void hanger.offsetWidth;
+    hanger.classList.add('bigswing');
+  });
+
+  $$('.scent').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const station = btn.closest('.station--mist');
+      station.dataset.scent = btn.dataset.scent;
+      $$('.scent', station).forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    });
+  });
+
+  $$('[data-moment]').forEach(m => {
+    m.addEventListener('click', () => {
+      m.classList.remove('wobble');
+      void m.offsetWidth;
+      m.classList.add('wobble');
+    });
+  });
+
+  /* ---------- newsletter ---------- */
+  const newsletter = $('[data-newsletter]');
+  newsletter.addEventListener('submit', e => {
+    e.preventDefault();
+    const email = newsletter.querySelector('[name="email"]').value;
+    /* measure before the 'sent' class hides the form, or the rect is 0,0 */
+    const r = newsletter.getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top);
+    const mail = $('#mail');
+    mail.classList.add('sent');
+    const note = mail.querySelector('.mail__note');
+    if (note) note.focus();
+    location.href = 'mailto:hello@tabithabrown.com?subject=' + encodeURIComponent('Newsletter signup') +
+      '&body=' + encodeURIComponent('Please add this email to the Tabitha Brown newsletter: ' + email);
+  });
+
+  /* ---------- inquiry dialog ---------- */
+  const dialog = $('[data-booking-dialog]');
+  const bookingForm = $('[data-booking-form]');
+  function openDialog(pressPreset) {
+    /* reset on OPEN, not close: Escape and backdrop closes have no reliable
+       hook, so every entrance starts from a clean form instead */
+    dialog.classList.remove('is-sent');
+    bookingForm.reset();
+    if (pressPreset) {
+      const select = bookingForm.querySelector('select[name="event_type"]');
+      const press = Array.from(select.options).find(o => /press/i.test(o.textContent));
+      if (press) select.value = press.value || press.textContent;
+    }
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+  }
+  $$('[data-open-booking]').forEach(b => b.addEventListener('click', () => openDialog(false)));
+  $$('[data-press]').forEach(b => b.addEventListener('click', () => openDialog(true)));
+  $$('[data-dialog-close]').forEach(b => b.addEventListener('click', () => dialog.close()));
+  dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+  /* 'close' fires for every path (X, backdrop, Escape) so state never goes stale */
+  dialog.addEventListener('close', () => {
+    dialog.classList.remove('is-sent');
+    bookingForm.reset();
+  });
+  bookingForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = new FormData(bookingForm);
+    const subject = 'Inquiry: ' + (data.get('event_type') || 'general');
+    const lines = [
+      'Name: ' + (data.get('name') || ''),
+      'Organization: ' + (data.get('org') || '(none)'),
+      'Inquiry type: ' + (data.get('event_type') || ''),
+      'Target month: ' + (data.get('event_date') || '(TBD)'),
+      '',
+      (data.get('message') || '')
+    ];
+    location.href = 'mailto:inquiries@tabithabrown.com?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(lines.join('\n'));
+    dialog.classList.add('is-sent');
+  });
+
+  /* ---------- "what's new" drop pop-up ---------- */
+  /* Fires on EVERY visit/reload right after the intro (per Stephen); ?drop
+     forces it immediately. To throttle to once-per-session later, guard
+     openPopup on a sessionStorage flag. */
+  const popup = $('[data-popup]');
+  function openPopup() {
+    if (typeof popup.showModal === 'function') popup.showModal();
+    else popup.setAttribute('open', '');
+  }
+  function closePopup() {
+    if (typeof popup.close === 'function') popup.close();
+    else popup.removeAttribute('open');
+  }
+  const forceDrop = /(?:[?&]|#)drop\b/.test(location.search + location.hash);
+  setTimeout(openPopup, forceDrop ? 600 : INTRO_MS + 1200);
+  $$('[data-popup-close]').forEach(b => b.addEventListener('click', closePopup));
+  popup.addEventListener('click', e => { if (e.target === popup) closePopup(); });
+  $('[data-popup-mist]').addEventListener('click', () => {
+    closePopup();
+    document.getElementById('mist').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'center' });
+  });
+})();
+</script>
+
+</body>
+</html>
