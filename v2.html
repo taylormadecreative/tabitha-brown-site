@@ -98,7 +98,7 @@
     position: fixed; inset: 0; z-index: 300; background: var(--bg);
     display: grid; place-items: center;
     pointer-events: none;
-    animation: introOut 0.45s var(--ease-out) 3.4s forwards;
+    animation: introOut 0.45s var(--ease-out) 2.4s forwards;
     overflow: hidden;
   }
   @keyframes introOut { to { opacity: 0; visibility: hidden; } }
@@ -118,16 +118,6 @@
   .intro__photo:nth-child(3) { animation-delay: 0.44s; }
   .intro__photo:nth-child(4) { animation-delay: 0.66s; }
   .intro__photo:nth-child(5) { animation-delay: 0.88s; }
-  /* New mist shots continue the rapid-fire; the last one lingers a beat longer. */
-  .intro__photo:nth-child(6) { animation-delay: 1.12s; }
-  .intro__photo:nth-child(7) { animation-delay: 1.36s; }
-  .intro__photo:nth-child(8) { animation-name: cyclePhotoHold; animation-delay: 1.62s; }
-  @keyframes cyclePhotoHold {
-    0%   { opacity: 0; transform: scale(1.05); }
-    26%  { opacity: 1; transform: scale(1); }
-    82%  { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(0.99); }
-  }
   @keyframes cyclePhoto {
     0%   { opacity: 0; transform: scale(1.03); }
     25%  { opacity: 1; transform: scale(1); }
@@ -146,7 +136,7 @@
     text-transform: none;
     text-shadow: 0 14px 50px rgba(31, 13, 56, 0.45);
     opacity: 0;
-    animation: wmIn 0.5s var(--ease-out) 2.55s forwards, wmOut 0.35s var(--ease-out) 3.3s forwards;
+    animation: wmIn 0.5s var(--ease-out) 1.55s forwards, wmOut 0.35s var(--ease-out) 2.3s forwards;
   }
   @keyframes wmIn { from { opacity: 0; transform: translateY(14px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
   @keyframes wmOut { to { opacity: 0; transform: translateY(-6px) scale(0.98); } }
@@ -156,7 +146,7 @@
     font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
     color: var(--ink); font-weight: 600;
     opacity: 0;
-    animation: subIn 0.4s var(--ease-out) 2.75s forwards, wmOut 0.3s var(--ease-out) 3.3s forwards;
+    animation: subIn 0.4s var(--ease-out) 1.8s forwards, wmOut 0.3s var(--ease-out) 2.3s forwards;
   }
   @keyframes subIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 0.78; transform: translateY(0); } }
 
@@ -696,12 +686,25 @@
   /* intro reveal). Reusable for ANY drop — edit the .popup.drop markup.     */
   .popup {
     border: none; padding: 0;
-    width: min(400px, 92vw); aspect-ratio: 4 / 5; max-height: 90vh;
+    /* Explicit width + height, NOT aspect-ratio: iOS Safari collapses a
+       top-layer <dialog>'s height when it's driven by aspect-ratio, which
+       left the card invisible (backdrop only) on iPhone. Fixed dimensions
+       render deterministically everywhere. */
+    width: min(500px, 92vw);
+    height: min(760px, 92vh);
     color: #fff; background: #111;
-    border-radius: 20px;
+    border-radius: 22px;
     box-shadow: 0 60px 120px -30px rgba(0, 0, 0, 0.6);
     margin: auto;
     overflow: hidden; position: relative;
+  }
+  /* Mobile: near full-screen so the drop fills the phone and can't be missed. */
+  @media (max-width: 720px) {
+    .popup {
+      width: 94vw;
+      height: 90dvh;
+      border-radius: 18px;
+    }
   }
   /* Animate the card in with a keyframe (fill: both), NOT a transition —
      iOS Safari won't run a transition off the dialog's display:none→open
@@ -737,23 +740,23 @@
   }
   .drop__content {
     position: absolute; left: 0; right: 0; bottom: 0;
-    padding: clamp(22px, 5vw, 34px);
+    padding: clamp(26px, 6vw, 42px);
     opacity: 0; transform: translateY(16px);
   }
   .popup[open] .drop__content { animation: dropContent 0.6s var(--ease-out) 1.25s forwards; }
   @keyframes dropContent { to { opacity: 1; transform: none; } }
 
   .popup__close {
-    position: absolute; top: 14px; right: 14px; z-index: 3;
-    width: 34px; height: 34px; border-radius: 50%;
-    background: rgba(0, 0, 0, 0.34); color: #fff;
+    position: absolute; top: 16px; right: 16px; z-index: 3;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(0, 0, 0, 0.42); color: #fff;
     display: inline-flex; align-items: center; justify-content: center;
     -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
     transition: background 200ms ease, transform 140ms var(--ease-out);
   }
   .popup__close:hover { background: rgba(0, 0, 0, 0.55); }
   .popup__close:active { transform: scale(0.92); }
-  .popup__close svg { width: 12px; height: 12px; }
+  .popup__close svg { width: 14px; height: 14px; }
   .popup__eyebrow {
     font-family: var(--font-display); font-weight: 600;
     font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
@@ -767,22 +770,22 @@
   }
   .popup__title {
     font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(27px, 5.4vw, 38px); line-height: 1.02;
+    font-size: clamp(31px, 6.4vw, 46px); line-height: 1.02;
     letter-spacing: -0.024em;
     color: #fff;
-    margin-bottom: 12px; text-wrap: balance;
+    margin-bottom: 14px; text-wrap: balance;
   }
   .popup__body {
-    font-size: 13.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.82);
-    margin-bottom: 22px; max-width: 34ch;
+    font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 24px; max-width: 34ch;
   }
   .popup__cta {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 13px 24px;
+    padding: 16px 30px;
     background: #fff; color: var(--ink);
     border-radius: 999px;
     font-family: var(--font-display); font-weight: 600;
-    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
     transition: gap 200ms var(--ease-out), background 200ms ease, color 200ms ease, transform 140ms var(--ease-out);
   }
   @media (hover: hover) and (pointer: fine) {
@@ -971,19 +974,6 @@
   <picture class="intro__photo" style="--obj-pos: center 45%;">
     <source type="image/avif" srcset="/src/assets/img/booking-stage-crowd-1280.avif" />
     <img src="/src/assets/img/booking-stage-crowd-1280.jpg" alt="" />
-  </picture>
-  <!-- New Body Mist shots — the last frames of the rapid-fire reveal -->
-  <picture class="intro__photo intro__photo--mist" style="--obj-pos: center 22%;">
-    <source type="image/avif" srcset="/src/assets/img/mist-hello-there-1280.avif" />
-    <img src="/src/assets/img/mist-hello-there-1280.jpg" alt="" />
-  </picture>
-  <picture class="intro__photo intro__photo--mist" style="--obj-pos: center 30%;">
-    <source type="image/avif" srcset="/src/assets/img/mist-stay-focused-1280.avif" />
-    <img src="/src/assets/img/mist-stay-focused-1280.jpg" alt="" />
-  </picture>
-  <picture class="intro__photo intro__photo--mist" style="--obj-pos: center 26%;">
-    <source type="image/avif" srcset="/src/assets/img/mist-spread-love-1280.avif" />
-    <img src="/src/assets/img/mist-spread-love-1280.jpg" alt="Tabitha Brown Body Mist" />
   </picture>
   <p class="intro__wordmark">Hello there.</p>
   <p class="intro__sub">Tabitha Brown &middot; The Empire</p>
@@ -1569,7 +1559,7 @@
       fill.style.animation = '';
       startTimer();
     }
-  }, 3900);
+  }, 2900);
 
   // --- Post-intro "What's New" drop pop-up — fires after the intro reveal, once per session.
   //     Markup + flash frames live in the .popup.drop dialog above (edit there
@@ -1590,7 +1580,7 @@
   // sessionStorage flag (e.g. if (!sessionStorage.getItem('tb-mist-drop')) { ...; set it }).
   const forceDrop = /(?:[?&]|#)drop\b/.test(location.search + location.hash);
   if (popup) {
-    setTimeout(openPopup, forceDrop ? 600 : 4200);
+    setTimeout(openPopup, forceDrop ? 600 : 3200);
   }
   document.querySelectorAll('[data-popup-close]').forEach(btn => {
     btn.addEventListener('click', closePopup);
