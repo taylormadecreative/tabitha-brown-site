@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Tabitha Brown · Press</title>
+<meta name="description" content="Tabitha Brown in the press — features, interviews, and headlines from Forbes, Essence, VegNews, Food Network, and more." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#FFD60A" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" />
+<style>
+  @font-face { font-family:'Inter Tight'; src:url('/src/assets/fonts/inter-tight.woff2') format('woff2-variations'); font-weight:100 900; font-display:swap; }
+  :root{
+    --bg:#FFD60A; --paper:#FFFDF2; --ink:#1F0D38; --ink-soft:#4A2A6B; --hero:#E91A5F;
+    --font-display:'Futura','Futura PT','Jost',system-ui,sans-serif;
+    --font-hand:'Caveat',cursive;
+    --font-body:'Inter Tight',system-ui,-apple-system,sans-serif;
+    --ease-out:cubic-bezier(0.23,1,0.32,1);
+    --gutter:clamp(18px,5vw,72px);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:3px solid var(--hero);outline-offset:3px;border-radius:4px;}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:80;opacity:0.5;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+  .bar{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:14px var(--gutter);}
+  .bar__mark{font-family:var(--font-display);font-weight:800;font-size:15px;letter-spacing:0.16em;text-transform:uppercase;background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:11px 18px;box-shadow:0 10px 26px -12px rgba(31,13,56,0.4);}
+  .back{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--bg);border:2px solid var(--ink);border-radius:999px;padding:11px 20px;font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;transition:transform 150ms var(--ease-out),background 180ms ease,color 180ms ease;}
+  .back:hover{background:var(--hero);color:#fff;}
+  .back:active{transform:scale(0.96);}
+  .back svg{width:15px;height:9px;}
+  .head{max-width:1080px;margin:0 auto;padding:clamp(100px,14vh,150px) var(--gutter) 0;}
+  .head__hand{font-family:var(--font-hand);font-weight:700;font-size:clamp(24px,3vw,36px);color:var(--hero);}
+  .head__title{font-family:var(--font-display);font-weight:800;font-size:clamp(52px,9vw,120px);line-height:0.92;letter-spacing:-0.02em;margin:2px 0 14px;}
+  .head__lead{font-size:clamp(16px,1.5vw,19px);color:var(--ink-soft);max-width:52ch;}
+  .list{max-width:1080px;margin:clamp(36px,6vh,60px) auto 0;padding:0 var(--gutter);display:grid;gap:16px;}
+  .item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(16px,3vw,34px);background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:clamp(20px,3vw,30px) clamp(20px,3.4vw,36px);box-shadow:0 18px 40px -26px rgba(31,13,56,0.45);transition:transform 160ms var(--ease-out),box-shadow 160ms var(--ease-out);}
+  .item:hover{transform:translateY(-3px);box-shadow:0 24px 46px -26px rgba(31,13,56,0.55);}
+  @media(max-width:720px){.item{grid-template-columns:1fr;gap:12px;}}
+  .item__outlet{font-family:var(--font-display);font-weight:800;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--hero);white-space:nowrap;align-self:start;padding-top:4px;}
+  .item__body h2{font-family:var(--font-display);font-weight:700;font-size:clamp(20px,2.4vw,27px);line-height:1.12;letter-spacing:-0.01em;margin-bottom:6px;}
+  .item__body p{font-size:15px;color:var(--ink-soft);max-width:60ch;}
+  .item__go{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;border:2px solid var(--ink);border-radius:999px;padding:12px 20px;white-space:nowrap;background:transparent;transition:background 180ms ease,color 180ms ease;}
+  .item:hover .item__go{background:var(--ink);color:var(--bg);}
+  .item__go svg{width:15px;height:8px;}
+  .note{max-width:1080px;margin:26px auto 0;padding:0 var(--gutter);font-size:13px;color:rgba(31,13,56,0.6);}
+  .foot{max-width:1080px;margin:clamp(48px,8vh,90px) auto 0;padding:0 var(--gutter) calc(48px + env(safe-area-inset-bottom,0px));text-align:center;}
+  .foot a.cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);border:2px solid var(--ink);border-radius:999px;padding:15px 30px;font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;box-shadow:0 6px 0 -2px var(--ink);transition:transform 150ms var(--ease-out),box-shadow 150ms var(--ease-out);}
+  .foot a.cta:hover{transform:translateY(-2px);box-shadow:0 8px 0 -2px var(--ink);}
+  .foot a.cta:active{transform:translateY(3px);box-shadow:0 2px 0 -2px var(--ink);}
+  .foot__credit{margin-top:22px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(31,13,56,0.7);}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.item:hover{transform:none;}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="bar__mark" href="v2.html">Tabitha&nbsp;Brown</a>
+  <a class="back" href="v2.html">
+    <svg viewBox="0 0 16 8" fill="none"><path d="M15 4H1M5 1L1 4l4 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to site
+  </a>
+</header>
+
+<section class="head">
+  <p class="head__hand">what they&rsquo;re saying</p>
+  <h1 class="head__title">Press.</h1>
+  <p class="head__lead">Features, interviews, and headlines on Tabitha&rsquo;s work across food, family, business, and joy.</p>
+</section>
+
+<main class="list">
+  <a class="item" href="https://www.forbes.com/sites/rachelwells/2026/05/14/tabitha-brown-isnt-worried-ai-influencers-will-replace-her-heres-why/" target="_blank" rel="noopener">
+    <span class="item__outlet">Forbes</span>
+    <span class="item__body">
+      <h2>Tabitha Brown Isn&rsquo;t Worried AI Influencers Will Replace Her</h2>
+      <p>On building an authentic, multi-platform brand and why real connection can&rsquo;t be manufactured: &ldquo;Can&rsquo;t nobody be Tab but me.&rdquo;</p>
+    </span>
+    <span class="item__go">Read the story <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  </a>
+
+  <a class="item" href="https://www.yahoo.com/news/tabitha-brown-now-emmy-winner-224758253.html" target="_blank" rel="noopener">
+    <span class="item__outlet">Entertainment</span>
+    <span class="item__body">
+      <h2>Tabitha Brown Wins Her First Emmy for &lsquo;Tab Time&rsquo;</h2>
+      <p>Her joyful children&rsquo;s series earns the Children&rsquo;s &amp; Family Emmy for Outstanding Host, capping a run from viral kitchen videos to household name.</p>
+    </span>
+    <span class="item__go">Read the story <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  </a>
+
+  <a class="item" href="https://www.essence.com/lifestyle/tabitha-brown-nominated-two-emmys/" target="_blank" rel="noopener">
+    <span class="item__outlet">Essence</span>
+    <span class="item__body">
+      <h2>Tabitha Brown&rsquo;s Reaction to Her Emmy Nominations Is Unmatched</h2>
+      <p>The moment the recognition landed for &lsquo;Tab Time&rsquo; and the pure joy that followed.</p>
+    </span>
+    <span class="item__go">Read the story <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  </a>
+
+  <a class="item" href="https://vegnews.com/tabitha-brown-interview-vegan" target="_blank" rel="noopener">
+    <span class="item__outlet">VegNews</span>
+    <span class="item__body">
+      <h2>Why Tabitha Brown Never Loses Sight of Faith, Family, or Why She&rsquo;s Vegan</h2>
+      <p>A candid conversation on the plant-based journey that started with her health and grew into a movement.</p>
+    </span>
+    <span class="item__go">Read the story <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  </a>
+
+  <a class="item" href="https://www.foodnetwork.com/profiles/talent/tabitha-brown" target="_blank" rel="noopener">
+    <span class="item__outlet">Food Network</span>
+    <span class="item__body">
+      <h2>Tabitha Brown, Host of &lsquo;It&rsquo;s CompliPlated&rsquo;</h2>
+      <p>Leading Food Network&rsquo;s first plant-based cooking competition, bringing sunshine and Southern flavor to the kitchen.</p>
+    </span>
+    <span class="item__go">Read the story <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  </a>
+
+  <a class="item" href="https://en.wikipedia.org/wiki/Tabitha_Brown_(actress)" target="_blank" rel="noopener">
+    <span class="item__outlet">Overview</span>
+    <span class="item__body">
+      <h2>Tabitha Brown: Actress, Host, Author, Entrepreneur</h2>
+      <p>The full picture, from three-time New York Times bestsellers to an honorary doctorate and multiple NAACP Image Awards.</p>
+    </span>
+    <span class="item__go">Read the story <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  </a>
+</main>
+
+<p class="note">Working on a story or press request? Head back to the site and open <a href="v2.html" style="text-decoration:underline;text-underline-offset:2px;">Inquiries</a>.</p>
+
+<footer class="foot">
+  <a class="cta" href="v2.html">
+    Back to Tabitha&rsquo;s world
+    <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <p class="foot__credit">&copy; 2026 Tabitha Brown &middot; Site by Taylormade Creative</p>
+</footer>
+</body>
+</html>

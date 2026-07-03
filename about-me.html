@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Tabitha Brown · About Me</title>
+<meta name="description" content="Meet Tabitha Brown — actress, Emmy-winning host, New York Times bestselling author, and the founder of a whole world of joy." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#FFD60A" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" />
+<style>
+  @font-face { font-family:'Inter Tight'; src:url('/src/assets/fonts/inter-tight.woff2') format('woff2-variations'); font-weight:100 900; font-display:swap; }
+  :root{
+    --bg:#FFD60A; --paper:#FFFDF2; --ink:#1F0D38; --ink-soft:#4A2A6B; --hero:#E91A5F;
+    --font-display:'Futura','Futura PT','Jost',system-ui,sans-serif;
+    --font-hand:'Caveat',cursive;
+    --font-body:'Inter Tight',system-ui,-apple-system,sans-serif;
+    --ease-out:cubic-bezier(0.23,1,0.32,1);
+    --gutter:clamp(18px,5vw,72px);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  img,picture{display:block;max-width:100%;}
+  :focus-visible{outline:3px solid var(--hero);outline-offset:3px;border-radius:4px;}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:80;opacity:0.5;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+  /* top bar */
+  .bar{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:14px var(--gutter);}
+  .bar__mark{font-family:var(--font-display);font-weight:800;font-size:15px;letter-spacing:0.16em;text-transform:uppercase;background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:11px 18px;box-shadow:0 10px 26px -12px rgba(31,13,56,0.4);transition:transform 150ms var(--ease-out);}
+  .bar__mark:active{transform:scale(0.96);}
+  .back{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--bg);border:2px solid var(--ink);border-radius:999px;padding:11px 20px;font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;box-shadow:0 10px 26px -12px rgba(31,13,56,0.4);transition:transform 150ms var(--ease-out),background 180ms ease,color 180ms ease;}
+  .back:hover{background:var(--hero);color:#fff;}
+  .back:active{transform:scale(0.96);}
+  .back svg{width:15px;height:9px;}
+  /* hero */
+  .hero{max-width:1200px;margin:0 auto;padding:clamp(96px,14vh,150px) var(--gutter) 0;display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(28px,5vw,68px);align-items:center;}
+  @media(max-width:860px){.hero{grid-template-columns:1fr;}}
+  .hero__hand{font-family:var(--font-hand);font-weight:700;font-size:clamp(26px,3.4vw,40px);color:var(--hero);}
+  .hero__title{font-family:var(--font-display);font-weight:800;font-size:clamp(52px,8vw,110px);line-height:0.94;letter-spacing:-0.02em;margin:2px 0 18px;}
+  .hero__lead{font-size:clamp(17px,1.5vw,20px);color:var(--ink-soft);max-width:46ch;}
+  .hero__frame{position:relative;border:2px solid var(--ink);border-radius:220px 220px 22px 22px;overflow:hidden;background:#F5C400;box-shadow:0 26px 60px -30px rgba(31,13,56,0.5);aspect-ratio:4/5;max-height:70svh;margin:0 auto;}
+  .hero__frame img{width:100%;height:100%;object-fit:cover;object-position:center 22%;}
+  .hero__frame::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 8px var(--paper),inset 0 0 0 10px var(--ink);pointer-events:none;}
+  /* story */
+  .story{max-width:760px;margin:clamp(48px,8vh,96px) auto 0;padding:0 var(--gutter);}
+  .story h2{font-family:var(--font-display);font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-0.01em;line-height:1.02;margin:clamp(30px,5vh,54px) 0 14px;}
+  .story h2:first-child{margin-top:0;}
+  .story p{margin-bottom:18px;color:var(--ink);font-size:18px;}
+  .story p:first-of-type::first-letter{font-family:var(--font-display);font-weight:800;font-size:3.4em;float:left;line-height:0.8;padding:6px 12px 0 0;color:var(--hero);}
+  .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 6px;}
+  .pill{border:2px solid var(--ink);border-radius:999px;padding:9px 16px;font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;background:var(--paper);}
+  /* explore */
+  .explore{max-width:1100px;margin:clamp(56px,9vh,110px) auto 0;padding:0 var(--gutter);}
+  .explore h3{font-family:var(--font-hand);font-weight:700;font-size:clamp(26px,3vw,36px);color:var(--ink-soft);margin-bottom:16px;text-align:center;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+  .card{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--paper);border:2px solid var(--ink);border-radius:16px;padding:18px 20px;font-family:var(--font-display);font-weight:700;font-size:17px;box-shadow:0 16px 34px -22px rgba(31,13,56,0.4);transition:transform 160ms var(--ease-out),box-shadow 160ms var(--ease-out);}
+  .card:hover{transform:translateY(-3px);box-shadow:0 20px 40px -22px rgba(31,13,56,0.5);}
+  .card svg{width:18px;height:10px;flex:none;stroke:var(--hero);}
+  /* footer */
+  .foot{max-width:1100px;margin:clamp(56px,9vh,110px) auto 0;padding:0 var(--gutter) calc(48px + env(safe-area-inset-bottom,0px));text-align:center;}
+  .foot a.cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);border:2px solid var(--ink);border-radius:999px;padding:15px 30px;font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;box-shadow:0 6px 0 -2px var(--ink);transition:transform 150ms var(--ease-out),box-shadow 150ms var(--ease-out);}
+  .foot a.cta:hover{transform:translateY(-2px);box-shadow:0 8px 0 -2px var(--ink);}
+  .foot a.cta:active{transform:translateY(3px);box-shadow:0 2px 0 -2px var(--ink);}
+  .foot__credit{margin-top:22px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(31,13,56,0.7);}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="bar__mark" href="v2.html">Tabitha&nbsp;Brown</a>
+  <a class="back" href="v2.html">
+    <svg viewBox="0 0 16 8" fill="none"><path d="M15 4H1M5 1L1 4l4 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to site
+  </a>
+</header>
+
+<section class="hero">
+  <div>
+    <p class="hero__hand">Hey there, honey,</p>
+    <h1 class="hero__title">About Me.</h1>
+    <p class="hero__lead">Actress. Host. Author. Mama. Wife. And a whole lot of joy in one place. Here&rsquo;s a little of my story.</p>
+  </div>
+  <div class="hero__frame">
+    <picture>
+      <source type="image/avif" srcset="/src/assets/img/tab-today7400341-24-1280.avif" />
+      <img src="/src/assets/img/tab-today7400341-24-1280.jpg" alt="Tabitha Brown" fetchpriority="high" />
+    </picture>
+  </div>
+</section>
+
+<article class="story">
+  <p>I&rsquo;m Tabitha Brown, and I believe the world is a better place when we lead with love. I got my start as an actress, but the world came to know me through short videos in my kitchen, cooking plant-based food and talking to folks like family. What began as a way to feel better in my own body turned into a calling: reminding people to be encouraged, to have a good day, and if they can&rsquo;t, to not go messing up nobody else&rsquo;s.</p>
+
+  <h2>The work</h2>
+  <p>I went vegan after years of chronic pain and fatigue, and finding my way back to feeling good changed everything. These days I get to do the things I love out loud: I&rsquo;m a three-time New York Times bestselling author, an Emmy-winning host, an actress, and a multiple NAACP Image Award winner. I even received an honorary doctorate along the way. Every bit of it comes from the same place: telling the truth and spreading a little sunshine.</p>
+
+  <div class="pillrow">
+    <span class="pill">Emmy-winning host</span>
+    <span class="pill">NYT bestselling author</span>
+    <span class="pill">Actress</span>
+    <span class="pill">Founder &amp; CEO</span>
+    <span class="pill">Vegan advocate</span>
+  </div>
+
+  <h2>The family</h2>
+  <p>None of it happens without my family. My husband Chance and I built a life and a brand on love, and we love bringing you along for the ride. Our children keep me grounded, and my faith keeps me going. Whether it&rsquo;s hair care, a children&rsquo;s show, a fragrance, or a brand new body mist, everything I make is really about the same thing: helping you feel seen, loved, and heard.</p>
+
+  <h2>The heart</h2>
+  <p>People ask how I keep so much going. The honest answer is that it&rsquo;s all one thing to me. It&rsquo;s all love. So look around, honey. Everything here is a door to something I made with my whole heart, and I&rsquo;m so glad you came to visit.</p>
+</article>
+
+<section class="explore">
+  <h3>go on and explore</h3>
+  <div class="cards">
+    <a class="card" href="https://donnasrecipe.com" target="_blank" rel="noopener">Donna&rsquo;s Recipe <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="card" href="https://tabandchance.com" target="_blank" rel="noopener">Tab + Chance <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="card" href="https://www.tabtime.tv/" target="_blank" rel="noopener">Tab Time <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="card" href="https://www.harpercollins.com/pages/tabithabrownbooks-all" target="_blank" rel="noopener">The Books <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer class="foot">
+  <a class="cta" href="v2.html">
+    Back to Tabitha&rsquo;s world
+    <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <p class="foot__credit">&copy; 2026 Tabitha Brown &middot; Site by Taylormade Creative</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Tabitha Brown · Tabitha Live</title>
+<meta name="description" content="Tabitha Live — tour dates and event info coming soon. Be the first to know." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#0F8C8C" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" />
+<style>
+  @font-face { font-family:'Inter Tight'; src:url('/src/assets/fonts/inter-tight.woff2') format('woff2-variations'); font-weight:100 900; font-display:swap; }
+  :root{
+    --ink:#1F0D38; --paper:#FFFDF2; --sun:#FFD60A; --teal:#0F8C8C; --hero:#E91A5F;
+    --font-display:'Futura','Futura PT','Jost',system-ui,sans-serif;
+    --font-hand:'Caveat',cursive;
+    --font-body:'Inter Tight',system-ui,-apple-system,sans-serif;
+    --ease-out:cubic-bezier(0.23,1,0.32,1);
+    --gutter:clamp(18px,5vw,64px);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{min-height:100svh;color:var(--paper);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;background:#0c2a2a;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;}
+  button{font:inherit;cursor:pointer;}
+  :focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:4px;}
+  /* full-bleed stage image + wash */
+  .bg{position:fixed;inset:0;z-index:-2;}
+  .bg img{width:100%;height:100%;object-fit:cover;object-position:center 45%;}
+  .bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,26,42,0.72),rgba(15,20,40,0.86));}
+  .grain{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:0.5;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+  .bar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:14px var(--gutter);}
+  .bar__mark{font-family:var(--font-display);font-weight:800;font-size:15px;letter-spacing:0.16em;text-transform:uppercase;background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:11px 18px;}
+  .back{display:inline-flex;align-items:center;gap:8px;background:rgba(255,253,242,0.14);color:var(--paper);border:1px solid rgba(255,253,242,0.5);border-radius:999px;padding:11px 20px;font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background 180ms ease,transform 150ms var(--ease-out);}
+  .back:hover{background:rgba(255,253,242,0.24);}
+  .back:active{transform:scale(0.96);}
+  .back svg{width:15px;height:9px;}
+  .wrap{min-height:100svh;display:grid;place-items:center;text-align:center;padding:120px var(--gutter) 80px;}
+  .inner{max-width:640px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:18px;}
+  .eyebrow::before,.eyebrow::after{content:'';width:26px;height:2px;background:var(--sun);}
+  .title{font-family:var(--font-display);font-weight:800;font-size:clamp(52px,10vw,124px);line-height:0.92;letter-spacing:-0.02em;text-shadow:0 10px 40px rgba(0,0,0,0.4);}
+  .title em{font-style:normal;color:var(--sun);}
+  .soon{font-family:var(--font-hand);font-weight:700;font-size:clamp(28px,4vw,46px);color:var(--sun);margin:6px 0 14px;}
+  .lead{font-size:clamp(16px,1.5vw,19px);color:rgba(255,253,242,0.88);max-width:44ch;margin:0 auto 30px;}
+  form{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:460px;margin:0 auto;}
+  .email{flex:1 1 220px;min-width:0;font-family:var(--font-body);font-size:16px;color:var(--ink);background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:14px 20px;}
+  .email:focus{outline:none;box-shadow:0 0 0 3px rgba(255,214,10,0.6);}
+  .go{display:inline-flex;align-items:center;gap:9px;background:var(--sun);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:14px 26px;font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;transition:transform 150ms var(--ease-out),background 180ms ease;}
+  .go:hover{background:#fff;}
+  .go:active{transform:scale(0.97);}
+  .note{display:none;margin-top:18px;font-family:var(--font-hand);font-weight:700;font-size:22px;color:var(--sun);}
+  body.sent form{display:none;}
+  body.sent .note{display:block;}
+  .booking{margin-top:26px;font-size:14px;color:rgba(255,253,242,0.82);}
+  .booking a{color:var(--sun);font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+</style>
+</head>
+<body>
+<div class="bg">
+  <picture>
+    <source type="image/avif" srcset="/src/assets/img/booking-stage-crowd-1280.avif 1280w, /src/assets/img/booking-stage-crowd-1920.avif 1920w" sizes="100vw" />
+    <img src="/src/assets/img/booking-stage-crowd-1280.jpg" alt="" />
+  </picture>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="bar">
+  <a class="bar__mark" href="v2.html">Tabitha&nbsp;Brown</a>
+  <a class="back" href="v2.html">
+    <svg viewBox="0 0 16 8" fill="none"><path d="M15 4H1M5 1L1 4l4 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to site
+  </a>
+</header>
+
+<main class="wrap">
+  <div class="inner">
+    <p class="eyebrow">Tabitha Live</p>
+    <h1 class="title">On stage,<br><em>on demand.</em></h1>
+    <p class="soon">tour dates coming soon</p>
+    <p class="lead">Speaking, storytelling, and stand-up that feels like Sunday dinner with the people who raised you right. New dates are on the way. Drop your email and you&rsquo;ll be the first to know when tickets go live.</p>
+    <form data-notify>
+      <input class="email" type="email" name="email" placeholder="you@example.com" required aria-label="Email address" />
+      <button class="go" type="submit">Notify me
+        <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+    <p class="note">you&rsquo;re on the list, honey! we&rsquo;ll be in touch.</p>
+    <p class="booking">Booking Tabitha for a private event? <a href="v2.html#inquiries" data-inquiry>Send an inquiry</a>.</p>
+  </div>
+</main>
+
+<script>
+  (() => {
+    const f = document.querySelector('[data-notify]');
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = f.querySelector('[name="email"]').value;
+      document.body.classList.add('sent');
+      location.href = 'mailto:inquiries@tabithabrown.com?subject=' + encodeURIComponent('Notify me: Tabitha Live dates') +
+        '&body=' + encodeURIComponent('Please add this email to the Tabitha Live tour-date list: ' + email);
+    });
+  })();
+</script>
+</body>
+</html>

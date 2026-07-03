@@ -61,6 +61,8 @@
     --c-podcast: #1F4FE0;
     --c-books:   #C2305A;
     --c-tabtime: #5B2F8F;
+    --c-mist:    #E8468E;
+    --c-fragrance: #A9733B;
 
     --font-display: 'Futura', 'Futura PT', 'Jost', system-ui, -apple-system, sans-serif;
     --font-body: 'Inter Tight', system-ui, -apple-system, sans-serif;
@@ -274,9 +276,10 @@
     position: absolute; inset: 0;
     background: linear-gradient(180deg,
       rgba(31, 13, 56, 0.15) 0%,
-      rgba(31, 13, 56, 0) 35%,
-      rgba(31, 13, 56, 0) 50%,
-      rgba(31, 13, 56, 0.55) 100%);
+      rgba(31, 13, 56, 0) 32%,
+      rgba(31, 13, 56, 0) 44%,
+      rgba(31, 13, 56, 0.34) 72%,
+      rgba(31, 13, 56, 0.74) 100%);
     z-index: 1;
     pointer-events: none;
   }
@@ -316,13 +319,16 @@
     display: flex; align-items: flex-end; justify-content: space-between;
     gap: 32px; flex-wrap: wrap;
     pointer-events: none;
+    /* anchor headline + CTA to the bottom even when a slide has no eyebrow */
+    margin-top: auto;
   }
 
   .slide__overlay {
     font-family: var(--font-display);
     font-weight: 700;
     color: #fff;
-    text-shadow: 0 8px 36px rgba(31, 13, 56, 0.55);
+    /* tight dark shadow for crisp legibility on light photos + a soft glow */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55), 0 8px 36px rgba(31, 13, 56, 0.5);
     letter-spacing: -0.025em;
     line-height: 0.92;
     font-size: clamp(44px, 7.4vw, 124px);
@@ -369,12 +375,13 @@
 
   /* Slide accents */
   .slide[data-slide="0"] { --accent: var(--c-hero); }
-  .slide[data-slide="1"] { --accent: var(--c-donnas); }
-  .slide[data-slide="2"] { --accent: var(--c-merch); }
-  .slide[data-slide="3"] { --accent: var(--c-books); }
-  .slide[data-slide="4"] { --accent: var(--c-tabtime); }
-  .slide[data-slide="5"] { --accent: var(--c-podcast); }
-  .slide[data-slide="6"] { --accent: var(--c-tour); }
+  .slide[data-slide="1"] { --accent: var(--c-fragrance); }
+  .slide[data-slide="2"] { --accent: var(--c-mist); }
+  .slide[data-slide="3"] { --accent: var(--c-donnas); }
+  .slide[data-slide="4"] { --accent: var(--c-books); }
+  .slide[data-slide="5"] { --accent: var(--c-merch); }
+  .slide[data-slide="6"] { --accent: var(--c-tabtime); }
+  .slide[data-slide="7"] { --accent: var(--c-tour); }
 
 
   /* ============ DECK CONTROLS ============ */
@@ -463,6 +470,39 @@
   }
   .controls__playpause:active { transform: scale(0.97); }
   .controls__playpause svg { width: 14px; height: 14px; fill: currentColor; }
+
+  /* Dots are position indicators now (no autoplay) — active dot reads full. */
+  .controls__dot[data-active="true"] .controls__dot__fill { animation: none; transform: scaleX(1); }
+
+  /* ============ SIDE NAV ARROWS ============ */
+  .deck-arrow {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    z-index: 55;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    color: var(--ink);
+    border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 14px 34px -12px rgba(31, 13, 56, 0.45);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    transition: background 200ms ease, transform 160ms var(--ease-out), opacity 260ms var(--ease-out);
+  }
+  .deck-arrow--prev { left: clamp(10px, 2.2vw, 32px); }
+  .deck-arrow--next { right: clamp(10px, 2.2vw, 32px); }
+  .deck-arrow svg { width: 24px; height: 24px; }
+  @media (hover: hover) and (pointer: fine) {
+    .deck-arrow:hover { background: var(--bg); transform: translateY(-50%) scale(1.06); }
+  }
+  .deck-arrow:active { transform: translateY(-50%) scale(0.94); }
+  /* fade out with the controls when the user scrolls to the footer */
+  .controls.controls--hidden ~ .deck-arrow,
+  body:has(.controls--hidden) .deck-arrow { opacity: 0; pointer-events: none; }
+  @media (max-width: 720px) {
+    .deck-arrow { width: 46px; height: 46px; }
+    .deck-arrow svg { width: 20px; height: 20px; }
+    .deck-arrow--prev { left: 8px; }
+    .deck-arrow--next { right: 8px; }
+  }
 
   /* ============ NAV HINT ============ */
   .hint {
@@ -690,8 +730,8 @@
        top-layer <dialog>'s height when it's driven by aspect-ratio, which
        left the card invisible (backdrop only) on iPhone. Fixed dimensions
        render deterministically everywhere. */
-    width: min(500px, 92vw);
-    height: min(760px, 92vh);
+    width: min(760px, 50vw);
+    height: min(880px, 92vh);
     color: #fff; background: #111;
     border-radius: 22px;
     box-shadow: 0 60px 120px -30px rgba(0, 0, 0, 0.6);
@@ -988,14 +1028,15 @@
     <button type="button" class="topnav__menu-mobile">Menu</button>
   </div>
   <nav class="topnav__row topnav__row--cats" aria-label="Primary">
-    <a class="topnav__cat" href="#" data-jump="0">My Story</a>
-    <a class="topnav__cat" href="#" data-jump="5">Tab&nbsp;+&nbsp;Chance</a>
-    <a class="topnav__cat" href="#" data-jump="1">Donna&rsquo;s Recipe</a>
-    <a class="topnav__cat" href="#" data-jump="3">Books</a>
-    <a class="topnav__cat" href="#" data-jump="2">Clearance Merch</a>
-    <a class="topnav__cat" href="#" data-jump="4">Tab Time</a>
-    <a class="topnav__cat" href="#" data-jump="6">Events</a>
-    <a class="topnav__cat" href="#" data-press>Press</a>
+    <a class="topnav__cat" href="#" data-jump="0">About Me</a>
+    <a class="topnav__cat" href="#" data-jump="1">Tab&nbsp;+&nbsp;Chance</a>
+    <a class="topnav__cat" href="#" data-jump="2">Body Mist</a>
+    <a class="topnav__cat" href="#" data-jump="3">Donna&rsquo;s Recipe</a>
+    <a class="topnav__cat" href="#" data-jump="4">Books</a>
+    <a class="topnav__cat" href="#" data-jump="5">Clearance Merch</a>
+    <a class="topnav__cat" href="#" data-jump="6">Tab Time</a>
+    <a class="topnav__cat" href="#" data-jump="7">Events</a>
+    <a class="topnav__cat" href="press.html">Press</a>
     <button type="button" class="topnav__cat topnav__cat--cta" data-open-booking>Inquiries</button>
   </nav>
 </header>
@@ -1003,43 +1044,81 @@
 <!-- ============ STAGE ============ -->
 <section class="stage" id="stage" data-stage data-paused="false" aria-roledescription="carousel" aria-label="Tabitha Brown empire">
 
-  <!-- SLIDE 0 — HERO -->
-  <article class="slide" data-slide="0" data-active="true" role="group" aria-roledescription="slide" aria-label="1 of 7: My Story">
-    <div class="slide__media" style="--obj-pos: center 22%;">
+  <!-- SLIDE 0 — ABOUT ME -->
+  <article class="slide" data-slide="0" data-active="true" role="group" aria-roledescription="slide" aria-label="1 of 8: About Me">
+    <div class="slide__media" style="--obj-pos: center 20%;">
       <picture>
-        <source type="image/avif" srcset="/src/assets/img/hero-colorful-striped-1280.avif 1280w, /src/assets/img/hero-colorful-striped-1920.avif 1920w" sizes="100vw" />
-        <img src="/src/assets/img/hero-colorful-striped-1280.jpg" alt="Tabitha Brown" fetchpriority="high" />
+        <source type="image/avif" srcset="/src/assets/img/tab-today7400283-12-1280.avif" />
+        <img src="/src/assets/img/tab-today7400283-12-1280.jpg" alt="Tabitha Brown in a colorful striped sweater" fetchpriority="high" />
       </picture>
     </div>
     <div class="slide__content">
-      <p class="slide__eyebrow">Tabitha Brown &middot; 2026</p>
       <div class="slide__bottom">
         <p class="slide__overlay">Hello there.</p>
         <div class="slide__cta-wrap">
-          <p class="slide__caption">A vegan empire of food, family, hair, comedy, books, and joy. Held together by one woman who tells the truth.</p>
-          <button type="button" class="slide__cta" data-advance>
-            Walk the empire
+          <a class="slide__cta" href="about-me.html">
+            About me
             <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+          </a>
         </div>
       </div>
     </div>
   </article>
 
-  <!-- SLIDE 1 — DONNA'S RECIPE -->
-  <article class="slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 7: Donna's Recipe">
-    <div class="slide__media" style="--obj-pos: center 30%;">
+  <!-- SLIDE 1 — TAB + CHANCE (fragrance) -->
+  <article class="slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 8: Tab + Chance">
+    <div class="slide__media" style="--obj-pos: center 32%;">
       <picture>
-        <source type="image/avif" srcset="/src/assets/img/choyce-and-tabitha-fresh-1280.avif" />
-        <img src="/src/assets/img/choyce-and-tabitha-fresh-1280.jpg" alt="Donna's Recipe — Tabitha and her daughter Choyce" loading="lazy" />
+        <source type="image/avif" srcset="/src/assets/img/tab-chance-fragrance-1280.avif" />
+        <img src="/src/assets/img/tab-chance-fragrance-1280.jpg" alt="Tabitha and Chance Brown with the Tab + Chance fragrance" loading="lazy" />
       </picture>
     </div>
     <div class="slide__content">
-      <p class="slide__eyebrow">Donna&rsquo;s Recipe &middot; Hair</p>
       <div class="slide__bottom">
-        <p class="slide__overlay">For her hair.<br>And ours.</p>
+        <p class="slide__overlay">A Brand Built<br>on Love.</p>
         <div class="slide__cta-wrap">
-          <p class="slide__caption">Plant-based hair care, born in the kitchen, named for her mother.</p>
+          <a class="slide__cta" href="https://tabandchance.com" target="_blank" rel="noopener">
+            Shop now
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- SLIDE 2 — BODY MIST (new) -->
+  <article class="slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 8: Body Mist">
+    <div class="slide__media" style="--obj-pos: center 50%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/mist-composite-1280.avif" />
+        <img src="/src/assets/img/mist-composite-1280.jpg" alt="Tabitha Brown Body Mist — Spread Love, Hello There, Stay Focused" loading="lazy" />
+      </picture>
+    </div>
+    <div class="slide__content">
+      <div class="slide__bottom">
+        <p class="slide__overlay">The Body<br>Mist.</p>
+        <div class="slide__cta-wrap">
+          <a class="slide__cta" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener">
+            Shop the mist
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- SLIDE 3 — DONNA'S RECIPE -->
+  <article class="slide" data-slide="3" role="group" aria-roledescription="slide" aria-label="4 of 8: Donna's Recipe">
+    <div class="slide__media" style="--obj-pos: center 32%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/donnas-recipe-duo-1280.avif" />
+        <img src="/src/assets/img/donnas-recipe-duo-1280.jpg" alt="Donna's Recipe plant-based hair care" loading="lazy" />
+      </picture>
+    </div>
+    <div class="slide__content">
+      <div class="slide__bottom">
+        <p class="slide__overlay">Healthy. Happy.<br>Hair Care.</p>
+        <div class="slide__cta-wrap">
           <a class="slide__cta" href="https://donnasrecipe.com" target="_blank" rel="noopener">
             Shop Donna&rsquo;s Recipe
             <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1049,43 +1128,18 @@
     </div>
   </article>
 
-  <!-- SLIDE 2 — MERCH (Shopify) -->
-  <article class="slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 7: Clearance Merch">
-    <div class="slide__media" style="--obj-pos: center 30%;">
+  <!-- SLIDE 4 — BOOKS -->
+  <article class="slide" data-slide="4" role="group" aria-roledescription="slide" aria-label="5 of 8: Books">
+    <div class="slide__media" style="--obj-pos: center 45%;">
       <picture>
-        <source type="image/avif" srcset="/src/assets/img/merch-hoodie-1280.avif 1280w, /src/assets/img/merch-hoodie-1920.avif 1920w" sizes="100vw" />
-        <img src="/src/assets/img/merch-hoodie-1280.jpg" alt="Tabitha in a Have a Good Day hoodie — Tabitha Brown Shopify" loading="lazy" />
+        <source type="image/avif" srcset="/src/assets/img/books-collection-1280.avif" />
+        <img src="/src/assets/img/books-collection-1280.jpg" alt="Tabitha Brown's books" loading="lazy" />
       </picture>
     </div>
     <div class="slide__content">
-      <p class="slide__eyebrow">Tabitha Brown Merch</p>
       <div class="slide__bottom">
-        <p class="slide__overlay">Wear<br>the joy.</p>
+        <p class="slide__overlay">Written with<br>Intention.</p>
         <div class="slide__cta-wrap">
-          <p class="slide__caption">Pieces that say what Tabitha already said: loud, soft, and on the right side of every conversation.</p>
-          <a class="slide__cta" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener">
-            Shop the collection
-            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <!-- SLIDE 3 — COOKBOOKS -->
-  <article class="slide" data-slide="3" role="group" aria-roledescription="slide" aria-label="4 of 7: Books">
-    <div class="slide__media" style="--obj-pos: center 24%;">
-      <picture>
-        <source type="image/avif" srcset="/src/assets/img/cookbook-feeding-soul-1280.avif 1280w, /src/assets/img/cookbook-feeding-soul-1920.avif 1920w" sizes="100vw" />
-        <img src="/src/assets/img/cookbook-feeding-soul-1280.jpg" alt="Tabitha holding Feeding The Soul cookbook" loading="lazy" />
-      </picture>
-    </div>
-    <div class="slide__content">
-      <p class="slide__eyebrow">Feeding The Soul &middot; Cookbooks</p>
-      <div class="slide__bottom">
-        <p class="slide__overlay">The whole<br>table.</p>
-        <div class="slide__cta-wrap">
-          <p class="slide__caption">Two cookbooks, a children&rsquo;s book, and a memoir. Recipes for plates and for living.</p>
           <a class="slide__cta" href="https://www.harpercollins.com/pages/tabithabrownbooks-all" target="_blank" rel="noopener">
             Browse the books
             <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1095,8 +1149,29 @@
     </div>
   </article>
 
-  <!-- SLIDE 4 — TAB TIME -->
-  <article class="slide" data-slide="4" role="group" aria-roledescription="slide" aria-label="5 of 7: Tab Time">
+  <!-- SLIDE 5 — CLEARANCE MERCH -->
+  <article class="slide" data-slide="5" role="group" aria-roledescription="slide" aria-label="6 of 8: Clearance Merch">
+    <div class="slide__media" style="--obj-pos: center 45%;">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/merch-rack-yellow-1280.avif" />
+        <img src="/src/assets/img/merch-rack-yellow-1280.jpg" alt="Tabitha Brown clearance merch collection" loading="lazy" />
+      </picture>
+    </div>
+    <div class="slide__content">
+      <div class="slide__bottom">
+        <p class="slide__overlay">Wear<br>the joy.</p>
+        <div class="slide__cta-wrap">
+          <a class="slide__cta" href="https://tabitha-brown.myshopify.com/" target="_blank" rel="noopener">
+            Shop the collection
+            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- SLIDE 6 — TAB TIME -->
+  <article class="slide" data-slide="6" role="group" aria-roledescription="slide" aria-label="7 of 8: Tab Time">
     <div class="slide__media" style="--obj-pos: center 35%;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/tab-time-banner-1280.avif 1280w, /src/assets/img/tab-time-banner-1920.avif 1920w" sizes="100vw" />
@@ -1104,13 +1179,11 @@
       </picture>
     </div>
     <div class="slide__content">
-      <p class="slide__eyebrow">Tab Time &middot; For The Kids</p>
       <div class="slide__bottom">
-        <p class="slide__overlay">Lunchtime,<br>baby!</p>
+        <p class="slide__overlay">It&rsquo;s Tab<br>Time!</p>
         <div class="slide__cta-wrap">
-          <p class="slide__caption">The YouTube show where little folks learn manners, kindness, and how to be themselves. Out loud and on purpose.</p>
-          <a class="slide__cta" href="https://www.youtube.com/@iamtabithabrown" target="_blank" rel="noopener">
-            Watch on YouTube
+          <a class="slide__cta" href="https://www.tabtime.tv/" target="_blank" rel="noopener">
+            Watch now on Tab Time
             <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -1118,31 +1191,8 @@
     </div>
   </article>
 
-  <!-- SLIDE 5 — TAB + CHANCE (Tabitha + her husband Chance Brown) -->
-  <article class="slide" data-slide="5" role="group" aria-roledescription="slide" aria-label="6 of 7: Tab + Chance">
-    <div class="slide__media" style="--obj-pos: center 12%;">
-      <picture>
-        <source type="image/avif" srcset="/src/assets/img/tab-chance-couple-1280.avif" />
-        <img src="/src/assets/img/tab-chance-couple-1280.jpg" alt="Tabitha and her husband Chance Brown" loading="lazy" />
-      </picture>
-    </div>
-    <div class="slide__content">
-      <p class="slide__eyebrow">Tab + Chance &middot; The Podcast</p>
-      <div class="slide__bottom">
-        <p class="slide__overlay">Love,<br>out loud.</p>
-        <div class="slide__cta-wrap">
-          <p class="slide__caption">Tabitha and her husband Chance. Marriage in real time: the conversation, the laughs, and the work that keeps it whole.</p>
-          <a class="slide__cta" href="https://tabandchance.com" target="_blank" rel="noopener">
-            Listen now
-            <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <!-- SLIDE 6 — BOOKING (Tabitha on stage, centered) -->
-  <article class="slide" data-slide="6" role="group" aria-roledescription="slide" aria-label="7 of 7: Events">
+  <!-- SLIDE 7 — EVENTS (Tabitha Live) -->
+  <article class="slide" data-slide="7" role="group" aria-roledescription="slide" aria-label="8 of 8: Events">
     <div class="slide__media" style="--obj-pos: center 50%;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/booking-stage-crowd-1280.avif 1280w, /src/assets/img/booking-stage-crowd-1920.avif 1920w" sizes="100vw" />
@@ -1150,15 +1200,14 @@
       </picture>
     </div>
     <div class="slide__content">
-      <p class="slide__eyebrow">Book Tabitha &middot; 2026</p>
+      <p class="slide__eyebrow">Tabitha Live</p>
       <div class="slide__bottom">
         <p class="slide__overlay">On stage,<br>on demand.</p>
         <div class="slide__cta-wrap">
-          <p class="slide__caption">Speaking, storytelling, and stand-up that feels like Sunday dinner with the people who raised you right.</p>
-          <button type="button" class="slide__cta" data-open-booking>
-            Start an inquiry
+          <a class="slide__cta" href="events.html">
+            Event info
             <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -1167,30 +1216,35 @@
   <p class="sr-only" data-aria-live aria-live="polite" aria-atomic="true"></p>
 </section>
 
+<!-- ============ SIDE ARROWS ============ -->
+<button type="button" class="deck-arrow deck-arrow--prev" data-prev aria-label="Previous slide">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<button type="button" class="deck-arrow deck-arrow--next" data-next aria-label="Next slide">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
 <!-- ============ CONTROLS ============ -->
 <div class="controls" aria-label="Deck controls">
   <div class="controls__counter">
-    <span><strong data-counter-current>01</strong> / 07</span>
+    <span><strong data-counter-current>01</strong> / 08</span>
   </div>
   <div class="controls__dots" role="tablist">
-    <button class="controls__dot" data-jump="0" data-active="true" aria-label="Slide 1 — My Story"><span class="controls__dot__fill"></span></button>
-    <button class="controls__dot" data-jump="1" aria-label="Slide 2 — Donna's Recipe"><span class="controls__dot__fill"></span></button>
-    <button class="controls__dot" data-jump="2" aria-label="Slide 3 — Clearance Merch"><span class="controls__dot__fill"></span></button>
-    <button class="controls__dot" data-jump="3" aria-label="Slide 4 — Books"><span class="controls__dot__fill"></span></button>
-    <button class="controls__dot" data-jump="4" aria-label="Slide 5 — Tab Time"><span class="controls__dot__fill"></span></button>
-    <button class="controls__dot" data-jump="5" aria-label="Slide 6 — Tab + Chance"><span class="controls__dot__fill"></span></button>
-    <button class="controls__dot" data-jump="6" aria-label="Slide 7 — Events"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="0" data-active="true" aria-label="Slide 1 — About Me"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="1" aria-label="Slide 2 — Tab + Chance"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="2" aria-label="Slide 3 — Body Mist"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="3" aria-label="Slide 4 — Donna's Recipe"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="4" aria-label="Slide 5 — Books"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="5" aria-label="Slide 6 — Clearance Merch"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="6" aria-label="Slide 7 — Tab Time"><span class="controls__dot__fill"></span></button>
+    <button class="controls__dot" data-jump="7" aria-label="Slide 8 — Events"><span class="controls__dot__fill"></span></button>
   </div>
-  <button type="button" class="controls__playpause" data-playpause aria-label="Pause auto-advance">
-    <svg viewBox="0 0 16 16" fill="currentColor" data-icon="pause"><rect x="3" y="2" width="3.5" height="12" rx="0.5"/><rect x="9.5" y="2" width="3.5" height="12" rx="0.5"/></svg>
-    <svg viewBox="0 0 16 16" fill="currentColor" data-icon="play" style="display:none"><polygon points="4,2 13,8 4,14"/></svg>
-  </button>
 </div>
 
-<!-- Keyboard / swipe hint -->
+<!-- Swipe / arrow hint -->
 <div class="hint" data-hint aria-hidden="true">
   <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 8l3-3v6L5 8zm6 0L8 5v6l3-3z"/></svg>
-  Click, swipe, or arrows
+  Use the arrows to explore
 </div>
 
 <!-- ============ MOBILE DRAWER ============ -->
@@ -1201,14 +1255,15 @@
   </a>
   <button type="button" class="drawer__close" data-drawer-close aria-label="Close menu">Close</button>
   <ul class="drawer__list">
-    <li><a class="drawer__link" href="#" data-jump="0">My Story</a></li>
-    <li><a class="drawer__link" href="#" data-jump="5">Tab + Chance</a></li>
-    <li><a class="drawer__link" href="#" data-jump="1">Donna&rsquo;s Recipe</a></li>
-    <li><a class="drawer__link" href="#" data-jump="3">Books</a></li>
-    <li><a class="drawer__link" href="#" data-jump="2">Clearance Merch</a></li>
-    <li><a class="drawer__link" href="#" data-jump="4">Tab Time</a></li>
-    <li><a class="drawer__link" href="#" data-jump="6">Events</a></li>
-    <li><a class="drawer__link" href="#" data-press>Press</a></li>
+    <li><a class="drawer__link" href="#" data-jump="0">About Me</a></li>
+    <li><a class="drawer__link" href="#" data-jump="1">Tab + Chance</a></li>
+    <li><a class="drawer__link" href="#" data-jump="2">Body Mist</a></li>
+    <li><a class="drawer__link" href="#" data-jump="3">Donna&rsquo;s Recipe</a></li>
+    <li><a class="drawer__link" href="#" data-jump="4">Books</a></li>
+    <li><a class="drawer__link" href="#" data-jump="5">Clearance Merch</a></li>
+    <li><a class="drawer__link" href="#" data-jump="6">Tab Time</a></li>
+    <li><a class="drawer__link" href="#" data-jump="7">Events</a></li>
+    <li><a class="drawer__link" href="press.html">Press</a></li>
     <li><button type="button" class="drawer__link drawer__link--cta" data-open-booking>Inquiries</button></li>
   </ul>
 </aside>
@@ -1266,11 +1321,6 @@
       </button>
     </header>
     <p class="dialog__intro">Events, brand partnerships, press, and everything in between. Tell us about the moment, we&rsquo;ll be in touch.</p>
-
-    <aside class="dialog__wholesale" aria-label="Wholesale inquiries">
-      <p>For <strong>Tab&nbsp;+&nbsp;Chance</strong> wholesale inquiries, <a href="mailto:wholesale@tabandchance.com">click here</a>.</p>
-      <p>For <strong>Donna&rsquo;s Recipe</strong> wholesale inquiries, <a href="mailto:wholesale@donnasrecipe.com">click here</a>.</p>
-    </aside>
 
     <form class="dialog__form" data-booking-form>
       <div class="dialog__row">
@@ -1368,157 +1418,65 @@
   const stage = document.querySelector('[data-stage]');
   const slides = Array.from(stage.querySelectorAll('.slide'));
   const dots = Array.from(document.querySelectorAll('.controls__dot'));
+  const jumpEls = Array.from(document.querySelectorAll('.topnav__cat[data-jump], .drawer__link[data-jump], .drawer__home[data-jump], .topnav__wordmark[data-jump]'));
   const navCats = Array.from(document.querySelectorAll('.topnav__cat[data-jump]'));
-  const playPauseBtn = document.querySelector('[data-playpause]');
   const counterCurrent = document.querySelector('[data-counter-current]');
   const ariaLive = document.querySelector('[data-aria-live]');
-  const wordmark = document.querySelector('.topnav__wordmark[data-jump]');
-
-  const SLIDE_DURATION = 6500;
+  const total = slides.length;
   let current = 0;
-  let isPlaying = true;
-  let timer = null;
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reducedMotion) isPlaying = false;
-
-  function setActive(idx, { resetTimer = true } = {}) {
-    if (idx < 0) idx = slides.length - 1;
-    if (idx >= slides.length) idx = 0;
+  // No auto-advance: the deck moves only when the visitor asks it to
+  // (side arrows, keyboard, dots, nav, or a swipe).
+  function setActive(idx) {
+    idx = ((idx % total) + total) % total; // wrap both directions
     if (idx === current) return;
-
-    // mark previous dots as played
-    dots[current].setAttribute('data-played', 'true');
-    dots[current].removeAttribute('data-active');
-
-    slides[current].setAttribute('data-active', 'false');
     slides[current].removeAttribute('data-active');
+    dots[current].removeAttribute('data-active');
     current = idx;
     slides[current].setAttribute('data-active', 'true');
-
-    // dot states forward of current cleared, current activated
     dots.forEach((d, i) => {
       if (i < current) d.setAttribute('data-played', 'true');
       else d.removeAttribute('data-played');
     });
     dots[current].setAttribute('data-active', 'true');
-
-    // nav highlight
     navCats.forEach(c => c.removeAttribute('aria-current'));
     const navMatch = navCats.find(c => parseInt(c.dataset.jump, 10) === current);
     if (navMatch) navMatch.setAttribute('aria-current', 'true');
-
-    // counter + aria
     counterCurrent.textContent = String(current + 1).padStart(2, '0');
     const label = slides[current].getAttribute('aria-label') || `Slide ${current + 1}`;
     if (ariaLive) ariaLive.textContent = label;
-
-    if (resetTimer) restartTimer();
   }
+  const next = () => setActive(current + 1);
+  const prev = () => setActive(current - 1);
+  const jumpTo = (idx) => setActive(idx);
 
-  function next() { setActive(current + 1); }
-  function prev() { setActive(current - 1); }
-  function jumpTo(idx) { setActive(idx); }
+  // --- Side arrows
+  document.querySelector('[data-prev]').addEventListener('click', prev);
+  document.querySelector('[data-next]').addEventListener('click', next);
 
-  function startTimer() {
-    if (!isPlaying) return;
-    clearTimeout(timer);
-    timer = setTimeout(next, SLIDE_DURATION);
-  }
-  function restartTimer() {
-    clearTimeout(timer);
-    if (isPlaying) startTimer();
-  }
-  function pauseAuto() {
-    isPlaying = false;
-    clearTimeout(timer);
-    stage.setAttribute('data-paused', 'true');
-    document.body.setAttribute('data-deck-paused', 'true');
-    playPauseBtn.setAttribute('aria-label', 'Resume auto-advance');
-    playPauseBtn.querySelector('[data-icon="pause"]').style.display = 'none';
-    playPauseBtn.querySelector('[data-icon="play"]').style.display = '';
-  }
-  function playAuto() {
-    isPlaying = true;
-    stage.setAttribute('data-paused', 'false');
-    document.body.setAttribute('data-deck-paused', 'false');
-    playPauseBtn.setAttribute('aria-label', 'Pause auto-advance');
-    playPauseBtn.querySelector('[data-icon="pause"]').style.display = '';
-    playPauseBtn.querySelector('[data-icon="play"]').style.display = 'none';
+  // --- Dots (position + jump)
+  dots.forEach((d, i) => d.addEventListener('click', () => jumpTo(i)));
 
-    // re-trigger fill animation by toggling
-    const activeDot = dots[current];
-    const fill = activeDot.querySelector('.controls__dot__fill');
-    fill.style.animation = 'none';
-    void fill.offsetWidth;
-    fill.style.animation = '';
-
-    startTimer();
-  }
-  function togglePlay() { isPlaying ? pauseAuto() : playAuto(); }
-
-  // --- Controls
-  playPauseBtn.addEventListener('click', togglePlay);
-
-  dots.forEach((d, i) => {
-    d.addEventListener('click', () => {
-      jumpTo(i);
-      if (!isPlaying) playAuto();
-    });
-  });
-
-  navCats.forEach(c => {
-    c.addEventListener('click', (e) => {
-      e.preventDefault();
-      jumpTo(parseInt(c.dataset.jump, 10));
-      if (!isPlaying) playAuto();
-    });
-  });
-
-  // Press link → open inquiries dialog pre-selected to Press
-  document.querySelectorAll('[data-press]').forEach(el => {
+  // --- Nav + drawer + wordmark jumps (Press/Inquiries are real links/buttons, not here)
+  jumpEls.forEach(el => {
     el.addEventListener('click', (e) => {
       e.preventDefault();
-      if (isPlaying) pauseAuto();
-      const select = document.querySelector('[data-booking-form] select[name="event_type"]');
-      if (select) {
-        const press = Array.from(select.options).find(o => /press/i.test(o.value || o.textContent));
-        if (press) select.value = press.value || press.textContent;
-      }
-      closeDrawer();
-      if (dialog && typeof dialog.showModal === 'function') dialog.showModal();
-      else if (dialog) dialog.setAttribute('open', '');
+      jumpTo(parseInt(el.dataset.jump, 10));
+      if (el.closest('[data-drawer]')) closeDrawer();
     });
   });
-  if (wordmark) {
-    wordmark.addEventListener('click', (e) => {
-      e.preventDefault();
-      jumpTo(0);
-      if (!isPlaying) playAuto();
-    });
-  }
 
-  // --- Click on stage (but not on CTAs) advances
-  stage.addEventListener('click', (e) => {
-    if (e.target.closest('a, button, [data-playpause]')) return;
-    if (e.target.closest('[data-advance]')) { next(); return; }
-    // Click right half → next, left half → prev
-    const rect = stage.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    if (x > rect.width / 2) next(); else prev();
-  });
-
-  // --- Keyboard
+  // --- Keyboard: left/right step one slide at a time
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { next(); }
-    else if (e.key === 'ArrowLeft') { prev(); }
-    else if (e.key === ' ' || e.key === 'k') { e.preventDefault(); togglePlay(); }
+    if (e.target.matches('input, textarea, select')) return;
+    const dlg = document.querySelector('[data-booking-dialog]');
+    if (dlg && dlg.open) return;
+    if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
   });
 
   // --- Touch / swipe (velocity-aware — a flick beats a long drag)
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchStartT = 0;
+  let touchStartX = 0, touchStartY = 0, touchStartT = 0;
   stage.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
@@ -1530,36 +1488,10 @@
     const elapsed = performance.now() - touchStartT;
     const velocity = Math.abs(dx) / Math.max(elapsed, 1);
     const horizontal = Math.abs(dx) > Math.abs(dy);
-    // dismiss on distance OR on quick flick (Emil: velocity > ~0.11)
     if (horizontal && (Math.abs(dx) > 48 || velocity > 0.11)) {
       if (dx < 0) next(); else prev();
     }
   });
-
-  // --- Pause on hover over interactive bottom region only (not the whole stage,
-  // that'd block auto-play entirely). Instead, just pause if the user mouses
-  // onto the slide__cta-wrap.
-  const ctaWraps = stage.querySelectorAll('.slide__cta-wrap');
-  ctaWraps.forEach(w => {
-    w.addEventListener('mouseenter', () => { if (isPlaying) pauseAuto(); });
-  });
-
-  // --- Pause when tab is hidden (saves battery, prevents desync)
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) clearTimeout(timer);
-    else if (isPlaying) startTimer();
-  });
-
-  // --- Kick off after intro photo-cycle + fade (~3.85s)
-  setTimeout(() => {
-    if (isPlaying) {
-      const fill = dots[0].querySelector('.controls__dot__fill');
-      fill.style.animation = 'none';
-      void fill.offsetWidth;
-      fill.style.animation = '';
-      startTimer();
-    }
-  }, 2900);
 
   // --- Post-intro "What's New" drop pop-up — fires after the intro reveal, once per session.
   //     Markup + flash frames live in the .popup.drop dialog above (edit there
@@ -1607,7 +1539,6 @@
     document.body.setAttribute('data-drawer-open', 'true');
     drawer.removeAttribute('inert');
     drawer.setAttribute('aria-hidden', 'false');
-    if (isPlaying) pauseAuto();
     drawerClose && drawerClose.focus();
   }
   function closeDrawer() {
@@ -1621,23 +1552,13 @@
   }
   mobileBtn && mobileBtn.addEventListener('click', openDrawer);
   drawerClose && drawerClose.addEventListener('click', closeDrawer);
-  // Drawer link → jump and close
-  drawer && drawer.querySelectorAll('[data-jump]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const idx = parseInt(link.dataset.jump, 10);
-      jumpTo(idx);
-      closeDrawer();
-      if (!isPlaying) playAuto();
-    });
-  });
+  // (drawer links are wired via jumpEls above, which also closes the drawer)
 
   // --- Booking dialog
   const dialog = document.querySelector('[data-booking-dialog]');
   const bookingForm = document.querySelector('[data-booking-form]');
   document.querySelectorAll('[data-open-booking]').forEach(btn => {
     btn.addEventListener('click', () => {
-      if (isPlaying) pauseAuto();
       closeDrawer();
       if (dialog && typeof dialog.showModal === 'function') dialog.showModal();
       else if (dialog) dialog.setAttribute('open', '');
@@ -1678,14 +1599,6 @@
     const subject = 'Newsletter signup';
     const body = `Please add this email to the Tabitha Brown newsletter: ${email}`;
     window.location.href = `mailto:hello@tabithabrown.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  });
-
-  // --- Focus-within pause: keyboard-only users navigating CTAs shouldn't fight auto-advance
-  stage.addEventListener('focusin', (e) => {
-    // Only pause for interactive elements, not the stage itself
-    if (e.target.closest('a, button, [tabindex]')) {
-      if (isPlaying) pauseAuto();
-    }
   });
 
   // --- Escape closes drawer + dialog
