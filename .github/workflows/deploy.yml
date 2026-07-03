@@ -23,7 +23,8 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm ci
-      - run: node scripts/build-images.mjs
+      # npm run build already runs scripts/build-images.mjs (see package.json),
+      # so a separate build-images step just doubled the image pipeline time.
       - run: npm run build
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
