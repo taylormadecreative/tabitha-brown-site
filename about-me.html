@@ -59,6 +59,15 @@
   .card{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--paper);border:2px solid var(--ink);border-radius:16px;padding:18px 20px;font-family:var(--font-display);font-weight:700;font-size:17px;box-shadow:0 16px 34px -22px rgba(31,13,56,0.4);transition:transform 160ms var(--ease-out),box-shadow 160ms var(--ease-out);}
   .card:hover{transform:translateY(-3px);box-shadow:0 20px 40px -22px rgba(31,13,56,0.5);}
   .card svg{width:18px;height:10px;flex:none;stroke:var(--hero);}
+  /* family */
+  .family{max-width:1000px;margin:clamp(40px,7vh,80px) auto 0;padding:0 var(--gutter);}
+  .family h3{font-family:var(--font-hand);font-weight:700;font-size:clamp(26px,3vw,36px);color:var(--ink-soft);margin-bottom:16px;text-align:center;}
+  .family__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2.5vw,22px);}
+  @media(max-width:620px){.family__grid{grid-template-columns:1fr;}}
+  .family__item{position:relative;border:2px solid var(--ink);border-radius:16px;overflow:hidden;background:#F5C400;box-shadow:var(--shadow-card,0 18px 40px -24px rgba(31,13,56,0.45));}
+  .family__item img{width:100%;aspect-ratio:4/3.2;object-fit:cover;object-position:center 28%;display:block;}
+  .family__item figcaption{position:absolute;left:0;right:0;bottom:0;padding:20px 18px 14px;font-family:var(--font-hand);font-weight:700;font-size:22px;color:#fff;background:linear-gradient(to top,rgba(31,13,56,0.72),rgba(31,13,56,0));}
+
   /* footer */
   .foot{max-width:1100px;margin:clamp(56px,9vh,110px) auto 0;padding:0 var(--gutter) calc(48px + env(safe-area-inset-bottom,0px));text-align:center;}
   .foot a.cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);border:2px solid var(--ink);border-radius:999px;padding:15px 30px;font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;box-shadow:0 6px 0 -2px var(--ink);transition:transform 150ms var(--ease-out),box-shadow 150ms var(--ease-out);}
@@ -92,25 +101,42 @@
 </section>
 
 <article class="story">
-  <p>I&rsquo;m Tabitha Brown, and I believe the world is a better place when we lead with love. I got my start as an actress, but the world came to know me through short videos in my kitchen, cooking plant-based food and talking to folks like family. What began as a way to feel better in my own body turned into a calling: reminding people to be encouraged, to have a good day, and if they can&rsquo;t, to not go messing up nobody else&rsquo;s.</p>
+  <p>Tabitha Brown satisfies the hunger of millions with her unique approach to veganism and her wholesome, comedic personality. From teaching people new recipes, giving a word of wisdom or enjoying a good laugh, she has become &ldquo;America&rsquo;s Mom&rdquo; to her 14 million plus followers.</p>
 
-  <h2>The work</h2>
-  <p>I went vegan after years of chronic pain and fatigue, and finding my way back to feeling good changed everything. These days I get to do the things I love out loud: I&rsquo;m a three-time New York Times bestselling author, an Emmy-winning host, an actress, and a multiple NAACP Image Award winner. I even received an honorary doctorate along the way. Every bit of it comes from the same place: telling the truth and spreading a little sunshine.</p>
+  <p>The North Carolina born, 2-time Emmy award winning host, actress, vegan food personality, mother and wife is a four-time New York Times bestselling author, multi-NAACP Image Award Winner and received her honorary doctorate from the Savannah College of Art and Design. She has acted in notable theatrical features on major networks such as ABC&rsquo;s &ldquo;Will and Grace&rdquo; and &ldquo;The Connors,&rdquo; Showtime&rsquo;s &ldquo;The Chi,&rdquo; and Netflix&rsquo;s &ldquo;The Upshaws.&rdquo; Tabitha executive produced and hosted Food Network&rsquo;s first-ever vegan cooking competition show, &ldquo;It&rsquo;s CompliPlated,&rdquo; and co-created and hosts her own Emmy winning children&rsquo;s show, &ldquo;Tab Time.&rdquo;</p>
 
   <div class="pillrow">
-    <span class="pill">Emmy-winning host</span>
-    <span class="pill">NYT bestselling author</span>
+    <span class="pill">2x Emmy-winning host</span>
+    <span class="pill">4x NYT bestselling author</span>
     <span class="pill">Actress</span>
-    <span class="pill">Founder &amp; CEO</span>
-    <span class="pill">Vegan advocate</span>
+    <span class="pill">Co-founder &amp; CEO</span>
+    <span class="pill">NAACP Image Award winner</span>
   </div>
 
-  <h2>The family</h2>
-  <p>None of it happens without my family. My husband Chance and I built a life and a brand on love, and we love bringing you along for the ride. Our children keep me grounded, and my faith keeps me going. Whether it&rsquo;s hair care, a children&rsquo;s show, a fragrance, or a brand new body mist, everything I make is really about the same thing: helping you feel seen, loved, and heard.</p>
+  <p>Tabitha is a serial entrepreneur, the Co-founder and CEO of her own healthy haircare line Donna&rsquo;s Recipe and the Tab and Chance couples lifestyle brand. She is known for launching multi-category products in major retailers like Target, Walmart, and Ulta Beauty. In 2025, she was named the Chief Empowerment Officer for Clover, where she continued to support her passion of promoting financial wellness and empowerment for small businesses within various communities. These business endeavors and partnerships reflect her values, emphasizing health, kindness, and community, because that&rsquo;s her business!</p>
 
-  <h2>The heart</h2>
-  <p>People ask how I keep so much going. The honest answer is that it&rsquo;s all one thing to me. It&rsquo;s all love. So look around, honey. Everything here is a door to something I made with my whole heart, and I&rsquo;m so glad you came to visit.</p>
+  <p>Above all, Tabitha teaches us about spreading love, having faith, perseverance, paving a unique path to achieving dreams, and being one&rsquo;s authentic self.</p>
 </article>
+
+<section class="family" aria-label="Family">
+  <h3>the loves of her life</h3>
+  <div class="family__grid">
+    <figure class="family__item">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/img-0700-1280.avif" />
+        <img src="/src/assets/img/img-0700-1280.jpg" alt="Tabitha and her husband Chance Brown" loading="lazy" decoding="async" />
+      </picture>
+      <figcaption>Tab &amp; Chance</figcaption>
+    </figure>
+    <figure class="family__item">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/choyce-and-tabitha-fresh-1280.avif" />
+        <img src="/src/assets/img/choyce-and-tabitha-fresh-1280.jpg" alt="Tabitha and her daughter Choyce" loading="lazy" decoding="async" />
+      </picture>
+      <figcaption>Tabitha &amp; Choyce</figcaption>
+    </figure>
+  </div>
+</section>
 
 <section class="explore">
   <h3>go on and explore</h3>
