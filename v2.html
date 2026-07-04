@@ -269,6 +269,10 @@
   .slide[data-active="true"] .slide__media img {
     transform: scale(1.08);
   }
+  /* Tab Time is a busy character scene — keep it wide with almost no zoom so
+     the avocado, spatula, lunchbox, and mitt friends don't get cropped away. */
+  .slide__media--tabtime img { transform: scale(1.0); }
+  .slide[data-active="true"] .slide__media--tabtime img { transform: scale(1.02); }
 
   /* Cinematic bottom-up gradient for legibility */
   .slide::after {
@@ -1133,7 +1137,7 @@
 
   <!-- SLIDE 4 — BOOKS -->
   <article class="slide" data-slide="4" role="group" aria-roledescription="slide" aria-label="5 of 8: Books">
-    <div class="slide__media" style="--obj-pos: center 45%;">
+    <div class="slide__media" style="--obj-pos: center 38%;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/books-collection-1280.avif" />
         <img src="/src/assets/img/books-collection-1280.jpg" alt="Tabitha Brown's books" loading="lazy" />
@@ -1177,7 +1181,7 @@
 
   <!-- SLIDE 6 — TAB TIME -->
   <article class="slide" data-slide="6" role="group" aria-roledescription="slide" aria-label="7 of 8: Tab Time">
-    <div class="slide__media" style="--obj-pos: center 35%;">
+    <div class="slide__media slide__media--tabtime" style="--obj-pos: center 50%;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/tab-time-banner-1280.avif 1280w, /src/assets/img/tab-time-banner-1920.avif 1920w" sizes="100vw" />
         <img src="/src/assets/img/tab-time-banner-1280.jpg" alt="Tab Time — Tabitha with the show's animated characters" loading="lazy" />
@@ -1189,7 +1193,7 @@
         <p class="slide__overlay">It&rsquo;s Tab<br>Time!</p>
         <div class="slide__cta-wrap">
           <a class="slide__cta" href="https://www.tabtime.tv/" target="_blank" rel="noopener">
-            Watch now on Tab Time
+            Watch now
             <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
