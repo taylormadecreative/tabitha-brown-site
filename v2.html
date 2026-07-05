@@ -273,6 +273,10 @@
      the avocado, spatula, lunchbox, and mitt friends don't get cropped away. */
   .slide__media--tabtime img { transform: scale(1.0); }
   .slide[data-active="true"] .slide__media--tabtime img { transform: scale(1.02); }
+  /* Hero: portrait shot — no ken-burns zoom, top-aligned, so her full head
+     stays in frame under the nav instead of getting cropped off. */
+  .slide__media--hero img,
+  .slide[data-active="true"] .slide__media--hero img { transform: scale(1.0); }
 
   /* Cinematic bottom-up gradient for legibility */
   .slide::after {
@@ -1019,7 +1023,7 @@
     <source type="image/avif" srcset="/src/assets/img/booking-stage-crowd-1280.avif" />
     <img src="/src/assets/img/booking-stage-crowd-1280.jpg" alt="" />
   </picture>
-  <p class="intro__wordmark">Hello there.</p>
+  <p class="intro__wordmark">Hello There.</p>
   <p class="intro__sub">Tabitha Brown &middot; The Empire</p>
 </div>
 
@@ -1049,7 +1053,7 @@
 
   <!-- SLIDE 0 — ABOUT ME -->
   <article class="slide" data-slide="0" data-active="true" role="group" aria-roledescription="slide" aria-label="1 of 8: About Me">
-    <div class="slide__media" style="--obj-pos: center 6%;">
+    <div class="slide__media slide__media--hero" style="--obj-pos: center top;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/tab-today7400283-12-1280.avif" />
         <img src="/src/assets/img/tab-today7400283-12-1280.jpg" alt="Tabitha Brown in a colorful striped sweater" fetchpriority="high" />
@@ -1058,7 +1062,7 @@
     <div class="slide__content">
       <p class="slide__eyebrow">Tabitha Brown</p>
       <div class="slide__bottom">
-        <p class="slide__overlay">Hello there.</p>
+        <p class="slide__overlay">Hello There.</p>
         <div class="slide__cta-wrap">
           <a class="slide__cta" href="about-me.html">
             About me
