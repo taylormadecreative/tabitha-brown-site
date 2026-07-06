@@ -269,10 +269,11 @@
   .slide[data-active="true"] .slide__media img {
     transform: scale(1.08);
   }
-  /* Tab Time is a busy character scene — keep it wide with almost no zoom so
-     the avocado, spatula, lunchbox, and mitt friends don't get cropped away. */
+  /* Tab Time is a busy character scene — keep it wide with almost no zoom,
+     top-anchored, so the avocado/spatula/mitt stay visible and her head
+     never gets cropped off. */
   .slide__media--tabtime img { transform: scale(1.0); }
-  .slide[data-active="true"] .slide__media--tabtime img { transform: scale(1.02); }
+  .slide[data-active="true"] .slide__media--tabtime img { transform: scale(1.0); }
   /* Hero: portrait shot — no ken-burns zoom, top-aligned, so her full head
      stays in frame under the nav instead of getting cropped off. */
   .slide__media--hero img,
@@ -1185,10 +1186,10 @@
 
   <!-- SLIDE 6 — TAB TIME -->
   <article class="slide" data-slide="6" role="group" aria-roledescription="slide" aria-label="7 of 8: Tab Time">
-    <div class="slide__media slide__media--tabtime" style="--obj-pos: center 50%;">
+    <div class="slide__media slide__media--tabtime" style="--obj-pos: center top;">
       <picture>
-        <source type="image/avif" srcset="/src/assets/img/tab-time-banner-1280.avif 1280w, /src/assets/img/tab-time-banner-1920.avif 1920w" sizes="100vw" />
-        <img src="/src/assets/img/tab-time-banner-1280.jpg" alt="Tab Time — Tabitha with the show's animated characters" loading="lazy" />
+        <source type="image/avif" srcset="/src/assets/img/tab-time-storytime-640.avif 640w, /src/assets/img/tab-time-storytime-1280.avif 1280w" sizes="100vw" />
+        <img src="/src/assets/img/tab-time-storytime-1280.jpg" alt="Tab Time — Tabitha with the show's animated characters" loading="lazy" />
       </picture>
     </div>
     <div class="slide__content">
