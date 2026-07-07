@@ -283,6 +283,11 @@
      the active-state scale(1.08). */
   .slide__media--no-zoom img,
   .slide[data-active="true"] .slide__media--no-zoom img { transform: scale(1.0); }
+  /* Shared opt-in for showing 100% of a photo with zero cropping — the whole
+     image fits inside the frame, letterboxed on whichever axis needs it,
+     with a background fill so the bars read as intentional, not broken. */
+  .slide__media--contain { background: #14200f; }
+  .slide__media--contain img { object-fit: contain; }
 
   /* Cinematic bottom-up gradient for legibility */
   .slide::after {
@@ -1082,7 +1087,7 @@
 
   <!-- SLIDE 1 — TAB + CHANCE (fragrance) -->
   <article class="slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 8: Tab + Chance">
-    <div class="slide__media slide__media--no-zoom" style="--obj-pos: center top;">
+    <div class="slide__media slide__media--no-zoom slide__media--contain" style="--obj-pos: center;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/tab-chance-fragrance-1280.avif" />
         <img src="/src/assets/img/tab-chance-fragrance-1280.jpg" alt="Tabitha and Chance Brown holding the Tab + Chance fragrance bottles" loading="lazy" />
