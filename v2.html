@@ -780,18 +780,12 @@
     backdrop-filter: blur(8px) saturate(135%);
   }
 
-  /* --- flash-reveal media frames --- */
+  /* --- single reveal image --- */
   .drop__media { position: absolute; inset: 0; background: #111; }
   .drop__frame { position: absolute; inset: 0; opacity: 0; }
-  .drop__frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 24%; display: block; }
-  .popup[open] .drop__frame--1 { animation: dropF1 2.3s var(--ease-out) forwards; }
-  .popup[open] .drop__frame--2 { animation: dropF2 2.3s var(--ease-out) forwards; }
-  .popup[open] .drop__frame--3 { animation: dropF3 2.3s var(--ease-out) forwards; }
-  .popup[open] .drop__frame--3 img { animation: dropSettle 3.4s var(--ease-out) forwards; transform-origin: 60% 42%; }
-  @keyframes dropF1 { 0%{opacity:0} 5%{opacity:1} 16%{opacity:1} 21%{opacity:0} 100%{opacity:0} }
-  @keyframes dropF2 { 0%,18%{opacity:0} 23%{opacity:1} 34%{opacity:1} 39%{opacity:0} 100%{opacity:0} }
-  @keyframes dropF3 { 0%,36%{opacity:0} 45%{opacity:1} 100%{opacity:1} }
-  @keyframes dropSettle { from { transform: scale(1.12); } to { transform: scale(1); } }
+  .drop__frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .popup[open] .drop__frame { animation: dropFadeIn 0.6s var(--ease-out) forwards; }
+  @keyframes dropFadeIn { to { opacity: 1; } }
 
   .drop__scrim {
     position: absolute; inset: 0; pointer-events: none;
@@ -855,10 +849,8 @@
   .popup__cta svg { width: 16px; height: 8px; stroke: currentColor; }
 
   @media (prefers-reduced-motion: reduce) {
-    .drop__frame--1, .drop__frame--2 { display: none; }
     .popup[open],
-    .popup[open] .drop__frame--3,
-    .popup[open] .drop__frame--3 img,
+    .popup[open] .drop__frame,
     .popup[open] .drop__content { animation: none; opacity: 1; transform: none; }
   }
 
@@ -1087,7 +1079,7 @@
 
   <!-- SLIDE 1 — TAB + CHANCE (fragrance) -->
   <article class="slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 8: Tab + Chance">
-    <div class="slide__media slide__media--no-zoom slide__media--contain" style="--obj-pos: center;">
+    <div class="slide__media slide__media--no-zoom" style="--obj-pos: center top;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/tab-chance-fragrance-1280.avif" />
         <img src="/src/assets/img/tab-chance-fragrance-1280.jpg" alt="Tabitha and Chance Brown holding the Tab + Chance fragrance bottles" loading="lazy" />
@@ -1109,7 +1101,7 @@
 
   <!-- SLIDE 2 — BODY MIST (new) -->
   <article class="slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 8: Body Mist">
-    <div class="slide__media" style="--obj-pos: center 20%;">
+    <div class="slide__media slide__media--no-zoom" style="--obj-pos: center top;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/mist-composite-1280.avif" />
         <img src="/src/assets/img/mist-composite-1280.jpg" alt="Tabitha Brown Body Mist — Spread Love, Hello There, Stay Focused" loading="lazy" />
@@ -1304,22 +1296,10 @@
     <svg viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
   </button>
   <div class="drop__media" aria-hidden="true">
-    <div class="drop__frame drop__frame--1">
+    <div class="drop__frame">
       <picture>
-        <source type="image/avif" srcset="/src/assets/img/mist-hello-there-640.avif 640w, /src/assets/img/mist-hello-there-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
-        <img src="/src/assets/img/mist-hello-there-1280.jpg" alt="" style="object-position: center 20%;" decoding="async" />
-      </picture>
-    </div>
-    <div class="drop__frame drop__frame--2">
-      <picture>
-        <source type="image/avif" srcset="/src/assets/img/mist-stay-focused-640.avif 640w, /src/assets/img/mist-stay-focused-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
-        <img src="/src/assets/img/mist-stay-focused-1280.jpg" alt="" style="object-position: center 30%;" decoding="async" />
-      </picture>
-    </div>
-    <div class="drop__frame drop__frame--3">
-      <picture>
-        <source type="image/avif" srcset="/src/assets/img/mist-spread-love-640.avif 640w, /src/assets/img/mist-spread-love-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
-        <img src="/src/assets/img/mist-spread-love-1280.jpg" alt="Tabitha Brown — Spread Love body mist" style="object-position: center 26%;" decoding="async" />
+        <source type="image/avif" srcset="/src/assets/img/mist-popup-composite-640.avif 640w, /src/assets/img/mist-popup-composite-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
+        <img src="/src/assets/img/mist-popup-composite-1280.jpg" alt="Tabitha Brown Body Mist — Spread Love, Hello There, Stay Focused" style="object-position: center top;" decoding="async" />
       </picture>
     </div>
   </div>
