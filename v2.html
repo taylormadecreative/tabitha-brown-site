@@ -278,6 +278,11 @@
      stays in frame under the nav instead of getting cropped off. */
   .slide__media--hero img,
   .slide[data-active="true"] .slide__media--hero img { transform: scale(1.0); }
+  /* Shared opt-out for any slide whose subject sits close to the frame edge —
+     no ken-burns zoom, so a correctly-positioned crop doesn't get nibbled by
+     the active-state scale(1.08). */
+  .slide__media--no-zoom img,
+  .slide[data-active="true"] .slide__media--no-zoom img { transform: scale(1.0); }
 
   /* Cinematic bottom-up gradient for legibility */
   .slide::after {
@@ -369,15 +374,16 @@
     display: inline-flex; align-items: center; gap: 10px;
     padding: 14px 26px;
     background: var(--accent);
+    filter: brightness(1.18) saturate(1.15);
     color: #fff;
     font-family: var(--font-body); font-weight: 600;
     font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
     border-radius: 999px;
-    transition: gap 200ms var(--ease-out), background 200ms ease, transform 140ms var(--ease-out);
-    box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.4);
+    transition: gap 200ms var(--ease-out), background 200ms ease, transform 140ms var(--ease-out), box-shadow 200ms ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), 0 16px 40px -16px rgba(0, 0, 0, 0.4);
   }
   @media (hover: hover) and (pointer: fine) {
-    .slide__cta:hover { gap: 16px; }
+    .slide__cta:hover { gap: 16px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4), 0 20px 44px -16px rgba(0, 0, 0, 0.45); }
   }
   .slide__cta:active { transform: scale(0.97); }
   .slide__cta svg { width: 16px; height: 8px; stroke: currentColor; }
@@ -1076,10 +1082,10 @@
 
   <!-- SLIDE 1 — TAB + CHANCE (fragrance) -->
   <article class="slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 8: Tab + Chance">
-    <div class="slide__media" style="--obj-pos: center 32%;">
+    <div class="slide__media slide__media--no-zoom" style="--obj-pos: center top;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/tab-chance-fragrance-1280.avif" />
-        <img src="/src/assets/img/tab-chance-fragrance-1280.jpg" alt="Tabitha and Chance Brown with the Tab + Chance fragrance" loading="lazy" />
+        <img src="/src/assets/img/tab-chance-fragrance-1280.jpg" alt="Tabitha and Chance Brown holding the Tab + Chance fragrance bottles" loading="lazy" />
       </picture>
     </div>
     <div class="slide__content">
@@ -1098,7 +1104,7 @@
 
   <!-- SLIDE 2 — BODY MIST (new) -->
   <article class="slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 8: Body Mist">
-    <div class="slide__media" style="--obj-pos: center 42%;">
+    <div class="slide__media" style="--obj-pos: center 20%;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/mist-composite-1280.avif" />
         <img src="/src/assets/img/mist-composite-1280.jpg" alt="Tabitha Brown Body Mist — Spread Love, Hello There, Stay Focused" loading="lazy" />
@@ -1120,7 +1126,7 @@
 
   <!-- SLIDE 3 — DONNA'S RECIPE -->
   <article class="slide" data-slide="3" role="group" aria-roledescription="slide" aria-label="4 of 8: Donna's Recipe">
-    <div class="slide__media" style="--obj-pos: center 32%;">
+    <div class="slide__media slide__media--no-zoom" style="--obj-pos: center top;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/donnas-recipe-duo-1280.avif" />
         <img src="/src/assets/img/donnas-recipe-duo-1280.jpg" alt="Donna's Recipe plant-based hair care" loading="lazy" />
@@ -1142,7 +1148,7 @@
 
   <!-- SLIDE 4 — BOOKS -->
   <article class="slide" data-slide="4" role="group" aria-roledescription="slide" aria-label="5 of 8: Books">
-    <div class="slide__media" style="--obj-pos: center 38%;">
+    <div class="slide__media slide__media--no-zoom" style="--obj-pos: center top;">
       <picture>
         <source type="image/avif" srcset="/src/assets/img/books-collection-1280.avif" />
         <img src="/src/assets/img/books-collection-1280.jpg" alt="Tabitha Brown's books" loading="lazy" />
