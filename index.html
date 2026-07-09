@@ -1590,7 +1590,7 @@
       ``,
       `${data.get('message') || ''}`,
     ];
-    const mailto = `mailto:inquiries@tabithabrown.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+    const mailto = `mailto:admin@doyoubelieveent.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
     window.location.href = mailto;
     dialog.classList.add('is-sent');
   });
@@ -1602,7 +1602,7 @@
     const email = newsletter.querySelector('[name="email"]').value;
     const subject = 'Newsletter signup';
     const body = `Please add this email to the Tabitha Brown newsletter: ${email}`;
-    window.location.href = `mailto:hello@tabithabrown.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:admin@doyoubelieveent.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 
   // --- Escape closes drawer + dialog
