@@ -848,6 +848,30 @@
   .popup__cta:active { transform: scale(0.97); }
   .popup__cta svg { width: 16px; height: 8px; stroke: currentColor; }
 
+  /* .drop--top: for product shots with clean space ABOVE the product (e.g. the
+     holiday lineup). Desktop sets the copy in ink at the top so it never
+     covers the products; mobile keeps the bottom layout (photo on top,
+     copy on the dark panel below). */
+  @media (min-width: 721px) {
+    .drop--top .drop__content { top: 0; bottom: auto; padding-top: clamp(34px, 4.4vw, 46px); }
+    .drop--top .drop__scrim {
+      background: linear-gradient(to bottom,
+        rgba(247, 236, 222, 0.55) 0%, rgba(247, 236, 222, 0.2) 22%, rgba(247, 236, 222, 0) 34%);
+    }
+    .drop--top .popup__eyebrow,
+    .drop--top .popup__title { color: var(--ink); }
+    .drop--top .popup__body { color: color-mix(in srgb, var(--ink) 78%, transparent); margin-bottom: 20px; }
+    .drop--top .popup__cta { background: var(--ink); color: #fff; }
+  }
+  /* Mobile: the photo sits at its natural height above the copy panel;
+     fade its bottom edge into the dark panel so there's no hard seam. */
+  @media (max-width: 720px) {
+    .drop--top .drop__frame img {
+      -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+              mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .popup[open],
     .popup[open] .drop__frame,
@@ -1287,23 +1311,23 @@
 <!-- the "Shop the drop" CTA links out to buy.                                  -->
 <!-- TO FEATURE A FUTURE DROP: swap the frame images below (LAST frame holds)   -->
 <!-- and edit the eyebrow / title / body / CTA link.                            -->
-<dialog class="popup drop" data-popup aria-labelledby="popupTitle">
+<dialog class="popup drop drop--top" data-popup aria-labelledby="popupTitle">
   <button type="button" class="popup__close" data-popup-close aria-label="Close">
     <svg viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
   </button>
   <div class="drop__media" aria-hidden="true">
     <div class="drop__frame">
       <picture>
-        <source type="image/avif" srcset="/src/assets/img/mist-popup-composite-640.avif 640w, /src/assets/img/mist-popup-composite-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
-        <img src="/src/assets/img/mist-popup-composite-1280.jpg" alt="Tabitha Brown Body Mist — Spread Love, Hello There, Stay Focused" style="object-position: center top;" decoding="async" />
+        <source type="image/avif" srcset="/src/assets/img/holiday-popup-640.avif 640w, /src/assets/img/holiday-popup-1280.avif 1280w" sizes="(max-width: 480px) 92vw, 400px" />
+        <img src="/src/assets/img/holiday-popup-1280.jpg" alt="Tab + Chance holiday gifts — Tabitha Brown body mists, the 5-piece mist set, GOD IS jewelry, fragrance, lotion and body wash" style="object-position: center top;" decoding="async" />
       </picture>
     </div>
   </div>
   <div class="drop__scrim"></div>
   <div class="drop__content">
     <p class="popup__eyebrow">Just Arrived</p>
-    <h2 class="popup__title" id="popupTitle">The Body&nbsp;Mist has Landed.</h2>
-    <p class="popup__body">Three scents, one spirit — Spread&nbsp;Love, Hello&nbsp;There &amp; Stay&nbsp;Focused. Tabitha&nbsp;Brown Body&nbsp;Mist is here.</p>
+    <h2 class="popup__title" id="popupTitle">Holiday Sales Are Here.</h2>
+    <p class="popup__body">Gift your favorites and grab something new for&nbsp;you!</p>
     <a class="popup__cta" data-popup-close href="https://www.tabandchance.com/collections/body-mist" target="_blank" rel="noopener">
       Shop the drop
       <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
