@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Tabitha Brown · Tabitha Live</title>
-<meta name="description" content="Tabitha Live — tour dates and event info coming soon. Be the first to know." />
+<title>Tabitha Brown · A Heart Full of Wishes Book Tour</title>
+<meta name="description" content="A Heart Full of Wishes book tour with Tabitha Brown: Brooklyn, Raleigh, Jackson, St. Louis and Culver City, January 18–30. Get tickets." />
 <meta name="theme-color" content="#0F8C8C" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,6 +56,34 @@
   body.sent .note{display:block;}
   .booking{margin-top:26px;font-size:14px;color:rgba(255,253,242,0.82);}
   .booking a{color:var(--sun);font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+  /* book tour */
+  .wrap--tour{place-items:center;text-align:left;}
+  .tour{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,72px);align-items:center;max-width:1160px;width:100%;}
+  .tour__flyer{border-radius:18px;overflow:hidden;border:3px solid var(--paper);box-shadow:0 30px 80px rgba(0,0,0,0.45);transform:rotate(-1.2deg);}
+  .tour__flyer img{width:100%;height:auto;}
+  .tour .eyebrow::after{display:none;}
+  .tour .title{font-size:clamp(42px,5vw,74px);}
+  .tour .title .nw{white-space:nowrap;}
+  .tour .soon{margin:8px 0 16px;}
+  .dates{list-style:none;display:grid;gap:0;margin:0 0 24px;border-top:1px solid rgba(255,253,242,0.22);}
+  .dates li{display:grid;grid-template-columns:5.2em 1fr;gap:14px;padding:11px 0;border-bottom:1px solid rgba(255,253,242,0.22);}
+  .dates time{font-family:var(--font-display);font-weight:800;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--sun);padding-top:3px;}
+  .dates b{display:block;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:0.01em;}
+  .dates span{display:block;font-size:14px;color:rgba(255,253,242,0.78);margin-top:2px;}
+  .tickets{display:inline-flex;align-items:center;gap:10px;background:var(--sun);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:16px 30px;min-height:48px;font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;transition:transform 150ms var(--ease-out),background 180ms ease;}
+  .tickets:hover{background:#fff;}
+  .tickets:active{transform:scale(0.97);}
+  .tickets svg{width:16px;height:8px;}
+  .tour .booking{margin-top:22px;}
+  @media (max-width:860px){
+    .tour{grid-template-columns:1fr;}
+    .tour__flyer{max-width:520px;margin:0 auto;transform:none;}
+    .wrap--tour{padding-top:96px;}
+  }
+  .back{white-space:nowrap;}
+  @media (max-width:420px){.bar__mark{font-size:13px;padding:10px 14px;}.back{padding:10px 14px;font-size:11px;}}
+  @media (min-width:861px){.wrap--tour{padding-top:96px;padding-bottom:48px;}}
+  @media (prefers-reduced-motion:reduce){.tour__flyer{transform:none;}}
 </style>
 </head>
 <body>
@@ -75,34 +103,33 @@
   </a>
 </header>
 
-<main class="wrap">
-  <div class="inner">
-    <p class="eyebrow">Tabitha Live</p>
-    <h1 class="title">On stage,<br><em>on demand.</em></h1>
-    <p class="soon">tour dates coming soon</p>
-    <p class="lead">Speaking, storytelling, and stand-up that feels like Sunday dinner with the people who raised you right. New dates are on the way. Drop your email and you&rsquo;ll be the first to know when tickets go live.</p>
-    <form data-notify>
-      <input class="email" type="email" name="email" placeholder="you@example.com" required aria-label="Email address" />
-      <button class="go" type="submit">Notify me
-        <svg viewBox="0 0 16 8" fill="none"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </form>
-    <p class="note">you&rsquo;re on the list, honey! we&rsquo;ll be in touch.</p>
-    <p class="booking">Booking Tabitha for a private event? <a href="/#inquiries" data-inquiry>Send an inquiry</a>.</p>
+<main class="wrap wrap--tour">
+  <div class="tour">
+    <a class="tour__flyer" href="https://www.harpercollins.com/pages/tabithabrownbooks-events" target="_blank" rel="noopener" aria-label="A Heart Full of Wishes book tour flyer. Get tickets at HarperCollins">
+      <picture>
+        <source type="image/avif" srcset="/src/assets/img/book-tour-heart-full-of-wishes-640.avif 640w, /src/assets/img/book-tour-heart-full-of-wishes-1280.avif 1280w" sizes="(max-width: 860px) 92vw, 46vw" />
+        <source type="image/webp" srcset="/src/assets/img/book-tour-heart-full-of-wishes-640.webp 640w, /src/assets/img/book-tour-heart-full-of-wishes-1280.webp 1280w" sizes="(max-width: 860px) 92vw, 46vw" />
+        <img src="/src/assets/img/book-tour-heart-full-of-wishes-1280.jpg" width="1280" height="1280" alt="A Heart Full of Wishes Book Tour with Tabitha Brown flyer: the book cover, Tabitha's photo, and five January tour dates" />
+      </picture>
+    </a>
+    <div class="tour__info">
+      <p class="eyebrow">Book Tour</p>
+      <h1 class="title"><span class="nw">A Heart Full</span><br><em>of Wishes.</em></h1>
+      <p class="soon">come see Tab this January!</p>
+      <ul class="dates">
+        <li><time datetime="2027-01-18">Mon<br>Jan 18</time><div><b>Brooklyn, NY</b><span>The Billie Holiday Theatre &middot; hosted by Caf&eacute; con Libros</span></div></li>
+        <li><time datetime="2027-01-21">Thu<br>Jan 21</time><div><b>Raleigh, NC</b><span>New Hope Collaborative &middot; hosted by Liberation Station</span></div></li>
+        <li><time datetime="2027-01-23">Sat<br>Jan 23</time><div><b>Jackson, MS</b><span>Thalia Mara Hall &middot; hosted by the Mississippi Book Festival &amp; Lemuria Books</span></div></li>
+        <li><time datetime="2027-01-24">Sun<br>Jan 24</time><div><b>St. Louis, MO</b><span>Hosted by the St. Louis County Library &amp; EyeSeeMe Bookstore</span></div></li>
+        <li><time datetime="2027-01-30">Sat<br>Jan 30</time><div><b>Culver City, CA</b><span>Malik Books &middot; Westfield Culver City Mall</span></div></li>
+      </ul>
+      <a class="tickets" href="https://www.harpercollins.com/pages/tabithabrownbooks-events" target="_blank" rel="noopener">
+        Get tickets
+        <svg viewBox="0 0 16 8" fill="none" aria-hidden="true"><path d="M1 4h14M11 1l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="booking">Booking Tabitha for a private event? <a href="/#inquiries" data-inquiry>Send an inquiry</a>.</p>
+    </div>
   </div>
 </main>
-
-<script>
-  (() => {
-    const f = document.querySelector('[data-notify]');
-    f.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = f.querySelector('[name="email"]').value;
-      document.body.classList.add('sent');
-      location.href = 'mailto:admin@doyoubelieveent.com?subject=' + encodeURIComponent('Notify me: Tabitha Live dates') +
-        '&body=' + encodeURIComponent('Please add this email to the Tabitha Live tour-date list: ' + email);
-    });
-  })();
-</script>
 </body>
 </html>
